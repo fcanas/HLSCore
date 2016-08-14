@@ -2,5 +2,8 @@ import XCTest
 @testable import HLSCoreTestSuite
 
 XCTMain([
-     testCase(HLSCoreTests.allTests),
+     testCase(
+        HLSCoreTests.allTests +
+        RenditionGroupTests.allTests
+    ),
 ])
