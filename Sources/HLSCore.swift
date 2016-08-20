@@ -1,20 +1,12 @@
 import Foundation
 
-struct HLSCore {
-
-    var text = "Hello, World!"
-}
-
-protocol Resource {
-    var uri :URL { get }
-}
-
+/// EXT-X-START
 struct StartIndicator {
     let timeOffset :TimeInterval
     let preciseStart :Bool = false
 }
 
-protocol Playlist : Resource {
+protocol Playlist {
     var version :Int { get }
     var start :StartIndicator? { get }
 }
@@ -130,15 +122,37 @@ struct StreamInfo {
 
 struct MediaPlaylist : Playlist {
     
-    enum PlaylistType {
+    enum PlaylistType : CustomStringConvertible {
         case VOD
         case Event
+        
+        var description :String {
+            switch self {
+            case .VOD:
+                return "VOD"
+            case .Event:
+                return "EVENT"
+            }
+        }
+    }
+    
+    init(type: PlaylistType?, version: Int = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
+        self.type = type
+        self.version = version
+        self.uri = uri
+        self.targetDuration = targetDuration
+        self.closed = closed
+        self.start = start
+        self.segments = segments.map({ (segment) -> MediaSegment in
+            MediaSegment(uri: segment.resource.uri.relativeURL(baseURL: uri.directoryURL()), duration: segment.duration, title: segment.title, byteRange: segment.byteRange)
+        })
     }
     
     let type :PlaylistType?
     
     let version :Int
-    var playlist :MasterPlaylist
+    // private var playlist :MasterPlaylist? = nil
+    
     let uri :URL
     
     let targetDuration :TimeInterval
@@ -147,21 +161,45 @@ struct MediaPlaylist : Playlist {
     let closed :Bool
     
     let start :StartIndicator?
+    
+    // TODO : a playlist should probably _be_ a sequence of media segments
+    let segments :[MediaSegment]
 }
 
 /// Media
 
 struct MediaSegment {
-    var playlist :MediaPlaylist
+    private var playlist :MediaPlaylist?
     
     var resource :MediaResource
-    var range :Range<Int>
+    
+    init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: ByteRange? = nil) {
+        resource = MediaResource(uri: uri)
+        self.duration = duration
+        self.title = title
+        self.byteRange = byteRange
+    }
+    
+    // EXTINF
     
     let duration :TimeInterval
     let title :String?
     
+    // EXT-X-BYTERANGE
+    
+    let byteRange :ByteRange?
+    
 }
 
-struct MediaResource : Resource {
+struct ByteRange {
+    
+    // TODO : Make this a real range type.
+    //        Or a protocol that can be massaged into various different range uses
+    
+    let length :UIntMax
+    let offset :UIntMax
+}
+
+struct MediaResource {
     let uri :URL
 }
