@@ -28,7 +28,7 @@ extension URL {
     
     func directoryURL() -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
-        components.path = path.deepestDirectoryPath() ?? "/"
+        components.path = path.deepestDirectoryPath()
         return components.url!
     }
 }

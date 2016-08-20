@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Resource <T> {
-    let uri :URL
-    let value :T?
+public struct Resource <T> {
+    public let uri :URL
+    public let value :T?
 }
 
-typealias StringResource = Resource<String>
+public typealias StringResource = Resource<String>
 
 protocol Serializer {
     associatedtype SerializationFormat
@@ -32,17 +32,16 @@ extension String {
     }
 }
 
-struct MediaPlaylistSerlializer : Serializer {
+public struct MediaPlaylistSerlializer : Serializer {
     
     let usesRelativeURI :Bool = true
     
     let newline :LineEnding = .CR
     
-    typealias SerializationFormat = Resource<String>
+    typealias SerializationFormat = StringResource
     typealias Input = MediaPlaylist
     
-    func serialize(_ playlist: MediaPlaylist) -> Resource<String> {
-        
+    public func serialize(_ playlist: MediaPlaylist) -> StringResource {
         var output = "#EXTM3U" // required first line
         
         output = output._append("#EXT-TARGET-DURATION:\(Int(playlist.targetDuration))", line: newline)
@@ -64,4 +63,6 @@ struct MediaPlaylistSerlializer : Serializer {
         
         return Resource(uri: playlist.uri, value: output)
     }
+    
+    public init() {}
 }

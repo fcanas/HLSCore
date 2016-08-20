@@ -1,7 +1,7 @@
 import Foundation
 
 /// EXT-X-START
-struct StartIndicator {
+public struct StartIndicator {
     let timeOffset :TimeInterval
     let preciseStart :Bool = false
 }
@@ -13,7 +13,7 @@ protocol Playlist {
 
 /// Master Playlist
 
-struct MasterPlaylist : Playlist {
+public struct MasterPlaylist : Playlist {
     let version: Int
     let uri :URL
     
@@ -46,8 +46,8 @@ struct Rendition {
         self.forced = forced
     }
     
-    private let defaultRendition :Bool
-    private let forced :Bool
+    fileprivate let defaultRendition :Bool
+    fileprivate let forced :Bool
 }
 
 extension Rendition : Equatable {
@@ -68,8 +68,8 @@ struct RenditionGroup {
         self.type = type
         self.renditions = renditions
         
-        defaultRendition = self.renditions.first { $0.defaultRendition }
-        forcedRenditions = self.renditions.filter { $0.forced }
+        defaultRendition = renditions.first(where: { $0.defaultRendition })
+        forcedRenditions = renditions.filter { $0.forced }
     }
     
     let defaultRendition :Rendition?
@@ -120,13 +120,13 @@ struct StreamInfo {
     let uri :URL
 }
 
-struct MediaPlaylist : Playlist {
+public struct MediaPlaylist : Playlist {
     
-    enum PlaylistType : CustomStringConvertible {
+    public enum PlaylistType : CustomStringConvertible {
         case VOD
         case Event
         
-        var description :String {
+        public var description :String {
             switch self {
             case .VOD:
                 return "VOD"
@@ -136,7 +136,7 @@ struct MediaPlaylist : Playlist {
         }
     }
     
-    init(type: PlaylistType?, version: Int = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
+    public init(type: PlaylistType?, version: Int = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
         self.type = type
         self.version = version
         self.uri = uri
@@ -168,12 +168,12 @@ struct MediaPlaylist : Playlist {
 
 /// Media
 
-struct MediaSegment {
+public struct MediaSegment {
     private var playlist :MediaPlaylist?
     
     var resource :MediaResource
     
-    init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: ByteRange? = nil) {
+    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: ByteRange? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title
@@ -191,7 +191,7 @@ struct MediaSegment {
     
 }
 
-struct ByteRange {
+public struct ByteRange {
     
     // TODO : Make this a real range type.
     //        Or a protocol that can be massaged into various different range uses
