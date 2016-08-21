@@ -3,7 +3,7 @@
 //  HLSCore
 //
 //  Created by Fabian Canas on 8/14/16.
-//
+//  Copyright © 2016 Fabian Canas. All rights reserved.
 //
 
 import Foundation
