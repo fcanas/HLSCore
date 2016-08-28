@@ -36,12 +36,6 @@ enum MediaType {
     case ClosedCaptions
 }
 
-struct Language : Equatable {
-    static func ==(lhs :Language, rhs: Language) -> Bool {
-        return true
-    }
-}
-
 /// EXT-X-MEDIA
 struct Rendition {
     let language :Language
