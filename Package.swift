@@ -1,5 +1,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "HLSCore"
+    name: "HLSCore",
+    
+    targets: [
+        Target(name: "Types",
+               dependencies: []),
+        Target(name: "Serialization",
+               dependencies: []),
+    ]
 )

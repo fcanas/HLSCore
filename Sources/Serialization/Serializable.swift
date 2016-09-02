@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Types
 
 public struct Resource <T> {
     public let uri :URL

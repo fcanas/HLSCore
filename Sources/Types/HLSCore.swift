@@ -22,11 +22,11 @@ protocol Playlist {
 /// Master Playlist
 
 public struct MasterPlaylist : Playlist {
-    let version: Int
-    let uri :URL
+    public let version: Int
+    public let uri :URL
     
-    let streams :[MediaPlaylist]
-    let start :StartIndicator?
+    public let streams :[MediaPlaylist]
+    public let start :StartIndicator?
 }
 
 enum MediaType {
@@ -150,22 +150,22 @@ public struct MediaPlaylist : Playlist {
         })
     }
     
-    let type :PlaylistType?
+    public let type :PlaylistType?
     
-    let version :Int
+    public let version :Int
     // private var playlist :MasterPlaylist? = nil
     
-    let uri :URL
+    public let uri :URL
     
-    let targetDuration :TimeInterval
+    public let targetDuration :TimeInterval
     
     /// Marks the presence of a `EXT-X-ENDLIST` tag
-    let closed :Bool
+    public let closed :Bool
     
-    let start :StartIndicator?
+    public let start :StartIndicator?
     
     // TODO : a playlist should probably _be_ a sequence of media segments
-    let segments :[MediaSegment]
+    public let segments :[MediaSegment]
 }
 
 /// Media
@@ -173,7 +173,7 @@ public struct MediaPlaylist : Playlist {
 public struct MediaSegment {
     private var playlist :MediaPlaylist?
     
-    var resource :MediaResource
+    public var resource :MediaResource
     
     public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: ByteRange? = nil) {
         resource = MediaResource(uri: uri)
@@ -184,7 +184,7 @@ public struct MediaSegment {
     
     // EXTINF
     
-    let duration :TimeInterval
+    public let duration :TimeInterval
     let title :String?
     
     // EXT-X-BYTERANGE
@@ -202,6 +202,6 @@ public struct ByteRange {
     let offset :UIntMax
 }
 
-struct MediaResource {
-    let uri :URL
+public struct MediaResource {
+    public let uri :URL
 }
