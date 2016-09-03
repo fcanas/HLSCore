@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import HLSCore
+@testable import Types
 
 class URLTests: XCTestCase {
     func testRelativeURL() {

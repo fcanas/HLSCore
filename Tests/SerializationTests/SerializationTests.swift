@@ -9,7 +9,8 @@
 import XCTest
 // Here we test public behavior. We shouldn't import the module as testable
 // because visibility is part of our contract.
-import HLSCore
+import Serialization
+import Types
 
 class SerializationTests: XCTestCase {
     func testBasicPlaylist() {

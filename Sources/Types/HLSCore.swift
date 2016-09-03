@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Utilities
 
 /// EXT-X-START
 public struct StartIndicator {
@@ -14,22 +15,7 @@ public struct StartIndicator {
     let preciseStart :Bool = false
 }
 
-protocol Playlist {
-    var version :Int { get }
-    var start :StartIndicator? { get }
-}
-
-/// Master Playlist
-
-public struct MasterPlaylist : Playlist {
-    public let version: Int
-    public let uri :URL
-    
-    public let streams :[MediaPlaylist]
-    public let start :StartIndicator?
-}
-
-enum MediaType {
+public enum MediaType {
     case Audio
     case Video
     case Subtitles
@@ -37,11 +23,11 @@ enum MediaType {
 }
 
 /// EXT-X-MEDIA
-struct Rendition {
+public struct Rendition {
     let language :Language
     let name :String
     
-    init(language: Language, name: String, defaultRendition: Bool = false, forced: Bool = false) {
+    public init(language: Language, name: String, defaultRendition: Bool = false, forced: Bool = false) {
         self.language = language
         self.name = name
         self.defaultRendition = defaultRendition
@@ -53,19 +39,19 @@ struct Rendition {
 }
 
 extension Rendition : Equatable {
-    static func ==(lhs: Rendition, rhs: Rendition) -> Bool {
+    public static func ==(lhs: Rendition, rhs: Rendition) -> Bool {
         return lhs.language == rhs.language &&
                lhs.name == rhs.name
     }
 }
 
-struct RenditionGroup {
+public struct RenditionGroup {
     let groupId :String
     let type :MediaType
     
     let renditions :[Rendition]
     
-    init(groupId: String, type: MediaType, renditions: [Rendition]) {
+    public init(groupId: String, type: MediaType, renditions: [Rendition]) {
         self.groupId = groupId
         self.type = type
         self.renditions = renditions
@@ -74,9 +60,9 @@ struct RenditionGroup {
         forcedRenditions = renditions.filter { $0.forced }
     }
     
-    let defaultRendition :Rendition?
+    public let defaultRendition :Rendition?
     
-    let forcedRenditions :[Rendition]
+    public let forcedRenditions :[Rendition]
 }
 
 /// Bits per second
@@ -120,52 +106,6 @@ struct StreamInfo {
     let frameRate :Double
     
     let uri :URL
-}
-
-public struct MediaPlaylist : Playlist {
-    
-    public enum PlaylistType : CustomStringConvertible {
-        case VOD
-        case Event
-        
-        public var description :String {
-            switch self {
-            case .VOD:
-                return "VOD"
-            case .Event:
-                return "EVENT"
-            }
-        }
-    }
-    
-    public init(type: PlaylistType?, version: Int = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
-        self.type = type
-        self.version = version
-        self.uri = uri
-        self.targetDuration = targetDuration
-        self.closed = closed
-        self.start = start
-        self.segments = segments.map({ (segment) -> MediaSegment in
-            MediaSegment(uri: segment.resource.uri.relativeURL(baseURL: uri.directoryURL()), duration: segment.duration, title: segment.title, byteRange: segment.byteRange)
-        })
-    }
-    
-    public let type :PlaylistType?
-    
-    public let version :Int
-    // private var playlist :MasterPlaylist? = nil
-    
-    public let uri :URL
-    
-    public let targetDuration :TimeInterval
-    
-    /// Marks the presence of a `EXT-X-ENDLIST` tag
-    public let closed :Bool
-    
-    public let start :StartIndicator?
-    
-    // TODO : a playlist should probably _be_ a sequence of media segments
-    public let segments :[MediaSegment]
 }
 
 /// Media

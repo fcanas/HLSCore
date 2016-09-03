@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import HLSCore
+import Types
 
 class HLSCoreTests: XCTestCase {
     func testExample() {

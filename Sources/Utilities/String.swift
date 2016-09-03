@@ -10,13 +10,13 @@ import Foundation
 
 extension String {
     
-    var fullRange :Range<Index> {
+    public var fullRange :Range<Index> {
         get {
             return Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
         }
     }
     
-    func deepestDirectoryPath() -> String {
+    public func deepestDirectoryPath() -> String {
         if self.hasSuffix("/") {
             return self
         }
@@ -27,4 +27,12 @@ extension String {
         return self.substring(to: self.index(after: lastSlashIndex))
     }
     
+}
+
+extension NSString {
+    public var fullRange :NSRange {
+        get {
+            return NSRange(location: 0, length: self.length)
+        }
+    }
 }

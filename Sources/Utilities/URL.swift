@@ -17,7 +17,7 @@ extension URL {
      *
      * [RFC 1808](https://tools.ietf.org/html/rfc1808) is relevant, but not strictly followed.
      */
-    func relativeURL(baseURL: URL) -> URL {
+    public func relativeURL(baseURL: URL) -> URL {
         let baseString = baseURL.absoluteString
         let selfString = absoluteString
         
@@ -61,7 +61,7 @@ extension URL {
         return self
     }
     
-    func directoryURL() -> URL {
+    public func directoryURL() -> URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
         components.path = path.deepestDirectoryPath()
         return components.url!

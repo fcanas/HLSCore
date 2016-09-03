@@ -6,8 +6,6 @@
 //  Copyright © 2016 Fabian Canas. All rights reserved.
 //
 
-import Foundation
-
 public struct Language : Equatable {
     
     let value :String
