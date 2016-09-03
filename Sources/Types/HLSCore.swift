@@ -91,11 +91,6 @@ struct Codec {
     // TODO
 }
 
-struct Resolution {
-    let width :Int
-    let height :Int
-}
-
 /// EXT-X-STREAM-INF
 struct StreamInfo {
     /// Peak segment bitrate in bits per second

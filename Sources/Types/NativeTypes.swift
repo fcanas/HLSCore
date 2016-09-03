@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Resolution {
+    let width :Int
+    let height :Int
+}
