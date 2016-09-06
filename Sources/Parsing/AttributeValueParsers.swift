@@ -9,18 +9,71 @@
 import Foundation
 import Types
 
-let int = { characters in UInt(String(characters))! } <^> digit.many1
-
-let hexSequence = hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters)) } <^> hexDigit.many)
-
-let decimalFloatingPoint = { Double($0)! } <^> floatingPointString
-
-let signedDecimalFloatingPoint = { Double($0)! } <^> negation.optional.followed(by: floatingPointString) { (neg, num) -> String in
-    (neg ?? "") + num
+enum AttributeValue {
+    case DecimalInteger(UInt)
+    case HexadecimalSequence(HexadecimalSequence)
+    case DecimalFloatingPoint(Double)
+    case SignedDecimalFloatingPoint(SignedFloat)
+    case QuotedString(String)
+    case EnumeratedString(EnumeratedString)
+    case DecimalResolution(Resolution)
+    
+    init(_ int: UInt) {
+        self = .DecimalInteger(int)
+    }
+    
+    init(_ hex: HexadecimalSequence) {
+        self = .HexadecimalSequence(hex)
+    }
+    
+    init(_ float: Double) {
+        self = .DecimalFloatingPoint(float)
+    }
+    
+    init(_ signedFloat: SignedFloat) {
+        self = .SignedDecimalFloatingPoint(signedFloat)
+    }
+    
+    init(_ quotedString: String) {
+        self = .QuotedString(quotedString)
+    }
+    
+    init(_ enumeratedString: EnumeratedString) {
+        self = .EnumeratedString(enumeratedString)
+    }
+    
+    init(_ decimalResolution: Resolution) {
+        self = .DecimalResolution(decimalResolution)
+    }
+    
 }
 
-let quotedString = { String($0) } <^> quote *> character(in: CharacterSet.forQuotedString ).many <* quote
+typealias QuotedString = String
 
-let enumeratedString = { String($0) } <^> character(in: CharacterSet.forEnumeratedString).many1
+struct EnumeratedString {
+    let value :String
+    
+    init(_ string: String) {
+        value = string
+    }
+    
+    init(_ characters: [Character]) {
+        value = String(characters)
+    }
+}
 
-let decimalResolution = Resolution.init <^> int <* x <&> int
+/// Attribute Value Parsers
+
+let decimalInteger = AttributeValue.init <^> int
+
+let hexSequence = AttributeValue.init <^> hex
+
+let decimalFloatingPoint = AttributeValue.init <^> float
+
+let signedDecimalFloatingPoint = AttributeValue.init <^> signedFloat
+
+let quotedString = AttributeValue.init <^> quoteString
+
+let enumeratedString = AttributeValue.init <^> enumString
+
+let decimalResolution = AttributeValue.init <^> resolution

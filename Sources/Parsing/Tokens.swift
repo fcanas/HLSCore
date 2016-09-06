@@ -61,3 +61,5 @@ let x = character { $0 == "x" }
 let numericString = { String($0) } <^> digit.many1
 
 let floatingPointString = numericString.followed(by: decimalPoint, combine: +).followed(by: numericString, combine: +)
+
+let int = { characters in UInt(String(characters))! } <^> digit.many1

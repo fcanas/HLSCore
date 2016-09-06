@@ -48,3 +48,17 @@ public struct HexadecimalSequence : Equatable {
         }
     }
 }
+
+public struct SignedFloat {
+    public let value :Double
+    public init(_ double: Double) {
+        value = double
+    }
+    
+    public init?(_ string: String) {
+        guard let v = Double(string) else {
+            return nil
+        }
+        self.init(v)
+    }
+}
