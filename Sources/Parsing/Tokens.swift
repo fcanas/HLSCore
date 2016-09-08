@@ -63,3 +63,8 @@ let numericString = { String($0) } <^> digit.many1
 let floatingPointString = numericString.followed(by: decimalPoint, combine: +).followed(by: numericString, combine: +)
 
 let int = { characters in UInt(String(characters))! } <^> digit.many1
+
+let newline = character { $0 == "\n" } <|> (character { $0 == "\n" } <* character { $0 == "\r" })
+
+let url = { URL(string: $0) } <^> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
+
