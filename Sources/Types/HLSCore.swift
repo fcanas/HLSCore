@@ -12,7 +12,17 @@ import Utilities
 /// EXT-X-START
 public struct StartIndicator {
     let timeOffset :TimeInterval
-    let preciseStart :Bool = false
+    let preciseStart :Bool
+    public init(at timeOffset: TimeInterval, preciseStart: Bool = false) {
+        self.timeOffset = timeOffset
+        self.preciseStart = preciseStart
+    }
+}
+
+extension StartIndicator : Equatable {
+    public static func ==(lhs: StartIndicator, rhs: StartIndicator) -> Bool {
+        return lhs.timeOffset == rhs.timeOffset && lhs.preciseStart == rhs.preciseStart
+    }
 }
 
 public enum MediaType {
@@ -110,7 +120,7 @@ public struct MediaSegment {
     
     public var resource :MediaResource
     
-    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: ByteRange? = nil) {
+    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: Range<UInt>? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title
@@ -124,17 +134,8 @@ public struct MediaSegment {
     
     // EXT-X-BYTERANGE
     
-    let byteRange :ByteRange?
+    let byteRange :Range<UInt>?
     
-}
-
-public struct ByteRange {
-    
-    // TODO : Make this a real range type.
-    //        Or a protocol that can be massaged into various different range uses
-    
-    let length :UIntMax
-    let offset :UIntMax
 }
 
 public struct MediaResource {

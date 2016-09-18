@@ -9,25 +9,25 @@
 import Foundation
 
 
-public struct Parser<A> {
-    public typealias Stream = String.CharacterView
+struct Parser<A> {
+    typealias Stream = String.CharacterView
     let parse: (Stream) -> (A, Stream)?
 }
 
 
 extension Parser {
-    public func run(_ x: String) -> (A, Stream)? {
+    func run(_ x: String) -> (A, Stream)? {
         return parse(x.characters)
     }
     
-    public func map<Result>(_ f: @escaping (A) -> Result) -> Parser<Result> {
+    func map<Result>(_ f: @escaping (A) -> Result) -> Parser<Result> {
         return Parser<Result> { stream in
             guard let (result, newStream) = self.parse(stream) else { return nil }
             return (f(result), newStream)
         }
     }
     
-    public var many: Parser<[A]> {
+    var many: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
             var remainder = stream
@@ -39,7 +39,7 @@ extension Parser {
         }
     }
 
-    public var many1: Parser<[A]> {
+    var many1: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
             var remainder = stream
@@ -54,13 +54,13 @@ extension Parser {
         }
     }
     
-    public func or(_ other: Parser<A>) -> Parser<A> {
+    func or(_ other: Parser<A>) -> Parser<A> {
         return Parser { stream in
             return self.parse(stream) ?? other.parse(stream)
         }
     }
     
-    public func followed<B, C>(by other: Parser<B>, combine: @escaping (A, B) -> C) -> Parser<C> {
+    func followed<B, C>(by other: Parser<B>, combine: @escaping (A, B) -> C) -> Parser<C> {
         return Parser<C> { stream in
             guard let (result, remainder) = self.parse(stream) else { return nil }
             guard let (result2, remainder2) = other.parse(remainder) else { return nil }
@@ -68,21 +68,29 @@ extension Parser {
         }
     }
     
-    public func followed<B>(by other: Parser<B>) -> Parser<(A, B)> {
+    func followed<B>(by other: Parser<B>) -> Parser<(A, B)> {
         return followed(by: other, combine: { ($0, $1) })
     }
     
-    public init(result: A) {
+    func group<B, C>(into other: Parser<(B, C)>) -> Parser<(B, C, A)> {
+        return Parser<(B, C, A)> { stream in
+            guard let (resultBC, remainderBC) = other.parse(stream) else { return nil }
+            guard let (result, remainder) = self.parse(remainderBC) else { return nil }
+            return ((resultBC.0, resultBC.1, result), remainder)
+        }
+    }
+    
+    init(result: A) {
         parse = { stream in (result, stream) }
     }
     
-    public var optional: Parser<A?> {
+    var optional: Parser<A?> {
         return self.map({ .some($0) }).or(Parser<A?>(result: nil))
     }
 }
 
 
-public func curry<A, B, C>(_ f: @escaping (A, B) -> C) -> (A) -> (B) -> C {
+func curry<A, B, C>(_ f: @escaping (A, B) -> C) -> (A) -> (B) -> C {
     return { x in { y in f(x, y) } }
 }
 
@@ -99,7 +107,13 @@ precedencegroup ParserConjuctionPrecedence {
 
 precedencegroup ParserMapPrecedence {
     associativity: left
+    higherThan: ParserGroupPrecendence
 }
+
+precedencegroup ParserGroupPrecendence {
+    associativity: left
+}
+
 
 infix operator <^> : ParserMapPrecedence
 infix operator <*> : ParserPrecedence
@@ -107,38 +121,42 @@ infix operator <&> : ParserPrecedence
 infix operator *>  : ParserPrecedence
 infix operator <*  : ParserPrecedence
 infix operator <|> : ParserConjuctionPrecedence
+infix operator <<&  : ParserGroupPrecendence
 
-public func <^><A, B>(f: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
+func <^><A, B>(f: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
     return rhs.map(f)
 }
 
-public func <^><A, B, R>(f: @escaping (A, B) -> R, rhs: Parser<A>) -> Parser<(B) -> R> {
+func <^><A, B, R>(f: @escaping (A, B) -> R, rhs: Parser<A>) -> Parser<(B) -> R> {
     return Parser(result: curry(f)) <*> rhs
 }
 
 
 
-public func <*><A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
+func <*><A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
     return lhs.followed(by: rhs, combine: { $0($1) })
 }
 
-public func <&><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<(A,B)> {
+func <&><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<(A,B)> {
     return lhs.followed(by: rhs, combine: { ($0, $1) })
 }
 
 
 
-public func <*<A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<A> {
+func <*<A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<A> {
     return lhs.followed(by: rhs, combine: { x, _ in x })
 }
 
-public func *><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<B> {
+func *><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<B> {
     return lhs.followed(by: rhs, combine: { _, x in x })
 }
 
-public func <|><A>(lhs: Parser<A>, rhs: Parser<A>) -> Parser<A> {
+func <|><A>(lhs: Parser<A>, rhs: Parser<A>) -> Parser<A> {
     return lhs.or(rhs)
 }
 
+func <<&<A, B, C>(lhs: Parser<(A, B)>, rhs: Parser<C>) -> Parser<(A, B, C)> {
+    return rhs.group(into:lhs)
+}
 
 

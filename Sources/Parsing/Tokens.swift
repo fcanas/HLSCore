@@ -10,18 +10,18 @@ import Foundation
 
 /// Foundation
 
-public func character( condition: @escaping (Character) -> Bool) -> Parser<Character> {
+func character( condition: @escaping (Character) -> Bool) -> Parser<Character> {
     return Parser { stream in
         guard let char = stream.first, condition(char) else { return nil }
         return (char, stream.dropFirst())
     }
 }
 
-public func character(in characterSet: CharacterSet ) -> Parser<Character> {
+func character(in characterSet: CharacterSet ) -> Parser<Character> {
     return character(condition: { characterSet.contains($0.unicodeScalar) } )
 }
 
-public func string(_ string: String) -> Parser<String> {
+func string(_ string: String) -> Parser<String> {
     return Parser<String> { stream in
         var remainder = stream
         for char in string.characters {

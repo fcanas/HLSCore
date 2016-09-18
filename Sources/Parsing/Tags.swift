@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Types
 
 /// Basic Tags
 
@@ -14,11 +15,9 @@ let EXTM3U = string("#EXTM3U")
 
 let EXTVERSION = string("#EXT-X-VERSION:") *> int
 
-let EXTINF = string("#EXTINF:") *> ( decimalFloatingPoint <|> decimalInteger ) <&> ( character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.alphanumerics).many) )
-// TODO: title, as raw UTF-8 text?
-// <*> (character(",") <&> )
+let EXTINF = string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.alphanumerics).many))) <<& (newline *> url) <* newline
 
-let EXTXBYTERANGE = string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional
+let EXTXBYTERANGE = { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional
 
 let EXTXDISCONTINUITY = string("#EXT-X-DISCONTINUITY")
 
@@ -60,5 +59,7 @@ let EXTXSESSIONKEY = string("#EXT-X-SESSION-KEY:") *> attributeList
 
 let EXTXINDEPENDENTSEGMENTS = string("#EXT-X-INDEPENDENT-SEGMENTS")
 
-let EXTXSTART = string("#EXT-X-START:") *> attributeList
+// TODO: If StartIndicator initialization fails, the parser should fail, not
+//       succeed with nil.
+let EXTXSTART = StartIndicator.init <^> ( string("#EXT-X-START:") *> attributeList )
 
