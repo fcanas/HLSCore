@@ -80,6 +80,14 @@ extension Parser {
         }
     }
     
+    func group<B, C, D>(into other: Parser<(B, C, D)>) -> Parser<(B, C, D, A)> {
+        return Parser<(B, C, D, A)> { stream in
+            guard let (resultBCD, remainderBCD) = other.parse(stream) else { return nil }
+            guard let (result, remainder) = self.parse(remainderBCD) else { return nil }
+            return ((resultBCD.0, resultBCD.1, resultBCD.2, result), remainder)
+        }
+    }
+    
     init(result: A) {
         parse = { stream in (result, stream) }
     }
@@ -156,6 +164,10 @@ func <|><A>(lhs: Parser<A>, rhs: Parser<A>) -> Parser<A> {
 }
 
 func <<&<A, B, C>(lhs: Parser<(A, B)>, rhs: Parser<C>) -> Parser<(A, B, C)> {
+    return rhs.group(into:lhs)
+}
+
+func <<&<A, B, C, D>(lhs: Parser<(A, B, C)>, rhs: Parser<D>) -> Parser<(A, B, C, D)> {
     return rhs.group(into:lhs)
 }
 

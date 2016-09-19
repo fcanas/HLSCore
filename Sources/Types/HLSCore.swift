@@ -120,7 +120,7 @@ public struct MediaSegment {
     
     public var resource :MediaResource
     
-    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: Range<UInt>? = nil) {
+    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: CountableClosedRange<UInt>? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title
@@ -134,10 +134,25 @@ public struct MediaSegment {
     
     // EXT-X-BYTERANGE
     
-    let byteRange :Range<UInt>?
+    let byteRange :CountableClosedRange<UInt>?
     
+}
+
+extension MediaSegment : Equatable {
+    public static func ==(lhs: MediaSegment, rhs: MediaSegment) -> Bool {
+        return lhs.resource == rhs.resource
+            && lhs.title == rhs.title
+            && lhs.byteRange == rhs.byteRange
+            && lhs.duration == rhs.duration
+    }
 }
 
 public struct MediaResource {
     public let uri :URL
+}
+
+extension MediaResource : Equatable {
+    public static func ==(lhs: MediaResource, rhs: MediaResource) -> Bool {
+        return lhs.uri == rhs.uri
+    }
 }

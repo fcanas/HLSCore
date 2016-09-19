@@ -15,7 +15,7 @@ let EXTM3U = string("#EXTM3U")
 
 let EXTVERSION = string("#EXT-X-VERSION:") *> int
 
-let EXTINF = string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.alphanumerics).many))) <<& (newline *> url) <* newline
+let EXTINF = string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.newlines.inverted).many).optional))
 
 let EXTXBYTERANGE = { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional
 

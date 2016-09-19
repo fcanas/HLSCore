@@ -45,3 +45,39 @@ extension StartIndicator {
         }
     }
 }
+
+extension MediaSegment {
+    
+    init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?) {
+        
+        var durationVar :TimeInterval? = nil
+        
+        switch duration {
+        case let .DecimalFloatingPoint(boundDuration):
+            durationVar = boundDuration
+            break
+        case let .DecimalInteger(boundDuration):
+            durationVar = TimeInterval(boundDuration)
+            break
+        default:
+            break
+        }
+        
+        guard let duration :TimeInterval = durationVar, let uri = uri else {
+            return nil
+        }
+        
+        // TODO : Our string parser will currently return a zero-length string 
+        // when nothing is found, even for an optional string. If that's fixed,
+        // this sanitization should be unnecessary.
+        let sanitizedTitle :String?
+        if title == "" {
+            sanitizedTitle = nil
+        } else {
+            sanitizedTitle = title
+        }
+        
+        self.init(uri: uri, duration: duration, title: sanitizedTitle, byteRange: range)
+    }
+    
+}
