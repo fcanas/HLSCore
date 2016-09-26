@@ -20,13 +20,20 @@ class SerializationTests: XCTestCase {
         let s2URL = URL(string: "s2.ts")!
         let s3URL = URL(string: "http://example.com/s3.ts")!
         let s4URL = URL(string: "http://example.com/test/alt/s4.ts")!
+        let s5URL = URL(string: "s5.ts")!
+        let s6URL = URL(string: "s6.ts")!
         
         let segments = [MediaSegment(uri: s1URL, duration: 3.1),
                         MediaSegment(uri: s2URL, duration: 3.0),
                         MediaSegment(uri: s3URL, duration: 3.2),
                         MediaSegment(uri: s4URL, duration: 2.9)]
         
-        let playlist :MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments)
+        let unencryptedSegments =  [MediaSegment(uri: s5URL, duration: 3.0),
+                                  MediaSegment(uri: s6URL, duration: 3.2)]
+        let key = DecryptionKey(method:.AES128, uri:URL(string:"ex.key")!)
+        let encryptedSegments = setDecryptionKey(key, forSegments: unencryptedSegments)
+        
+        let playlist :MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments + encryptedSegments)
         
         let stringResource = MediaPlaylistSerlializer().serialize(playlist)
         
@@ -44,7 +51,12 @@ class SerializationTests: XCTestCase {
                 "#EXTINF:3.2" + "\n" +
                 "../s3.ts" + "\n" +
                 "#EXTINF:2.9" + "\n" +
-                "alt/s4.ts" + "\n"
+                "alt/s4.ts" + "\n" +
+                "#EXT-X-KEY:METHOD=AES-128,URI=\"ex.key\"" + "\n" +
+                "#EXTINF:3.0" + "\n" +
+                "s5.ts" + "\n" +
+                "#EXTINF:3.2" + "\n" +
+                "s6.ts" + "\n"
         
         AssertMatchMultilineString(stringResource.value!, expectedPlaylist, separator: "\n")
         

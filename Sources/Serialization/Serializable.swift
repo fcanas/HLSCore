@@ -55,7 +55,17 @@ public struct MediaPlaylistSerlializer : Serializer {
             output = output._append("#EXT-X-PLAYLIST-TYPE:\(type)", line: newline)
         }
         
+        var decryptionKey :DecryptionKey? = nil
+        
         for segment in playlist.segments {
+            if segment.decryptionKey != decryptionKey {
+                decryptionKey = segment.decryptionKey
+                if let key = decryptionKey {
+                    output = output._append(key.playlistString, line: newline)
+                } else {
+                    output = output._append(DecryptionKey.None.playlistString, line: newline)
+                }
+            }
             output = output._append("#EXTINF:\(segment.duration)", line: newline)
             output = output._append(segment.resource.uri.relativeString, line: newline)
         }
@@ -66,4 +76,28 @@ public struct MediaPlaylistSerlializer : Serializer {
     }
     
     public init() {}
+}
+
+private extension DecryptionKey {
+    
+    var playlistString :String {
+        get {
+            var out = "#EXT-X-KEY:METHOD=\(method.rawValue)"
+            if method != .None {
+                out += ",URI=\"\(uri)\""
+                
+                if let iv = initializationVector {
+                    out += String(format:",%8x%8x", iv.high, iv.low)
+                }
+                if keyFormat != "identity" {
+                    out += "," + keyFormat
+                }
+                if let v = keyformatVersions {
+                    out += "," + v.map({ String($0) }).joined(separator: "/")
+                }
+            }
+            return out
+        }
+    }
+    
 }

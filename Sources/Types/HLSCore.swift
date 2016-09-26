@@ -120,11 +120,12 @@ public struct MediaSegment {
     
     public var resource :MediaResource
     
-    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: CountableClosedRange<UInt>? = nil) {
+    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: CountableClosedRange<UInt>? = nil, decryptionKey: DecryptionKey? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title
         self.byteRange = byteRange
+        self.decryptionKey = decryptionKey
     }
     
     // EXTINF
@@ -135,6 +136,8 @@ public struct MediaSegment {
     // EXT-X-BYTERANGE
     
     let byteRange :CountableClosedRange<UInt>?
+    
+    public var decryptionKey :DecryptionKey?
     
 }
 

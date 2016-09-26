@@ -50,7 +50,7 @@ public struct MediaPlaylist : Playlist {
         self.closed = closed
         self.start = start
         self.segments = segments.map({ (segment) -> MediaSegment in
-            MediaSegment(uri: segment.resource.uri.relativeURL(baseURL: uri.directoryURL()), duration: segment.duration, title: segment.title, byteRange: segment.byteRange)
+            MediaSegment(uri: segment.resource.uri.relativeURL(baseURL: uri.directoryURL()), duration: segment.duration, title: segment.title, byteRange: segment.byteRange, decryptionKey: segment.decryptionKey)
         })
     }
     
