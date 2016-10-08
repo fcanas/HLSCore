@@ -9,6 +9,7 @@
 import Foundation
 import Types
 
+/// Attributes in Attribute lists can take on a limited number of types.
 enum AttributeValue {
     case DecimalInteger(UInt)
     case HexadecimalSequence(HexadecimalSequence)

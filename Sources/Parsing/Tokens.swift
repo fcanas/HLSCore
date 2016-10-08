@@ -10,6 +10,12 @@ import Foundation
 
 /// Foundation
 
+/** Builds a `Parser` for matching a single character
+ - parameter condition: A function that determines whether the character is parsed
+                  (returns true) or causes the returned parser to fail (returns
+                  false).
+ - returns: A `Parser` for a single `Character` passing the provided `condition`
+*/
 func character( condition: @escaping (Character) -> Bool) -> Parser<Character> {
     return Parser { stream in
         guard let char = stream.first, condition(char) else { return nil }
@@ -17,10 +23,18 @@ func character( condition: @escaping (Character) -> Bool) -> Parser<Character> {
     }
 }
 
+/** Builds a parser for matching a single character in the provided
+    `CharacterSet`
+ - parameter characterSet: A `CharacterSet` of all characters the resulting
+                           `Parser` will match.
+ - returns: A `Parser` that will match a single `Character` in `characterSet`
+ */
 func character(in characterSet: CharacterSet ) -> Parser<Character> {
     return character(condition: { characterSet.contains($0.unicodeScalar) } )
 }
 
+/** Builds a parser for matching the provided `String`
+ */
 func string(_ string: String) -> Parser<String> {
     return Parser<String> { stream in
         var remainder = stream
@@ -35,6 +49,7 @@ func string(_ string: String) -> Parser<String> {
 }
 
 extension Character {
+    /// The first `UnicodeScalar` of the `String` representation
     public var unicodeScalar: UnicodeScalar {
         return String(self).unicodeScalars.first!
     }
