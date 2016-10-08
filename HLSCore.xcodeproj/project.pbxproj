@@ -47,7 +47,6 @@
 		_LinkFileRef_Utilities_via_Types /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
 		_LinkFileRef_Utilities_via_TypesTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
 		_LinkFileRef_Utilities_via_UtilitiesTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		__src_cc_ref_Sources/Parsing/Parser.swift /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Parsing/Parser.swift /* Parser.swift */; };
 		__src_cc_ref_Sources/Serialization/Serializable.swift /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */; };
 		__src_cc_ref_Sources/Strip/Download.swift /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/Download.swift /* Download.swift */; };
 		__src_cc_ref_Sources/Strip/File.swift /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/File.swift /* File.swift */; };
@@ -125,7 +124,6 @@
 		E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionKey.swift; sourceTree = "<group>"; };
 		__PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = HLSCore.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Parsing/Parser.swift /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Strip/Download.swift /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Strip/File.swift /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -320,7 +318,6 @@
 		"_______Group_Parsing" /* Parsing */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/Parsing/Parser.swift /* Parser.swift */,
 				E70E8DCA1D7B197400CB6A1E /* ParserCombinator.swift */,
 				E70E8DCC1D7B23D900CB6A1E /* Tokens.swift */,
 				E70E8DCE1D7D051100CB6A1E /* CharacterSet.swift */,
@@ -671,7 +668,6 @@
 				E70E8DD51D7DEEEC00CB6A1E /* Tags.swift in Sources */,
 				E74698811D8F647300C02A8E /* EntityParsers.swift in Sources */,
 				E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */,
-				__src_cc_ref_Sources/Parsing/Parser.swift /* Parser.swift in Sources */,
 				E7064DE11D88DB93001D2F60 /* CoreInitializers.swift in Sources */,
 				E70E8DCF1D7D051100CB6A1E /* CharacterSet.swift in Sources */,
 				E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */,
