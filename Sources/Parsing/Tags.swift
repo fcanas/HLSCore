@@ -9,57 +9,134 @@
 import Foundation
 import Types
 
-/// Basic Tags
+// MARK: Aggregate Tags
 
-let EXTM3U = string("#EXTM3U")
+let MediaPlaylistTag = ExclusiveMediaPlaylistTag <|> SegmentTag <|> PlaylistTag
 
-let EXTVERSION = string("#EXT-X-VERSION:") *> int
+let MasterPlaylistTag = ExclusiveMasterPlaylistTag <|> PlaylistTag
 
-let EXTINF = string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.newlines.inverted).many).optional))
+let PlaylistTag = AnyTag.playlist <^> EXTM3U <|>
+                                      EXTVERSION <|>
+                                      EXTXINDEPENDENTSEGMENTS
 
-let EXTXBYTERANGE = { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional
+let SegmentTag = AnyTag.segment <^> EXTINF <|>
+                                    EXTXBYTERANGE <|>
+                                    EXTXDISCONTINUITY <|>
+                                    EXTXKEY <|>
+                                    EXTXMAP <|>
+                                    EXTXPROGRAMDATETIME <|>
+                                    EXTXDATERANGE
 
-let EXTXDISCONTINUITY = string("#EXT-X-DISCONTINUITY")
+let ExclusiveMediaPlaylistTag = AnyTag.media <^> EXTXTARGETDURATION <|>
+                                                 EXTXMEDIASEQUENCE <|>
+                                                 EXTXDISCONTINUITYSEQUENCE <|>
+                                                 EXTXENDLIST <|>
+                                                 EXTXPLAYLISTTYPE <|>
+                                                 EXTXIFRAMESONLY
 
-let EXTXKEY = string("#EXT-X-KEY:") *> attributeList // needs builder
+let ExclusiveMasterPlaylistTag = AnyTag.master <^> EXTXMEDIA <|>
+                                                   EXTXSTREAMINF <|>
+                                                   EXTXIFRAMESTREAMINF <|>
+                                                   EXTXSESSIONDATA <|>
+                                                   EXTXSESSIONKEY
 
-let EXTXMAP = string("#EXT-X-MAP:") *> attributeList // needs builder
+// MARK: Basic Tags
 
-let EXTXPROGRAMDATETIME = string("#EXT-X-PROGRAM-DATE-TIME:") *> date
+let EXTM3U = { _ in Tag.m3u } <^> string("#EXTM3U")
 
-let EXTXDATERANGE = string("#EXT-X-DATERANGE:") *> attributeList // needs builder with a string -> ISO 8601 parser
+let EXTVERSION = Tag.version <^> string("#EXT-X-VERSION:") *> int
 
-/// Media Playlist Tags
+let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> string("#EXT-X-INDEPENDENT-SEGMENTS")
 
-let EXTXTARGETDURATION = string("#EXT-X-TARGETDURATION:") *> decimalInteger
+// TODO: If StartIndicator initialization fails, the parser should fail, not succeed with nil.
+let EXTXSTART = Tag.startIndicator <^> ( string("#EXT-X-START:") *> attributeList )
 
-let EXTXMEDIASEQUENCE = string("#EXT-X-MEDIA-SEQUENCE:") *> decimalInteger
+// MARK: Media Segment Tags
 
-let EXTXDISCONTINUITYSEQUENCE = string("#EXT-X-DISCONTINUITY-SEQUENCE:") *> decimalInteger
+let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.newlines.inverted).many).optional))
 
-let EXTXENDLIST = string("#EXT-X-ENDLIST")
+let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional )
 
-let EXTXPLAYLISTTYPE = string("#EXT-X-PLAYLIST-TYPE:") *> enumeratedString
+let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> string("#EXT-X-DISCONTINUITY")
 
-let EXTXIFRAMESONLY = string("#EXT-X-I-FRAMES-ONLY")
+let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> string("#EXT-X-KEY:") *> attributeList // needs builder
 
-/// Master Playlist Tags
+let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> string("#EXT-X-MAP:") *> attributeList // needs builder
 
-let EXTXMEDIA = string("#EXT-X-MEDIA:") *> attributeList
+let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> string("#EXT-X-PROGRAM-DATE-TIME:") *> date
 
-let EXTXSTREAMINF = string("#EXT-X-STREAM-INF:") *> attributeList <&> character { $0 == "\n" } <&> url
+let EXTXDATERANGE = Tag.MediaPlaylist.Segment.dateRange <^> string("#EXT-X-DATERANGE:") *> attributeList
 
-let EXTXIFRAMESTREAMINF = string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
+// MARK: Media Playlist Tags
 
-let EXTXSESSIONDATA = string("#EXT-X-SESSION-DATA:") *> attributeList
+let EXTXTARGETDURATION = Tag.MediaPlaylist.targetDuration <^> string("#EXT-X-TARGETDURATION:") *> decimalInteger
 
-let EXTXSESSIONKEY = string("#EXT-X-SESSION-KEY:") *> attributeList
+let EXTXMEDIASEQUENCE = Tag.MediaPlaylist.mediaSequence <^> string("#EXT-X-MEDIA-SEQUENCE:") *> decimalInteger
 
-/// Master of Media Playlists
+let EXTXDISCONTINUITYSEQUENCE = Tag.MediaPlaylist.discontinuitySequence <^> string("#EXT-X-DISCONTINUITY-SEQUENCE:") *> decimalInteger
 
-let EXTXINDEPENDENTSEGMENTS = string("#EXT-X-INDEPENDENT-SEGMENTS")
+let EXTXENDLIST = { _ in Tag.MediaPlaylist.endList } <^> string("#EXT-X-ENDLIST")
 
-// TODO: If StartIndicator initialization fails, the parser should fail, not
-//       succeed with nil.
-let EXTXSTART = StartIndicator.init <^> ( string("#EXT-X-START:") *> attributeList )
+let EXTXPLAYLISTTYPE = Tag.MediaPlaylist.playlistType <^> string("#EXT-X-PLAYLIST-TYPE:") *> enumeratedString
+
+let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> string("#EXT-X-I-FRAMES-ONLY")
+
+// MARK: Master Playlist Tags
+
+let EXTXMEDIA = Tag.MasterPlaylist.media <^> string("#EXT-X-MEDIA:") *> attributeList
+
+let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* character { $0 == "\n" } <&> url
+
+let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
+
+let EXTXSESSIONDATA = Tag.MasterPlaylist.sessionData <^> string("#EXT-X-SESSION-DATA:") *> attributeList
+
+let EXTXSESSIONKEY = Tag.MasterPlaylist.sessionKey <^> string("#EXT-X-SESSION-KEY:") *> attributeList
+
+// MARK: Tag Taxonomy
+
+enum AnyTag {
+    case playlist(Tag)
+    case media(Tag.MediaPlaylist)
+    case segment(Tag.MediaPlaylist.Segment)
+    case master(Tag.MasterPlaylist)
+}
+
+enum Tag {
+    
+    case m3u
+    case version(UInt)
+    
+    case independentSegments
+    case startIndicator(AttributeList)
+    
+    enum MediaPlaylist {
+        case targetDuration(AttributeValue)
+        case mediaSequence(AttributeValue)
+        case discontinuitySequence(AttributeValue)
+        case endList
+        case playlistType(AttributeValue)
+        case iFramesOnly
+        
+        enum Segment {
+            case inf(AttributeValue, String?)
+            case byteRange(CountableClosedRange<UInt>)
+            case discontinuity
+            
+            case key(AttributeList)
+            case map(AttributeList)
+            
+            case programDateTime(Date?)
+            case dateRange(AttributeList)
+        }
+    }
+    
+    enum MasterPlaylist {
+        case media(AttributeList)
+        case streamInfo(AttributeList, URL?)
+        case iFramesStreamInfo(AttributeList)
+        case sessionData(AttributeList)
+        case sessionKey(AttributeList)
+    }
+}
 

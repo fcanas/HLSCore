@@ -18,7 +18,6 @@
 		E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD61D7E454900CB6A1E /* AttributeList.swift */; };
 		E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */; };
 		E746987F1D8E1EC800C02A8E /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746987E1D8E1EC800C02A8E /* TagTests.swift */; };
-		E74698811D8F647300C02A8E /* EntityParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74698801D8F647300C02A8E /* EntityParsers.swift */; };
 		E77717F11DD4163C0021014C /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/Download.swift /* Download.swift */; };
 		E77717F21DD416410021014C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/File.swift /* File.swift */; };
 		E77717F31DD416410021014C /* HLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/HLS.swift /* HLS.swift */; };
@@ -117,7 +116,6 @@
 		E70E8DD61D7E454900CB6A1E /* AttributeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeList.swift; sourceTree = "<group>"; };
 		E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParsers.swift; sourceTree = "<group>"; };
 		E746987E1D8E1EC800C02A8E /* TagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
-		E74698801D8F647300C02A8E /* EntityParsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityParsers.swift; sourceTree = "<group>"; };
 		E77717EB1DD415630021014C /* StripTestBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripTestBundle.m; sourceTree = "<group>"; };
 		E77717ED1DD415630021014C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77717F61DD416DC0021014C /* playlist.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playlist.m3u8; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 				E70E8DD61D7E454900CB6A1E /* AttributeList.swift */,
 				E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */,
 				E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */,
-				E74698801D8F647300C02A8E /* EntityParsers.swift */,
 			);
 			name = Parsing;
 			path = Sources/Parsing;
@@ -666,7 +663,6 @@
 				E70E8DD11D7D0CD700CB6A1E /* AttributeValueParsers.swift in Sources */,
 				E70E8DCB1D7B197400CB6A1E /* ParserCombinator.swift in Sources */,
 				E70E8DD51D7DEEEC00CB6A1E /* Tags.swift in Sources */,
-				E74698811D8F647300C02A8E /* EntityParsers.swift in Sources */,
 				E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */,
 				E7064DE11D88DB93001D2F60 /* CoreInitializers.swift in Sources */,
 				E70E8DCF1D7D051100CB6A1E /* CharacterSet.swift in Sources */,
