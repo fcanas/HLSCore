@@ -24,3 +24,22 @@ let quoteString = { QuotedString($0) } <^> quote *> character(in: CharacterSet.f
 let enumString = EnumeratedString.init <^> character(in: CharacterSet.forEnumeratedString).many1
 
 let resolution = Resolution.init <^> int <* x <&> int
+
+let date = dateFromString <^> ( { String($0) } <^> character(in: CharacterSet.iso8601).many1 )
+
+@available(OSX 10.12, *) private let dateFormatter = ISO8601DateFormatter()
+
+private let legacyFormatter :DateFormatter = {
+    let f = DateFormatter()
+    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    return f
+}()
+
+private func dateFromString(_ string: String) -> Date? {
+    if #available(OSX 10.12, *) {
+        return dateFormatter.date(from: string)
+    }
+    
+    return legacyFormatter.date(from: string)
+}
+

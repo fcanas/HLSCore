@@ -25,7 +25,7 @@ let EXTXKEY = string("#EXT-X-KEY:") *> attributeList // needs builder
 
 let EXTXMAP = string("#EXT-X-MAP:") *> attributeList // needs builder
 
-let EXTXPROGRAMDATETIME = string("#EXT-X-PROGRAM-DATE-TIME:") // needs date parser : ISO 8601
+let EXTXPROGRAMDATETIME = string("#EXT-X-PROGRAM-DATE-TIME:") *> date
 
 let EXTXDATERANGE = string("#EXT-X-DATERANGE:") *> attributeList // needs builder with a string -> ISO 8601 parser
 

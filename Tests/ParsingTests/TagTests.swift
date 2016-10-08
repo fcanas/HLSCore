@@ -3,7 +3,7 @@
 //  HLSCore
 //
 //  Created by Fabian Canas on 9/17/16.
-//
+//  Copyright © 2016 Fabian Canas. All rights reserved.
 //
 
 import XCTest
@@ -74,6 +74,18 @@ class MediaSegmentParsingTests: XCTestCase {
         let (mediaSegment, _) = MediaEntityParser.run(infoTag)!
         let segment = MediaSegment(uri: URL(string:urlString)!, duration: duration, title: title, byteRange: 5678...6912)
         XCTAssertEqual(mediaSegment, segment)
+    }
+    
+}
+
+class DateTimeTagTests: XCTestCase {
+    @available (OSX 10.12, *)
+    func testBasicDateTag() {
+        let date = Date(timeIntervalSinceReferenceDate: 496636022)
+        let timeString = ISO8601DateFormatter().string(from: date)
+        let dateTag = "#EXT-X-PROGRAM-DATE-TIME:\(timeString)"
+        let (parsedDate, _) = EXTXPROGRAMDATETIME.run(dateTag)!
+        XCTAssertEqual(parsedDate, date)
     }
     
 }
