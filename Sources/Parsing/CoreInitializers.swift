@@ -104,6 +104,53 @@ extension DecryptionKey {
     }
 }
 
+extension StreamInfo {
+    
+    fileprivate struct AttributeKey {
+        static fileprivate let Bandwidth = "BANDWIDTH"
+        static fileprivate let AverageBandwidth = "AVERAGE-BANDWIDTH"
+        static fileprivate let Codecs = "CODECS"
+        static fileprivate let Resolution = "RESOLUTION"
+        static fileprivate let FrameRate = "FRAME-RATE"
+        static fileprivate let Audio = "AUDIO"
+        static fileprivate let Video = "VIDEO"
+        static fileprivate let Subtitles = "SUBTITLES"
+        static fileprivate let ClosedCaptions = "CLOSED-CAPTIONS"
+    }
+    
+    init?(attributes: AttributeList, uri :URL) {
+        
+        var bandwidthVar :Bitrate? = nil
+        var averageBandwidthVar :Bitrate? = nil
+        var codecsVar :[Codec] = []
+        var resolutionVar :Resolution? = nil
+        var framerateVar :Double? = nil
+        
+        for attribute in attributes {
+            switch attribute {
+            case let (AttributeKey.Bandwidth, .decimalInteger(i)):
+                bandwidthVar = Bitrate(UIntMax(i))
+            case let (AttributeKey.AverageBandwidth, .decimalInteger(i)):
+                averageBandwidthVar = Bitrate(UIntMax(i))
+            case let (AttributeKey.Codecs, .quotedString(s)):
+                codecsVar = s.components(separatedBy: ",").map { Codec(rawValue: $0) }
+            case let (AttributeKey.Resolution, .decimalResolution(r)):
+                resolutionVar = r
+            case let (AttributeKey.FrameRate, .decimalFloatingPoint(f)):
+                framerateVar = f
+            default:
+                break
+            }
+        }
+        
+        guard let b = bandwidthVar else {
+            return nil
+        }
+        
+        self.init(bandwidth: b, averageBandwidth: averageBandwidthVar, codecs: codecsVar, resolution: resolutionVar, frameRate: framerateVar, uri: uri)
+    }
+}
+
 extension MediaSegment {
     
     init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?) {

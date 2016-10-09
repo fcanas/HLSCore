@@ -76,41 +76,73 @@ public struct RenditionGroup {
 }
 
 /// Bits per second
-struct Bitrate : Comparable {
-    let value :UInt
+public struct Bitrate : Comparable {
+    public let value :UInt
     
-    static func ==(lhs: Bitrate, rhs: Bitrate) -> Bool {
+    public static func ==(lhs: Bitrate, rhs: Bitrate) -> Bool {
         return lhs.value == rhs.value
     }
     
-    static func <(lhs: Bitrate, rhs: Bitrate) -> Bool {
+    public static func <(lhs: Bitrate, rhs: Bitrate) -> Bool {
         return lhs.value < rhs.value
     }
     
-    func toUIntMax() -> UIntMax {
+    public func toUIntMax() -> UIntMax {
         return value.toUIntMax()
     }
     
-    init(_ v: UIntMax) {
+    public init(_ v: UIntMax) {
         value = UInt(v)
     }
 }
 
-/// RFC6381
-struct Codec {
-    // TODO
+/** 
+ MIME type/subtypes representing different media formats.
+ 
+ TODO: Implementation of RFC6381 would be useful. Right now, a `Codec` is a dumb
+ `String`.
+ https://tools.ietf.org/html/rfc6381
+ */
+public struct Codec : RawRepresentable, Equatable, Hashable, Comparable {
+    //
+    public let rawValue :String
+    
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+    
+    public var hashValue: Int {
+        return rawValue.hashValue
+    }
+    
+    public static func ==(lhs: Codec, rhs: Codec) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    public static func <(lhs: Codec, rhs: Codec) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
 }
 
 /// EXT-X-STREAM-INF
-struct StreamInfo {
+public struct StreamInfo {
     /// Peak segment bitrate in bits per second
-    let bandwidth :Bitrate
-    let averageBandwidth :Bitrate
-    let codecs :[Codec]
-    let resolution :Resolution
-    let frameRate :Double
+    public let bandwidth :Bitrate
+    public let averageBandwidth :Bitrate?
+    public let codecs :[Codec]
+    public let resolution :Resolution?
+    public let frameRate :Double?
     
-    let uri :URL
+    public let uri :URL
+    
+    public init(bandwidth: Bitrate, averageBandwidth: Bitrate?, codecs :[Codec], resolution: Resolution?, frameRate: Double?, uri: URL) {
+        self.bandwidth = bandwidth
+        self.averageBandwidth = averageBandwidth
+        self.codecs = codecs
+        self.resolution = resolution
+        self.frameRate = frameRate
+        self.uri = uri
+    }
 }
 
 /// Media
