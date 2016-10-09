@@ -23,7 +23,7 @@ public struct Resolution : Equatable {
 }
 
 public struct HexadecimalSequence : Equatable {
-    let value :UInt
+    public let value :UInt
     /**
      * param string - a hex string, upper or lower case, without preceeding 0x
      */

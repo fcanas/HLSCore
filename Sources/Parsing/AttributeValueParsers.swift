@@ -11,40 +11,73 @@ import Types
 
 /// Attributes in Attribute lists can take on a limited number of types.
 enum AttributeValue {
-    case DecimalInteger(UInt)
-    case HexadecimalSequence(HexadecimalSequence)
-    case DecimalFloatingPoint(Double)
-    case SignedDecimalFloatingPoint(SignedFloat)
-    case QuotedString(String)
-    case EnumeratedString(EnumeratedString)
-    case DecimalResolution(Resolution)
+    case decimalInteger(UInt)
+    case hexadecimalSequence(HexadecimalSequence)
+    case decimalFloatingPoint(Double)
+    case signedDecimalFloatingPoint(SignedFloat)
+    case quotedString(String)
+    case enumeratedString(EnumeratedString)
+    case decimalResolution(Resolution)
     
     init(_ int: UInt) {
-        self = .DecimalInteger(int)
+        self = .decimalInteger(int)
     }
     
     init(_ hex: HexadecimalSequence) {
-        self = .HexadecimalSequence(hex)
+        self = .hexadecimalSequence(hex)
     }
     
     init(_ float: Double) {
-        self = .DecimalFloatingPoint(float)
+        self = .decimalFloatingPoint(float)
     }
     
     init(_ signedFloat: SignedFloat) {
-        self = .SignedDecimalFloatingPoint(signedFloat)
+        self = .signedDecimalFloatingPoint(signedFloat)
     }
     
     init(_ quotedString: String) {
-        self = .QuotedString(quotedString)
+        self = .quotedString(quotedString)
     }
     
     init(_ enumeratedString: EnumeratedString) {
-        self = .EnumeratedString(enumeratedString)
+        self = .enumeratedString(enumeratedString)
     }
     
     init(_ decimalResolution: Resolution) {
-        self = .DecimalResolution(decimalResolution)
+        self = .decimalResolution(decimalResolution)
+    }
+    
+    var decimalIntegerValue :UInt? {
+        get {
+            switch self {
+            case let .decimalInteger(d):
+                return d
+            default:
+                return nil
+            }
+        }
+    }
+    
+    var signedDecimalFloatingPointValue :Double? {
+        get {
+            switch self {
+            case let .signedDecimalFloatingPoint(signedFloat):
+                return signedFloat.value
+            default:
+                return nil
+            }
+        }
+    }
+    
+    var decimalFloatingPointValue :Double? {
+        get {
+            switch self {
+            case let .decimalFloatingPoint(value):
+                return value
+            default:
+                return nil
+            }
+        }
     }
     
 }

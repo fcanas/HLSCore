@@ -22,14 +22,14 @@ public struct DecryptionKey {
     public let uri :URL
     public let initializationVector :(low: UInt64, high: UInt64)?
     public let keyFormat :String
-    public let keyformatVersions :[Int]?
+    public let keyFormatVersions :[Int]?
     
-    public init(method: EncryptionMethod, uri: URL, initializationVector: (low: UInt64, high: UInt64)? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersion: [Int]? = nil) {
+    public init(method: EncryptionMethod, uri: URL, initializationVector: (low: UInt64, high: UInt64)? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersions: [Int]? = nil) {
         self.method = method
         self.uri = uri
         self.initializationVector = initializationVector
         self.keyFormat = keyFormat
-        self.keyformatVersions = keyFormatVersion
+        self.keyFormatVersions = keyFormatVersions
     }
     
     private init() {
@@ -37,7 +37,7 @@ public struct DecryptionKey {
         self.uri = URL(string:"")!
         self.keyFormat = IdentityDecryptionKeyFormat
         
-        keyformatVersions = nil
+        keyFormatVersions = nil
         initializationVector = nil
     }
     
@@ -51,7 +51,7 @@ extension DecryptionKey : Equatable {
         
         let formatVersionEquality :Bool
         
-        switch (lhs.keyformatVersions, rhs.keyformatVersions) {
+        switch (lhs.keyFormatVersions, rhs.keyFormatVersions) {
         case let (.some(a), .some(b)):
             formatVersionEquality = a == b
         case (.none, .none):

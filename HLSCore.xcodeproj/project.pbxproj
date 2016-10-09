@@ -24,6 +24,7 @@
 		E77717F41DD416410021014C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/main.swift /* main.swift */; };
 		E77717F51DD416410021014C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/URL.swift /* URL.swift */; };
 		E77717F91DD417AB0021014C /* playlist.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = E77717F61DD416DC0021014C /* playlist.m3u8 */; };
+		E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */; };
 		E7CABBCA1D94AC5700B38C69 /* EncryptionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */; };
 		_LinkFileRef_Parsing_via_ParsingTests /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
 		_LinkFileRef_Parsing_via_Strip /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
@@ -119,6 +120,7 @@
 		E77717EB1DD415630021014C /* StripTestBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripTestBundle.m; sourceTree = "<group>"; };
 		E77717ED1DD415630021014C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77717F61DD416DC0021014C /* playlist.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playlist.m3u8; sourceTree = "<group>"; };
+		E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagToEntity.swift; sourceTree = "<group>"; };
 		E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionKey.swift; sourceTree = "<group>"; };
 		__PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = HLSCore.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				E70E8DD61D7E454900CB6A1E /* AttributeList.swift */,
 				E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */,
 				E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */,
+				E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */,
 			);
 			name = Parsing;
 			path = Sources/Parsing;
@@ -666,6 +669,7 @@
 				E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */,
 				E7064DE11D88DB93001D2F60 /* CoreInitializers.swift in Sources */,
 				E70E8DCF1D7D051100CB6A1E /* CharacterSet.swift in Sources */,
+				E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */,
 				E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */,
 				E70E8DCD1D7B23D900CB6A1E /* Tokens.swift in Sources */,
 			);
