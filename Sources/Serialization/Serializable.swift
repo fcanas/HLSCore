@@ -92,7 +92,7 @@ private extension DecryptionKey {
                 if keyFormat != "identity" {
                     out += "," + keyFormat
                 }
-                if let v = keyformatVersions {
+                if let v = keyFormatVersions {
                     out += "," + v.map({ String($0) }).joined(separator: "/")
                 }
             }
