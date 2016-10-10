@@ -51,15 +51,23 @@ enum AttributeValue {
 
 typealias QuotedString = String
 
-struct EnumeratedString {
-    let value :String
+struct EnumeratedString : RawRepresentable, Equatable {
+    let rawValue :String
     
     init(_ string: String) {
-        value = string
+        rawValue = string
     }
     
     init(_ characters: [Character]) {
-        value = String(characters)
+        rawValue = String(characters)
+    }
+    
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    static func ==(lhs: EnumeratedString, rhs: EnumeratedString) -> Bool {
+        return lhs.rawValue == rhs.rawValue
     }
 }
 

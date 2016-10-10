@@ -11,11 +11,18 @@ import Types
 
 // Initialize core HLS components built from parser results
 
+/// EnumeratedString Extension for StartIndicator
+fileprivate extension EnumeratedString {
+    static let yes = EnumeratedString("YES")
+    static let no = EnumeratedString("NO")
+}
+
 extension StartIndicator {
 
     static private let timeOffsetKey = "TIME-OFFSET"
     static private let preciseKey = "PRECISE"
 
+    
     init?(attributes :AttributeList) {
         
         var timeOffset :TimeInterval?
@@ -26,8 +33,8 @@ extension StartIndicator {
             case let (StartIndicator.timeOffsetKey, .decimalFloatingPoint(time)):
                 timeOffset = time
             case let (StartIndicator.preciseKey, .enumeratedString(p)):
-                assert(p.value == "YES" || p.value == "NO", "PRECISE attribute in EXT-X-START must be YES or NO")
-                precise = p.value == "YES" ? true : false;
+                assert(p == .yes || p == .no, "PRECISE attribute in EXT-X-START must be YES or NO")
+                precise = p == .yes ? true : false;
             default:
                 return nil
             }
@@ -65,7 +72,7 @@ extension DecryptionKey {
         for attribute in attributes {
             switch attribute {
             case let (DecryptionKey.methodKey, .enumeratedString(m)):
-                guard let m = EncryptionMethod(rawValue: m.value) else {
+                guard let m = EncryptionMethod(rawValue: m.rawValue) else {
                     return nil
                 }
                 methodVar = m
