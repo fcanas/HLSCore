@@ -47,39 +47,6 @@ enum AttributeValue {
         self = .decimalResolution(decimalResolution)
     }
     
-    var decimalIntegerValue :UInt? {
-        get {
-            switch self {
-            case let .decimalInteger(d):
-                return d
-            default:
-                return nil
-            }
-        }
-    }
-    
-    var signedDecimalFloatingPointValue :Double? {
-        get {
-            switch self {
-            case let .signedDecimalFloatingPoint(signedFloat):
-                return signedFloat.value
-            default:
-                return nil
-            }
-        }
-    }
-    
-    var decimalFloatingPointValue :Double? {
-        get {
-            switch self {
-            case let .decimalFloatingPoint(value):
-                return value
-            default:
-                return nil
-            }
-        }
-    }
-    
 }
 
 typealias QuotedString = String
