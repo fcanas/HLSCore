@@ -17,8 +17,6 @@ func entity(fromTag tag:AnyTag) -> Any? {
     switch tag {
     case let .playlist(playlist):
         switch playlist {
-        case .m3u:
-            return nil
         case .version(_):
             return nil
         case .independentSegments:

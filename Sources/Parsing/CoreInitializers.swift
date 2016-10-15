@@ -158,9 +158,49 @@ extension StreamInfo {
     }
 }
 
+extension MediaInitializationSection {
+    
+    fileprivate struct AttributeKey {
+        static fileprivate let URI = "URI"
+        static fileprivate let ByteRange = "BYTERANGE"
+    }
+    
+    init?(attributes: AttributeList) {
+        
+        var urlVar :URL?
+        var byteRangeVar :CountableClosedRange<UInt>?
+        
+        for attribute in attributes {
+            switch attribute {
+            case let (AttributeKey.URI, .quotedString(urlString)):
+                urlVar = URL(string:urlString)
+            case let (AttributeKey.ByteRange, .quotedString(byteRangeString)):
+                let parseResults = TypeParser.byteRange.run(byteRangeString)
+                guard let range = parseResults?.0 else {
+                    return nil
+                }
+                if let end = range.1 {
+                    byteRangeVar = range.0...end
+                } else {
+                    byteRangeVar = range.0...range.0
+                }
+            default:
+                break
+            }
+        }
+        
+        guard let url = urlVar else {
+            return nil
+        }
+        
+        self.init(uri: url, byteRange: byteRangeVar)
+    }
+    
+}
+
 extension MediaSegment {
     
-    init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?) {
+    init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?, discontinuity: Bool = false) {
         
         var durationVar :TimeInterval? = nil
         

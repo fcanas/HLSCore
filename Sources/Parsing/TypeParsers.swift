@@ -11,21 +11,28 @@ import Types
 
 /// Raw Type Parsers
 
-let hex = hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters))! } <^> hexDigit.many1)
+struct TypeParser {
+    
+    static let url = { URL(string: $0) } <^> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
 
-let float = { Double($0)! } <^> floatingPointString
+    static let hex = BasicParser.hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters))! } <^> BasicParser.hexDigit.many1)
 
-let signedFloat = ({ SignedFloat($0)! } <^> negation.optional.followed(by: floatingPointString) { (neg, num) -> String in
-    (neg ?? "") + num
-    })
+    static let float = { Double($0)! } <^> BasicParser.floatingPointString
 
-let quoteString = { QuotedString($0) } <^> quote *> character(in: CharacterSet.forQuotedString ).many <* quote
+    static let signedFloat = ({ SignedFloat($0)! } <^> BasicParser.negation.optional.followed(by: BasicParser.floatingPointString) { (neg, num) -> String in
+        (neg ?? "") + num
+        })
 
-let enumString = EnumeratedString.init <^> character(in: CharacterSet.forEnumeratedString).many1
+    static let quoteString = { QuotedString($0) } <^> BasicParser.quote *> character(in: CharacterSet.forQuotedString ).many <* BasicParser.quote
 
-let resolution = Resolution.init <^> int <* x <&> int
+    static let enumString = EnumeratedString.init <^> character(in: CharacterSet.forEnumeratedString).many1
 
-let date = dateFromString <^> ( { String($0) } <^> character(in: CharacterSet.iso8601).many1 )
+    static let resolution = Resolution.init <^> BasicParser.int <* BasicParser.x <&> BasicParser.int
+
+    static let date = dateFromString <^> ( { String($0) } <^> character(in: CharacterSet.iso8601).many1 )
+
+    static let byteRange = BasicParser.int <&> (character { $0 == "@" } *> BasicParser.int ).optional
+}
 
 @available(OSX 10.12, *) private let dateFormatter = ISO8601DateFormatter()
 

@@ -73,16 +73,16 @@ struct EnumeratedString : RawRepresentable, Equatable {
 
 /// Attribute Value Parsers
 
-let decimalInteger = AttributeValue.init <^> int
+let decimalInteger = AttributeValue.init <^> BasicParser.int
 
-let hexSequence = AttributeValue.init <^> hex
+let hexSequence = AttributeValue.init <^> TypeParser.hex
 
-let decimalFloatingPoint = AttributeValue.init <^> float
+let decimalFloatingPoint = AttributeValue.init <^> TypeParser.float
 
-let signedDecimalFloatingPoint = AttributeValue.init <^> signedFloat
+let signedDecimalFloatingPoint = AttributeValue.init <^> TypeParser.signedFloat
 
-let quotedString = AttributeValue.init <^> quoteString
+let quotedString = AttributeValue.init <^> TypeParser.quoteString
 
-let enumeratedString = AttributeValue.init <^> enumString
+let enumeratedString = AttributeValue.init <^> TypeParser.enumString
 
-let decimalResolution = AttributeValue.init <^> resolution
+let decimalResolution = AttributeValue.init <^> TypeParser.resolution

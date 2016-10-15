@@ -10,14 +10,14 @@ import Foundation
 import Utilities
 
 protocol Playlist {
-    var version :Int { get }
+    var version :UInt { get }
     var start :StartIndicator? { get }
 }
 
 /// Master Playlist
 
 public struct MasterPlaylist : Playlist {
-    public let version: Int
+    public let version: UInt
     public let uri :URL
     
     public let streams :[MediaPlaylist]
@@ -28,21 +28,12 @@ public struct MasterPlaylist : Playlist {
 
 public struct MediaPlaylist : Playlist {
     
-    public enum PlaylistType : CustomStringConvertible {
-        case VOD
-        case Event
-        
-        public var description :String {
-            switch self {
-            case .VOD:
-                return "VOD"
-            case .Event:
-                return "EVENT"
-            }
-        }
+    public enum PlaylistType : String {
+        case VOD = "VOD"
+        case Event = "EVENT"
     }
     
-    public init(type: PlaylistType?, version: Int = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
+    public init(type: PlaylistType?, version: UInt = 1, uri: URL, targetDuration: TimeInterval, closed: Bool, start: StartIndicator? = nil, segments: [MediaSegment]) {
         self.type = type
         self.version = version
         self.uri = uri
@@ -56,7 +47,7 @@ public struct MediaPlaylist : Playlist {
     
     public let type :PlaylistType?
     
-    public let version :Int
+    public let version :UInt
     // private var playlist :MasterPlaylist? = nil
     
     public let uri :URL

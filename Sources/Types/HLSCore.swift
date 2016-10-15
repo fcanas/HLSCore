@@ -152,13 +152,14 @@ public struct MediaSegment {
     
     public var resource :MediaResource
     
-    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: CountableClosedRange<UInt>? = nil, decryptionKey: DecryptionKey? = nil, date: Date? = nil) {
+    public init(uri: URL, duration: TimeInterval, title :String? = nil, byteRange: CountableClosedRange<UInt>? = nil, decryptionKey: DecryptionKey? = nil, date: Date? = nil, mediaInitializationSection: MediaInitializationSection? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title
         self.byteRange = byteRange
         self.decryptionKey = decryptionKey
         self.programDateTime = date
+        self.mediaInitializationSection = mediaInitializationSection
     }
     
     // EXTINF
@@ -174,6 +175,8 @@ public struct MediaSegment {
     
     public var programDateTime :Date?
     
+    public var mediaInitializationSection :MediaInitializationSection?
+    
 }
 
 extension MediaSegment : Equatable {
@@ -182,6 +185,16 @@ extension MediaSegment : Equatable {
             && lhs.title == rhs.title
             && lhs.byteRange == rhs.byteRange
             && lhs.duration == rhs.duration
+    }
+}
+
+public struct MediaInitializationSection {
+    public let uri: URL
+    public let byteRange :CountableClosedRange<UInt>?
+    
+    public init(uri: URL, byteRange :CountableClosedRange<UInt>?) {
+        self.uri = uri
+        self.byteRange = byteRange
     }
 }
 

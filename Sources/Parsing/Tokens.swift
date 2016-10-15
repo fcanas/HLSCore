@@ -57,29 +57,29 @@ extension Character {
 
 /// First Order
 
-let digit = character(in: CharacterSet.decimalDigits)
+struct BasicParser {
 
-let hexDigit = character(in: CharacterSet.hexidecimalDigits)
+    static let digit = character(in: CharacterSet.decimalDigits)
 
-// Fragments
+    static let hexDigit = character(in: CharacterSet.hexidecimalDigits)
 
-let hexPrefix = string("0x") <|> string("0X")
+    // Fragments
 
-let decimalPoint = string(".")
+    static let hexPrefix = string("0x") <|> string("0X")
 
-let negation = string("-")
+    static let decimalPoint = string(".")
 
-let quote = string("\"")
+    static let negation = string("-")
 
-let x = character { $0 == "x" }
+    static let quote = string("\"")
 
-let numericString = { String($0) } <^> digit.many1
+    static let x = character { $0 == "x" }
 
-let floatingPointString = numericString.followed(by: decimalPoint, combine: +).followed(by: numericString, combine: +)
+    static let numericString = { String($0) } <^> digit.many1
 
-let int = { characters in UInt(String(characters))! } <^> digit.many1
+    static let floatingPointString = numericString.followed(by: decimalPoint, combine: +).followed(by: numericString, combine: +)
 
-let newline = character { $0 == "\n" } <|> (character { $0 == "\n" } <* character { $0 == "\r" })
+    static let int = { characters in UInt(String(characters))! } <^> digit.many1
 
-let url = { URL(string: $0) } <^> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
-
+    static let newline = character { $0 == "\n" } <|> (character { $0 == "\n" } <* character { $0 == "\r" })
+}

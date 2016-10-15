@@ -9,14 +9,16 @@
 import Foundation
 import Types
 
+/// The first tag
+let PlaylistStart = string("#EXTM3U")
+
 // MARK: Aggregate Tags
 
 let MediaPlaylistTag = ExclusiveMediaPlaylistTag <|> SegmentTag <|> PlaylistTag
 
 let MasterPlaylistTag = ExclusiveMasterPlaylistTag <|> PlaylistTag
 
-let PlaylistTag = AnyTag.playlist <^> EXTM3U <|>
-                                      EXTVERSION <|>
+let PlaylistTag = AnyTag.playlist <^> EXTVERSION <|>
                                       EXTXINDEPENDENTSEGMENTS
 
 let SegmentTag = AnyTag.segment <^> EXTINF <|>
@@ -42,9 +44,7 @@ let ExclusiveMasterPlaylistTag = AnyTag.master <^> EXTXMEDIA <|>
 
 // MARK: Basic Tags
 
-let EXTM3U = { _ in Tag.m3u } <^> string("#EXTM3U")
-
-let EXTVERSION = Tag.version <^> string("#EXT-X-VERSION:") *> int
+let EXTVERSION = Tag.version <^> string("#EXT-X-VERSION:") *> BasicParser.int
 
 let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> string("#EXT-X-INDEPENDENT-SEGMENTS")
 
@@ -55,7 +55,7 @@ let EXTXSTART = Tag.startIndicator <^> ( string("#EXT-X-START:") *> attributeLis
 
 let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.newlines.inverted).many).optional))
 
-let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> int <&> (character { $0 == "@" } *> int ).optional )
+let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> TypeParser.byteRange )
 
 let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> string("#EXT-X-DISCONTINUITY")
 
@@ -63,7 +63,7 @@ let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> string("#EXT-X-KEY:") *> attribu
 
 let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> string("#EXT-X-MAP:") *> attributeList // needs builder
 
-let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> string("#EXT-X-PROGRAM-DATE-TIME:") *> date
+let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> string("#EXT-X-PROGRAM-DATE-TIME:") *> TypeParser.date
 
 let EXTXDATERANGE = Tag.MediaPlaylist.Segment.dateRange <^> string("#EXT-X-DATERANGE:") *> attributeList
 
@@ -85,7 +85,7 @@ let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> string("#EXT-X-
 
 let EXTXMEDIA = Tag.MasterPlaylist.media <^> string("#EXT-X-MEDIA:") *> attributeList
 
-let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* character { $0 == "\n" } <&> url
+let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline <&> TypeParser.url
 
 let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
 
@@ -104,7 +104,6 @@ enum AnyTag {
 
 enum Tag {
     
-    case m3u
     case version(UInt)
     
     case independentSegments
