@@ -101,19 +101,19 @@ class AttributeValueTests :XCTestCase {
     func testEnumeratedString() {
         XCTAssertNil(enumString.run("")?.0)
         XCTAssertNil(enumString.run("\n")?.0)
-        XCTAssertEqual(enumString.run("A B")?.0.value, "A")
-        XCTAssertEqual(enumString.run("A\nB")?.0.value, "A")
-        XCTAssertEqual(enumString.run("A\rB")?.0.value, "A")
-        XCTAssertEqual(enumString.run("A\tB")?.0.value, "A")
-        XCTAssertEqual(enumString.run("A\"B")?.0.value, "A")
-        XCTAssertEqual(enumString.run("A,B")?.0.value, "A")
+        XCTAssertEqual(enumString.run("A B")?.0.rawValue, "A")
+        XCTAssertEqual(enumString.run("A\nB")?.0.rawValue, "A")
+        XCTAssertEqual(enumString.run("A\rB")?.0.rawValue, "A")
+        XCTAssertEqual(enumString.run("A\tB")?.0.rawValue, "A")
+        XCTAssertEqual(enumString.run("A\"B")?.0.rawValue, "A")
+        XCTAssertEqual(enumString.run("A,B")?.0.rawValue, "A")
         
-        XCTAssertEqual(enumString.run("Abcd efg")?.0.value, "Abcd")
-        XCTAssertEqual(enumString.run("Abcd\nefg")?.0.value, "Abcd")
-        XCTAssertEqual(enumString.run("Abcd\refg")?.0.value, "Abcd")
-        XCTAssertEqual(enumString.run("Abcd\tefg")?.0.value, "Abcd")
-        XCTAssertEqual(enumString.run("Abcd\"efg")?.0.value, "Abcd")
-        XCTAssertEqual(enumString.run("Abcd,efg")?.0.value, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd efg")?.0.rawValue, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd\nefg")?.0.rawValue, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd\refg")?.0.rawValue, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd\tefg")?.0.rawValue, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd\"efg")?.0.rawValue, "Abcd")
+        XCTAssertEqual(enumString.run("Abcd,efg")?.0.rawValue, "Abcd")
     }
     
     func testDecimalResolution() {
