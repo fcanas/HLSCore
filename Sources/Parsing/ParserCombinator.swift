@@ -124,6 +124,7 @@ precedencegroup ParserGroupPrecendence {
 
 
 infix operator <^> : ParserMapPrecedence
+infix operator <^!> : ParserMapPrecedence
 infix operator <*> : ParserPrecedence
 infix operator <&> : ParserPrecedence
 infix operator *>  : ParserPrecedence
@@ -133,6 +134,13 @@ infix operator <<&  : ParserGroupPrecendence
 
 func <^><A, B>(f: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
     return rhs.map(f)
+}
+
+func <^!><A, B>(f: @escaping (A) -> B?, rhs: Parser<A>) -> Parser<B> {
+    return Parser<B> { stream in
+        guard let (intermediate, newStream) = rhs.parse(stream), let result = f(intermediate) else { return nil }
+        return (result, newStream)
+    }
 }
 
 func <^><A, B, R>(f: @escaping (A, B) -> R, rhs: Parser<A>) -> Parser<(B) -> R> {

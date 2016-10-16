@@ -13,7 +13,7 @@ import Types
 
 struct TypeParser {
     
-    static let url = { URL(string: $0) } <^> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
+    static let url = { URL(string: $0) } <^!> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
 
     static let hex = BasicParser.hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters))! } <^> BasicParser.hexDigit.many1)
 

@@ -53,7 +53,7 @@ let EXTXSTART = Tag.startIndicator <^> ( string("#EXT-X-START:") *> attributeLis
 
 // MARK: Media Segment Tags
 
-let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^> character(in: CharacterSet.newlines.inverted).many).optional))
+let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <&> (character { $0 == "," } *> ({ String($0) } <^!> character(in: CharacterSet.newlines.inverted).many)).optional)
 
 let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> TypeParser.byteRange )
 
