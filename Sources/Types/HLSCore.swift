@@ -204,6 +204,6 @@ public struct MediaResource {
 
 extension MediaResource : Equatable {
     public static func ==(lhs: MediaResource, rhs: MediaResource) -> Bool {
-        return lhs.uri == rhs.uri
+        return lhs.uri.absoluteString == rhs.uri.absoluteString
     }
 }
