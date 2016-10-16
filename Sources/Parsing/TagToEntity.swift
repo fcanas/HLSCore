@@ -23,6 +23,8 @@ func entity(fromTag tag:AnyTag) -> Any? {
             return nil
         case let .startIndicator(attributes):
             return StartIndicator(attributes: attributes)
+        case .url(_):
+            return nil
         }
     case .media(_):
         return nil

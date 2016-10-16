@@ -12,6 +12,8 @@ import Types
 /// The first tag
 let PlaylistStart = string("#EXTM3U")
 
+let URLPseudoTag = Tag.url <^> TypeParser.url
+
 // MARK: Aggregate Tags
 
 let MediaPlaylistTag = ExclusiveMediaPlaylistTag <|> SegmentTag <|> PlaylistTag
@@ -19,7 +21,8 @@ let MediaPlaylistTag = ExclusiveMediaPlaylistTag <|> SegmentTag <|> PlaylistTag
 let MasterPlaylistTag = ExclusiveMasterPlaylistTag <|> PlaylistTag
 
 let PlaylistTag = AnyTag.playlist <^> EXTVERSION <|>
-                                      EXTXINDEPENDENTSEGMENTS
+                                      EXTXINDEPENDENTSEGMENTS <|>
+                                      URLPseudoTag
 
 let SegmentTag = AnyTag.segment <^> EXTINF <|>
                                     EXTXBYTERANGE <|>
@@ -108,6 +111,9 @@ enum Tag {
     
     case independentSegments
     case startIndicator(AttributeList)
+    
+    /// Not a tag, but definitely a top-level element. Makes parsing easier.
+    case url(URL)
     
     enum MediaPlaylist {
         case targetDuration(AttributeValue)
