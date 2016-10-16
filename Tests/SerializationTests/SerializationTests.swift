@@ -41,7 +41,7 @@ class SerializationTests: XCTestCase {
         
         let expectedPlaylist =
             "#EXTM3U" + "\n" +
-                "#EXT-TARGET-DURATION:3" + "\n" +
+                "#EXT-X-TARGETDURATION:3" + "\n" +
                 "#EXT-X-VERSION:3" + "\n" +
                 "#EXT-X-PLAYLIST-TYPE:VOD" + "\n" +
                 "#EXTINF:3.1" + "\n" +

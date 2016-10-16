@@ -45,7 +45,7 @@ public struct MediaPlaylistSerlializer : Serializer {
     public func serialize(_ playlist: MediaPlaylist) -> StringResource {
         var output = "#EXTM3U" // required first line
         
-        output = output._append("#EXT-TARGET-DURATION:\(Int(playlist.targetDuration))", line: newline)
+        output = output._append("#EXT-X-TARGETDURATION:\(Int(playlist.targetDuration))", line: newline)
         
         if playlist.version > 1 {
             output = output._append("#EXT-X-VERSION:\(Int(playlist.version))", line: newline)
