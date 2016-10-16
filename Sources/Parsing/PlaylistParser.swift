@@ -11,9 +11,8 @@ import Types
 
 let newlines = BasicParser.newline.many1
 
-func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
-    
-    let parser = PlaylistStart *> (MediaPlaylistTag <* newlines).many
+public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist? {
+    let parser = PlaylistStart *> newlines *> ( MediaPlaylistTag <* newlines ).many
     
     let parseResult = parser.run(string)
 
@@ -31,7 +30,7 @@ func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
         var duration :TimeInterval?
         var start :StartIndicator?
         var segments :[MediaSegment] = []
-        var closed :Bool?
+        var closed :Bool = false
         
         var activeKey :DecryptionKey?
         var activeMediaInitializationSection :MediaInitializationSection?
@@ -39,6 +38,10 @@ func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
         var openSegment :OpenMediaSegment?
         
         var fatalTag :AnyTag?
+    }
+    
+    if let remainingChars = parseResult?.1 {
+        print("REMAINDER:\n\(String(remainingChars))")
     }
     
     guard let tags = parseResult?.0 else {
@@ -59,6 +62,16 @@ func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
                 break
             case let .startIndicator(attributes):
                 builder.start = StartIndicator(attributes: attributes)
+            case let .url(segmentURL):
+                let openSegment = builder.openSegment
+                guard let duration = openSegment?.duration else {
+                    builder.fatalTag = tag
+                    break
+                }
+                let fullSegmentURL = URL(string:segmentURL.absoluteString, relativeTo: url)!
+                
+                builder.segments.append(MediaSegment(uri: fullSegmentURL, duration: duration, title: openSegment?.title, byteRange: openSegment?.byteRange, decryptionKey: builder.activeKey, date: openSegment?.programDateTime, mediaInitializationSection: builder.activeMediaInitializationSection))
+                builder.openSegment = nil
             }
         case let .media(media):
             switch media {
@@ -120,6 +133,8 @@ func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
                 break
             }
             
+            builder.openSegment = openSegment
+            
         case .master(_):
             builder.fatalTag = tag
         }
@@ -127,9 +142,9 @@ func playlist(string :String, atURL url: URL) -> MediaPlaylist? {
         return builder
     })
     
-    guard let targetDuration = playlistBuilder.duration, let closed = playlistBuilder.closed else {
+    guard let targetDuration = playlistBuilder.duration else {
         return nil
     }
     
-    return MediaPlaylist(type: playlistBuilder.playlistType, version: playlistBuilder.version, uri: url, targetDuration: targetDuration, closed: closed, start: playlistBuilder.start, segments: playlistBuilder.segments)
+    return MediaPlaylist(type: playlistBuilder.playlistType, version: playlistBuilder.version, uri: url, targetDuration: targetDuration, closed: playlistBuilder.closed, start: playlistBuilder.start, segments: playlistBuilder.segments)
 }
