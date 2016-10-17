@@ -182,7 +182,7 @@ public struct MediaSegment {
 extension MediaSegment : Equatable {
     public static func ==(lhs: MediaSegment, rhs: MediaSegment) -> Bool {
         return lhs.resource == rhs.resource
-            && lhs.title == rhs.title
+            && lhs.title ?? "" == rhs.title ?? ""
             && lhs.byteRange == rhs.byteRange
             && lhs.duration == rhs.duration
     }

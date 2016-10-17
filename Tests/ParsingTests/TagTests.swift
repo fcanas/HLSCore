@@ -47,18 +47,18 @@ class ParsingTests: XCTestCase {
                 "#EXT-X-PLAYLIST-TYPE:VOD" + "\n" +
                 "#EXT-X-TARGETDURATION:3" + "\n" +
                 "#EXT-X-VERSION:3" + "\n" +
-                "#EXTINF:3.1" + "\n" +
+                "#EXTINF:3.1," + "\n" +
                 "s1.ts" + "\n" +
-                "#EXTINF:3.0" + "\n" +
+                "#EXTINF:3.0," + "\n" +
                 "s2.ts" + "\n" +
-                "#EXTINF:3.2" + "\n" +
+                "#EXTINF:3.2," + "\n" +
                 "../s3.ts" + "\n" +
-                "#EXTINF:2.9" + "\n" +
+                "#EXTINF:2.9," + "\n" +
                 "alt/s4.ts" + "\n" +
                 "#EXT-X-KEY:METHOD=AES-128,URI=\"ex.key\"" + "\n" +
-                "#EXTINF:3.0" + "\n" +
+                "#EXTINF:3.0," + "\n" +
                 "s5.ts" + "\n" +
-                "#EXTINF:3.2" + "\n" +
+                "#EXTINF:3.2," + "\n" +
                 "s6.ts" + "\n" +
                 "#EXT-X-ENDLIST" + "\n"
 

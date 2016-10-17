@@ -66,7 +66,7 @@ public struct MediaPlaylistSerlializer : Serializer {
                     output = output._append(DecryptionKey.None.playlistString, line: newline)
                 }
             }
-            output = output._append("#EXTINF:\(segment.duration)", line: newline)
+            output = output._append("#EXTINF:\(segment.duration),", line: newline)
             output = output._append(segment.resource.uri.relativeString, line: newline)
         }
         
