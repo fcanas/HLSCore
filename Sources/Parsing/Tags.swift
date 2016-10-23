@@ -88,7 +88,7 @@ let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> string("#EXT-X-
 
 let EXTXMEDIA = Tag.MasterPlaylist.media <^> string("#EXT-X-MEDIA:") *> attributeList
 
-let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline <&> TypeParser.url
+let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline.many <&> TypeParser.url
 
 let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
 

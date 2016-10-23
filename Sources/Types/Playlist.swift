@@ -22,6 +22,13 @@ public struct MasterPlaylist : Playlist {
     
     public let streams :[MediaPlaylist]
     public let start :StartIndicator?
+    
+    public init(version: UInt, uri: URL, streams: [MediaPlaylist], start: StartIndicator?) {
+        self.version = version
+        self.uri = uri
+        self.streams = streams
+        self.start = start
+    }
 }
 
 /// Media Playlist
