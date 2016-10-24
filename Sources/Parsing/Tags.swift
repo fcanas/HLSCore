@@ -58,7 +58,7 @@ let EXTXSTART = Tag.startIndicator <^> ( string("#EXT-X-START:") *> attributeLis
 
 let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <* character { $0 == "," } <&> ({ String($0) } <^!> character(in: CharacterSet.newlines.inverted).many).optional)
 
-let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> string("#EXT-X-BYTERANGE:") *> TypeParser.byteRange )
+let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( string("#EXT-X-BYTERANGE:") *> TypeParser.byteRange )
 
 let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> string("#EXT-X-DISCONTINUITY")
 
@@ -138,7 +138,7 @@ enum Tag {
     
     enum MasterPlaylist {
         case media(AttributeList)
-        case streamInfo(AttributeList, URL?)
+        case streamInfo(AttributeList, URL)
         case iFramesStreamInfo(AttributeList)
         case sessionData(AttributeList)
         case sessionKey(AttributeList)

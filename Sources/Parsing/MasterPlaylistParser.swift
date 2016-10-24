@@ -25,17 +25,72 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     struct PlaylistBuilder {
         var version :UInt = 1
         var uri :URL?
-        var streams :[MediaPlaylist] = []
+        var streams :[StreamInfo] = []
         var start :StartIndicator?
+        var independentSegments :Bool = false
+        
+        var fatalTag :AnyTag?
+        init() {
+            uri = nil
+            start = nil
+        }
     }
     
-    let builder = tags.reduce(PlaylistBuilder(), { (state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder in
-        return state
+    let playlistBuilder = tags.reduce(PlaylistBuilder(), { (state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder in
+        
+        var returnState = state
+        
+        switch tag {
+        case let .playlist(playlistTag):
+            switch playlistTag {
+            case let .version(versionNumber):
+                returnState.version = versionNumber
+            case .independentSegments:
+                returnState.independentSegments = true
+            case let .startIndicator(attributes):
+                returnState.start = StartIndicator(attributes: attributes)
+            case .url(_):
+                // Playlist URLs are handled by the #EXT-X-STREAM-INF tag since
+                // they're required to be sequential
+                // TODO: Move URL tag into the media or segment type?
+                returnState.fatalTag = tag
+                break
+            }
+            break
+        case .media(_):
+            returnState.fatalTag = tag
+        case .segment(_):
+            returnState.fatalTag = tag
+        case let .master(masterTag):
+            switch masterTag {
+            case let .media(attributes):
+                print(attributes)
+            case let .streamInfo(attributes, url):
+                let streamInfo = StreamInfo(attributes: attributes, uri: url)
+                guard let stream = streamInfo else {
+                    returnState.fatalTag = tag
+                    break
+                }
+                returnState.streams.append(stream)
+                print("\(attributes)\(url)")
+            case let .iFramesStreamInfo(attributes):
+                // TODO: iFrame Stream Info
+                print(attributes)
+            case let .sessionData(attributes):
+                // TODO: Session Data
+                print(attributes)
+            case let .sessionKey(attributes):
+                // TODO: Session Key
+                print(attributes)
+            }
+        }
+        
+        return returnState
     })
     
-    guard let uri = builder.uri else {
+    guard let uri = playlistBuilder.uri else {
         return nil
     }
     
-    return MasterPlaylist(version: builder.version, uri: uri, streams: builder.streams, start: builder.start)
+    return MasterPlaylist(version: playlistBuilder.version, uri: uri, streams: playlistBuilder.streams, start: playlistBuilder.start)
 }

@@ -179,11 +179,7 @@ extension MediaInitializationSection {
                 guard let range = parseResults?.0 else {
                     return nil
                 }
-                if let end = range.1 {
-                    byteRangeVar = range.0...end
-                } else {
-                    byteRangeVar = range.0...range.0
-                }
+                byteRangeVar = range
             default:
                 break
             }

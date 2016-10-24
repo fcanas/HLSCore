@@ -25,9 +25,10 @@
 		E77717F51DD416410021014C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/URL.swift /* URL.swift */; };
 		E77717F91DD417AB0021014C /* playlist.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = E77717F61DD416DC0021014C /* playlist.m3u8 */; };
 		E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */; };
-		E782FFDC1DDB7692004533B7 /* PlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFDB1DDB7692004533B7 /* PlaylistParser.swift */; };
+		E782FFDC1DDB7692004533B7 /* MediaPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */; };
 		E7CABBCA1D94AC5700B38C69 /* EncryptionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */; };
 		E7D52AC31DDD421E00D5A7DD /* MasterPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */; };
+		E7D52AC51DDE9CC500D5A7DD /* PlaylistParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */; };
 		_LinkFileRef_Parsing_via_ParsingTests /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
 		_LinkFileRef_Parsing_via_Strip /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
 		_LinkFileRef_Parsing_via_StripTests /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
@@ -123,9 +124,10 @@
 		E77717ED1DD415630021014C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77717F61DD416DC0021014C /* playlist.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playlist.m3u8; sourceTree = "<group>"; };
 		E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagToEntity.swift; sourceTree = "<group>"; };
-		E782FFDB1DDB7692004533B7 /* PlaylistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistParser.swift; sourceTree = "<group>"; };
+		E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlaylistParser.swift; sourceTree = "<group>"; };
 		E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionKey.swift; sourceTree = "<group>"; };
 		E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterPlaylistParser.swift; sourceTree = "<group>"; };
+		E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistParsingTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = HLSCore.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
@@ -331,7 +333,7 @@
 				E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */,
 				E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */,
 				E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */,
-				E782FFDB1DDB7692004533B7 /* PlaylistParser.swift */,
+				E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */,
 				E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */,
 			);
 			name = Parsing;
@@ -343,6 +345,7 @@
 			children = (
 				__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift */,
 				E746987E1D8E1EC800C02A8E /* TagTests.swift */,
+				E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */,
 			);
 			name = ParsingTests;
 			path = Tests/ParsingTests;
@@ -678,7 +681,7 @@
 				E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */,
 				E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */,
 				E7D52AC31DDD421E00D5A7DD /* MasterPlaylistParser.swift in Sources */,
-				E782FFDC1DDB7692004533B7 /* PlaylistParser.swift in Sources */,
+				E782FFDC1DDB7692004533B7 /* MediaPlaylistParser.swift in Sources */,
 				E70E8DCD1D7B23D900CB6A1E /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +691,7 @@
 			buildActionMask = 0;
 			files = (
 				E746987F1D8E1EC800C02A8E /* TagTests.swift in Sources */,
+				E7D52AC51DDE9CC500D5A7DD /* PlaylistParsingTests.swift in Sources */,
 				__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

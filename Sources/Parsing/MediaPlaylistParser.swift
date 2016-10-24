@@ -1,5 +1,5 @@
 //
-//  PlaylistParser.swift
+//  MediaPlaylistParser.swift
 //  HLSCore
 //
 //  Created by Fabian Canas on 10/16/16.
@@ -141,6 +141,11 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
         
         return builder
     })
+    
+    guard playlistBuilder.fatalTag == nil else {
+        print("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag)")
+        return nil
+    }
     
     guard let targetDuration = playlistBuilder.duration else {
         return nil

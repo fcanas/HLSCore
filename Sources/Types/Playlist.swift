@@ -20,10 +20,10 @@ public struct MasterPlaylist : Playlist {
     public let version: UInt
     public let uri :URL
     
-    public let streams :[MediaPlaylist]
+    public let streams :[StreamInfo]
     public let start :StartIndicator?
     
-    public init(version: UInt, uri: URL, streams: [MediaPlaylist], start: StartIndicator?) {
+    public init(version: UInt, uri: URL, streams: [StreamInfo], start: StartIndicator?) {
         self.version = version
         self.uri = uri
         self.streams = streams
