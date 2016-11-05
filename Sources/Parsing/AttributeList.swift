@@ -19,7 +19,7 @@ typealias AttributePair = (AttributeName, AttributeValue)
 
 let attributeName = { AttributeName($0) } <^> character(in: CharacterSet.forAttributeName).many1
 
-let attributeParameter = hexSequence <|> decimalFloatingPoint <|> signedDecimalFloatingPoint <|> quotedString <|> enumeratedString <|> decimalResolution <|> decimalInteger
+let attributeParameter = hexSequence <|> decimalFloatingPoint <|> signedDecimalFloatingPoint <|> quotedString <|> decimalResolution <|> decimalInteger <|> enumeratedString
 
 
 
