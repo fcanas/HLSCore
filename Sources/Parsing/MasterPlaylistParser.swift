@@ -24,14 +24,12 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     
     struct PlaylistBuilder {
         var version :UInt = 1
-        var uri :URL?
         var streams :[StreamInfo] = []
         var start :StartIndicator?
         var independentSegments :Bool = false
         
         var fatalTag :AnyTag?
         init() {
-            uri = nil
             start = nil
         }
     }
@@ -88,9 +86,6 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         return returnState
     })
     
-    guard let uri = playlistBuilder.uri else {
-        return nil
-    }
     
-    return MasterPlaylist(version: playlistBuilder.version, uri: uri, streams: playlistBuilder.streams, start: playlistBuilder.start)
+    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: playlistBuilder.streams, start: playlistBuilder.start)
 }
