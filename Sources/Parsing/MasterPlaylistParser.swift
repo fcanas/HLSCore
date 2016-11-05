@@ -14,8 +14,10 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     
     let parseResult = parser.run(string)
     
-    if let remainingChars = parseResult?.1 {
+    if let remainingChars = parseResult?.1 , (remainingChars.count > 0) {
         print("REMAINDER:\n\(String(remainingChars))")
+    } else {
+        print("NO REMAINDER")
     }
     
     guard let tags = parseResult?.0 else {
@@ -62,7 +64,7 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         case let .master(masterTag):
             switch masterTag {
             case let .media(attributes):
-                print(attributes)
+                print("Unprocesed media sequence tag: \(attributes)")
             case let .streamInfo(attributes, url):
                 let streamInfo = StreamInfo(attributes: attributes, uri: url)
                 guard let stream = streamInfo else {
@@ -70,16 +72,16 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                     break
                 }
                 returnState.streams.append(stream)
-                print("\(attributes)\(url)")
+                // print("\(attributes)\(url)")
             case let .iFramesStreamInfo(attributes):
                 // TODO: iFrame Stream Info
-                print(attributes)
+                print("Unprocessed iFrame Stream Info :: \(attributes)")
             case let .sessionData(attributes):
                 // TODO: Session Data
-                print(attributes)
+                print("Unprocessed Session Data :: \(attributes)")
             case let .sessionKey(attributes):
                 // TODO: Session Key
-                print(attributes)
+                print("Unprocessed Session Key :: \(attributes)")
             }
         }
         

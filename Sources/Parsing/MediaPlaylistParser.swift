@@ -40,8 +40,10 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
         var fatalTag :AnyTag?
     }
     
-    if let remainingChars = parseResult?.1 {
+    if let remainingChars = parseResult?.1 , (remainingChars.count > 0) {
         print("REMAINDER:\n\(String(remainingChars))")
+    } else {
+        print("NO REMAINDER")
     }
     
     guard let tags = parseResult?.0 else {

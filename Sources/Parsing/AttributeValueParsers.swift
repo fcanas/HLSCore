@@ -46,12 +46,35 @@ enum AttributeValue {
     init(_ decimalResolution: Resolution) {
         self = .decimalResolution(decimalResolution)
     }
-    
+}
+
+extension AttributeValue : CustomStringConvertible {
+    var description: String {
+        get {
+            switch self {
+            case let .decimalInteger(int):
+                return int.description
+            case let .hexadecimalSequence(hex):
+                return hex.description
+            case let .decimalFloatingPoint(float):
+                return float.description
+            case let .signedDecimalFloatingPoint(signedFloat):
+                return signedFloat.description
+            case let .quotedString(string):
+                return string
+            case let .enumeratedString(enumeratedString):
+                return enumeratedString.description
+            case let .decimalResolution(resolution):
+                return resolution.description
+            }
+        }
+    }
+
 }
 
 typealias QuotedString = String
 
-struct EnumeratedString : RawRepresentable, Equatable {
+struct EnumeratedString : RawRepresentable, Equatable, CustomStringConvertible {
     let rawValue :String
     
     init(_ string: String) {
@@ -68,6 +91,12 @@ struct EnumeratedString : RawRepresentable, Equatable {
 
     static func ==(lhs: EnumeratedString, rhs: EnumeratedString) -> Bool {
         return lhs.rawValue == rhs.rawValue
+    }
+    
+    var description: String {
+        get {
+            return rawValue
+        }
     }
 }
 

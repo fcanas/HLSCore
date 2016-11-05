@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Resolution : Equatable {
+public struct Resolution : Equatable, CustomStringConvertible {
     public let width :UInt
     public let height :UInt
     public init(width: UInt, height: UInt) {
@@ -20,9 +20,15 @@ public struct Resolution : Equatable {
         return lhs.width == rhs.width &&
             lhs.height == rhs.height
     }
+    
+    public var description: String {
+        get {
+            return "\(width)x\(height)"
+        }
+    }
 }
 
-public struct HexadecimalSequence : Equatable {
+public struct HexadecimalSequence : Equatable, CustomStringConvertible {
     public let value :UInt
     /**
      * param string - a hex string, upper or lower case, without preceeding 0x
@@ -42,14 +48,14 @@ public struct HexadecimalSequence : Equatable {
         return lhs.value == rhs.value
     }
     
-    var stringValue :String {
+    public var description :String {
         get {
             return "0x" + String(value, radix:16, uppercase: true)
         }
     }
 }
 
-public struct SignedFloat {
+public struct SignedFloat :CustomStringConvertible {
     public let value :Double
     public init(_ double: Double) {
         value = double
@@ -60,5 +66,11 @@ public struct SignedFloat {
             return nil
         }
         self.init(v)
+    }
+    
+    public var description :String {
+        get {
+            return value.description
+        }
     }
 }
