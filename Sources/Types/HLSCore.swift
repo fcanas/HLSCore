@@ -25,20 +25,28 @@ extension StartIndicator : Equatable {
     }
 }
 
-public enum MediaType {
-    case Audio
-    case Video
-    case Subtitles
-    case ClosedCaptions
+public enum MediaType : String {
+    case Audio = "AUDIO"
+    case Video = "VIDEO"
+    case Subtitles = "SUBTITLES"
+    case ClosedCaptions = "CLOSED-CAPTIONS"
 }
 
 /// EXT-X-MEDIA
 public struct Rendition {
-    let language :Language
-    let name :String
+    public let type: MediaType
+    public let uri: URL?
+    let groupID :String
+    let language :Language?
+    let associatedLanguage :Language?
+    public let name :String
     
-    public init(language: Language, name: String, defaultRendition: Bool = false, forced: Bool = false) {
+    public init(mediaType: MediaType, uri: URL?, groupID: String, language: Language?, associatedLanguage: Language?, name: String, defaultRendition: Bool = false, forced: Bool = false) {
+        self.type = mediaType
+        self.uri = uri
+        self.groupID = groupID
         self.language = language
+        self.associatedLanguage = language
         self.name = name
         self.defaultRendition = defaultRendition
         self.forced = forced

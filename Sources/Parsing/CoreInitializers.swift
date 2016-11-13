@@ -229,3 +229,69 @@ extension MediaSegment {
     }
     
 }
+
+extension Rendition {
+    
+    fileprivate struct AttributeKey {
+        static fileprivate let type = "TYPE"
+        static fileprivate let uri = "URI"
+        static fileprivate let groupID = "GROUP-ID"
+        static fileprivate let language = "LANGUAGE"
+        static fileprivate let associatedLanguage = "ASSOC-LANGUAGE"
+        static fileprivate let name = "NAME"
+        static fileprivate let `default` = "DEFAULT"
+        static fileprivate let autoselect = "AUTOSELECT"
+        static fileprivate let forced = "FORCED"
+        static fileprivate let instreamID = "INSTREAM-ID"
+        static fileprivate let characteristics = "CHARACTERISTICS"
+    }
+    
+    init?(attributes: AttributeList) {
+        
+        var type: MediaType?
+        var uri :URL? = nil
+        var groupID :String? = nil
+        var language :Language? = nil
+        var associatedLanguage :Language? = nil
+        var name :String? = nil
+        var defaultRendition = false
+        var forced = false
+        
+        for attribute in attributes {
+            switch attribute {
+            case let (AttributeKey.type, .enumeratedString(typeString)):
+                type = MediaType(rawValue: typeString.rawValue)
+            case let (AttributeKey.uri, .quotedString(uriString)):
+                uri = URL(string: uriString)
+            case let (AttributeKey.groupID, .quotedString(renditionGroup)):
+                groupID = renditionGroup
+            case let (AttributeKey.language, .quotedString(languageString)):
+                language = Language(languageString)
+            case let (AttributeKey.associatedLanguage, .quotedString(associatedLanguageString)):
+                associatedLanguage = Language(associatedLanguageString)
+            case let (AttributeKey.name, .quotedString(nameString)):
+                name = nameString
+            case let (AttributeKey.default, .enumeratedString(boolString)):
+                guard let isDefault = ["YES":true, "NO":false][boolString.rawValue] else {
+                    return nil
+                }
+                defaultRendition = isDefault
+            case let (AttributeKey.autoselect, .enumeratedString(boolString)):
+                guard let isForced = ["YES":true, "NO":false][boolString.rawValue] else {
+                    return nil
+                }
+                forced = isForced
+            default:
+                break
+            }
+        }
+        
+        guard let mediaType = type, let group = groupID, let renditionName = name else {
+            return nil
+        }
+        
+        self.init(mediaType: mediaType, uri:uri, groupID:group, language: language, associatedLanguage: associatedLanguage, name: renditionName, defaultRendition: defaultRendition, forced: forced)
+        
+    }
+    
+}

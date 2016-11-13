@@ -20,13 +20,15 @@ public struct MasterPlaylist : Playlist {
     public let version: UInt
     public let uri :URL
     
+    public let renditions :[Rendition]
     public let streams :[StreamInfo]
     public let start :StartIndicator?
     
-    public init(version: UInt, uri: URL, streams: [StreamInfo], start: StartIndicator?) {
+    public init(version: UInt, uri: URL, streams: [StreamInfo], renditions: [Rendition], start: StartIndicator?) {
         self.version = version
         self.uri = uri
         self.streams = streams
+        self.renditions = renditions
         self.start = start
     }
 }

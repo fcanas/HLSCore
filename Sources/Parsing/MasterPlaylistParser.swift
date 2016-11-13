@@ -29,6 +29,7 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         var streams :[StreamInfo] = []
         var start :StartIndicator?
         var independentSegments :Bool = false
+        var renditions :[Rendition] = []
         
         var fatalTag :AnyTag?
         init() {
@@ -64,14 +65,17 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         case let .master(masterTag):
             switch masterTag {
             case let .media(attributes):
-                print("Unprocesed media sequence tag: \(attributes)")
-            case let .streamInfo(attributes, url):
-                let streamInfo = StreamInfo(attributes: attributes, uri: url)
-                guard let stream = streamInfo else {
+                guard let rendition = Rendition(attributes: attributes) else {
                     returnState.fatalTag = tag
                     break
                 }
-                returnState.streams.append(stream)
+                returnState.renditions.append(rendition)
+            case let .streamInfo(attributes, url):
+                guard let streamInfo = StreamInfo(attributes: attributes, uri: url) else {
+                    returnState.fatalTag = tag
+                    break
+                }
+                returnState.streams.append(streamInfo)
                 // print("\(attributes)\(url)")
             case let .iFramesStreamInfo(attributes):
                 // TODO: iFrame Stream Info
@@ -89,5 +93,5 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     })
     
     
-    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: playlistBuilder.streams, start: playlistBuilder.start)
+    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: playlistBuilder.streams, renditions: playlistBuilder.renditions, start: playlistBuilder.start)
 }
