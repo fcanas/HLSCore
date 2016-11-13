@@ -9,7 +9,7 @@
 import Foundation
 import Utilities
 
-protocol Playlist {
+public protocol Playlist {
     var version :UInt { get }
     var start :StartIndicator? { get }
 }
