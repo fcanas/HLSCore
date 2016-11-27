@@ -92,6 +92,9 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         return returnState
     })
     
+    let streams = playlistBuilder.streams.map({
+        StreamInfo(bandwidth: $0.bandwidth, averageBandwidth: $0.averageBandwidth, codecs: $0.codecs, resolution: $0.resolution, frameRate: $0.frameRate, uri: URL(string: $0.uri.absoluteString, relativeTo: url )!)
+    })
     
-    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: playlistBuilder.streams, renditions: playlistBuilder.renditions, start: playlistBuilder.start)
+    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: streams, renditions: playlistBuilder.renditions, start: playlistBuilder.start)
 }
