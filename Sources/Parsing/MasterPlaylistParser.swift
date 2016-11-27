@@ -48,8 +48,8 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                 returnState.version = versionNumber
             case .independentSegments:
                 returnState.independentSegments = true
-            case let .startIndicator(attributes):
-                returnState.start = StartIndicator(attributes: attributes)
+            case let .startIndicator(start):
+                returnState.start = start
             case .url(_):
                 // Playlist URLs are handled by the #EXT-X-STREAM-INF tag since
                 // they're required to be sequential
@@ -64,17 +64,9 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
             returnState.fatalTag = tag
         case let .master(masterTag):
             switch masterTag {
-            case let .media(attributes):
-                guard let rendition = Rendition(attributes: attributes) else {
-                    returnState.fatalTag = tag
-                    break
-                }
+            case let .media(rendition):
                 returnState.renditions.append(rendition)
-            case let .streamInfo(attributes, url):
-                guard let streamInfo = StreamInfo(attributes: attributes, uri: url) else {
-                    returnState.fatalTag = tag
-                    break
-                }
+            case let .streamInfo(streamInfo):
                 returnState.streams.append(streamInfo)
                 // print("\(attributes)\(url)")
             case let .iFramesStreamInfo(attributes):

@@ -21,8 +21,8 @@ func entity(fromTag tag:AnyTag) -> Any? {
             return nil
         case .independentSegments:
             return nil
-        case let .startIndicator(attributes):
-            return StartIndicator(attributes: attributes)
+        case let .startIndicator(startIndicator):
+            return startIndicator
         case .url(_):
             return nil
         }
@@ -36,8 +36,8 @@ func entity(fromTag tag:AnyTag) -> Any? {
             return nil
         case .discontinuity:
             return nil
-        case let .key(attribtues):
-            return DecryptionKey(attributes: attribtues)
+        case let .key(key):
+            return key
         case .map(_):
             return nil
         case .programDateTime(_):

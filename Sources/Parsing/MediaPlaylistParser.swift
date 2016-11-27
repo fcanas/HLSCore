@@ -62,8 +62,8 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
             case .independentSegments:
                 // TODO: encode independent segments in structs
                 break
-            case let .startIndicator(attributes):
-                builder.start = StartIndicator(attributes: attributes)
+            case let .startIndicator(start):
+                builder.start = start
             case let .url(segmentURL):
                 let openSegment = builder.openSegment
                 guard let duration = openSegment?.duration else {
@@ -124,10 +124,10 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
             case .discontinuity:
                 // Probably applies to the _next_ segment, not the current one.
                 openSegment.discontinuity = true
-            case let .key(attributes):
-                builder.activeKey = DecryptionKey(attributes: attributes)
-            case let .map(attributes):
-                builder.activeMediaInitializationSection = MediaInitializationSection(attributes: attributes)
+            case let .key(key):
+                builder.activeKey = key
+            case let .map(mediaInitialization):
+                builder.activeMediaInitializationSection = mediaInitialization
             case let .programDateTime(date):
                 openSegment.programDateTime = date
             case .dateRange(_):

@@ -51,8 +51,7 @@ let EXTVERSION = Tag.version <^> string("#EXT-X-VERSION:") *> BasicParser.int
 
 let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> string("#EXT-X-INDEPENDENT-SEGMENTS")
 
-// TODO: If StartIndicator initialization fails, the parser should fail, not succeed with nil.
-let EXTXSTART = Tag.startIndicator <^> ( string("#EXT-X-START:") *> attributeList )
+let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( string("#EXT-X-START:") *> attributeList ))
 
 // MARK: Media Segment Tags
 
@@ -62,9 +61,9 @@ let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( string("#EXT-X-BYT
 
 let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> string("#EXT-X-DISCONTINUITY")
 
-let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> string("#EXT-X-KEY:") *> attributeList // needs builder
+let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> (DecryptionKey.init <^!> string("#EXT-X-KEY:") *> attributeList )
 
-let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> string("#EXT-X-MAP:") *> attributeList // needs builder
+let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> ( MediaInitializationSection.init <^!> string("#EXT-X-MAP:") *> attributeList )
 
 let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> string("#EXT-X-PROGRAM-DATE-TIME:") *> TypeParser.date
 
@@ -86,9 +85,9 @@ let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> string("#EXT-X-
 
 // MARK: Master Playlist Tags
 
-let EXTXMEDIA = Tag.MasterPlaylist.media <^> string("#EXT-X-MEDIA:") *> attributeList
+let EXTXMEDIA = Tag.MasterPlaylist.media <^> ( Rendition.init <^!> string("#EXT-X-MEDIA:") *> attributeList)
 
-let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline.many <&> TypeParser.url
+let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> ( StreamInfo.init <^!>  string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline.many <&> TypeParser.url)
 
 let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
 
@@ -110,7 +109,7 @@ enum Tag {
     case version(UInt)
     
     case independentSegments
-    case startIndicator(AttributeList)
+    case startIndicator(StartIndicator)
     
     /// Not a tag, but definitely a top-level element. Makes parsing easier.
     case url(URL)
@@ -128,8 +127,8 @@ enum Tag {
             case byteRange(CountableClosedRange<UInt>)
             case discontinuity
             
-            case key(AttributeList)
-            case map(AttributeList)
+            case key(DecryptionKey)
+            case map(MediaInitializationSection)
             
             case programDateTime(Date?)
             case dateRange(AttributeList)
@@ -137,8 +136,8 @@ enum Tag {
     }
     
     enum MasterPlaylist {
-        case media(AttributeList)
-        case streamInfo(AttributeList, URL)
+        case media(Rendition)
+        case streamInfo(StreamInfo)
         case iFramesStreamInfo(AttributeList)
         case sessionData(AttributeList)
         case sessionKey(AttributeList)
