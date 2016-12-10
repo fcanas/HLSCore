@@ -34,7 +34,7 @@ extension Parser {
             return (mappedResult, newStream)
         }
     }
-    
+
     /// Parses zero or more consecutive elements into an array
     var many: Parser<[A]> {
         return Parser<[A]> { stream in
