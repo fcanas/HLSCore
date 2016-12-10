@@ -27,6 +27,14 @@ extension Parser {
         }
     }
     
+    func flatMap<Result>(_ f: @escaping (A) -> Result?) -> Parser<Result> {
+        return Parser<Result> { stream in
+            guard let (result, newStream) = self.parse(stream) else { return nil }
+            guard let mappedResult = f(result) else { return nil }
+            return (mappedResult, newStream)
+        }
+    }
+    
     var many: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
@@ -137,10 +145,7 @@ func <^><A, B>(f: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
 }
 
 func <^!><A, B>(f: @escaping (A) -> B?, rhs: Parser<A>) -> Parser<B> {
-    return Parser<B> { stream in
-        guard let (intermediate, newStream) = rhs.parse(stream), let result = f(intermediate) else { return nil }
-        return (result, newStream)
-    }
+    return rhs.flatMap(f)
 }
 
 func <^><A, B, R>(f: @escaping (A, B) -> R, rhs: Parser<A>) -> Parser<(B) -> R> {

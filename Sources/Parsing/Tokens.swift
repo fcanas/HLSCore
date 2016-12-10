@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Foundation
+
 
 /** Builds a `Parser` for matching a single character
  - parameter condition: A function that determines whether the character is parsed
