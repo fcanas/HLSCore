@@ -35,6 +35,7 @@ extension Parser {
         }
     }
     
+    /// Parses zero or more consecutive elements into an array
     var many: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
@@ -47,6 +48,7 @@ extension Parser {
         }
     }
 
+    /// Parses one or more consecutive elements into an array
     var many1: Parser<[A]> {
         return Parser<[A]> { stream in
             var result: [A] = []
@@ -152,8 +154,6 @@ func <^><A, B, R>(f: @escaping (A, B) -> R, rhs: Parser<A>) -> Parser<(B) -> R> 
     return Parser(result: curry(f)) <*> rhs
 }
 
-
-
 func <*><A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
     return lhs.followed(by: rhs, combine: { $0($1) })
 }
@@ -162,12 +162,24 @@ func <&><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<(A,B)> {
     return lhs.followed(by: rhs, combine: { ($0, $1) })
 }
 
-
-
+/// Returns a parser matching the lhs following the rhs, only returning the 
+/// value matched by the lhs parser in the case both match.
+///
+/// - Parameters:
+///   - lhs: The first matching parser, the result of the expression
+///   - rhs: The second matching parser
+/// - Returns: The lhs parser in the case both lhs and rhs match
 func <*<A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<A> {
     return lhs.followed(by: rhs, combine: { x, _ in x })
 }
 
+/// Returns a parser matching the lhs following the rhs, only returning the
+/// value matched by the rhs parser in the case both match.
+///
+/// - Parameters:
+///   - lhs: The first matching parser
+///   - rhs: The second matching parser, the result of the expression
+/// - Returns: The rhs parser in the case both lhs and rhs match
 func *><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<B> {
     return lhs.followed(by: rhs, combine: { _, x in x })
 }
@@ -183,5 +195,4 @@ func <<&<A, B, C>(lhs: Parser<(A, B)>, rhs: Parser<C>) -> Parser<(A, B, C)> {
 func <<&<A, B, C, D>(lhs: Parser<(A, B, C)>, rhs: Parser<D>) -> Parser<(A, B, C, D)> {
     return rhs.group(into:lhs)
 }
-
 
