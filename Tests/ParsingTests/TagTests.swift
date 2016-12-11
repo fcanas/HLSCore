@@ -28,7 +28,6 @@ class StartTagParsingTests: XCTestCase {
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime))
     }
     
-    
     func testExplicitPrecise() {
         let startTime :TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime),PRECISE=YES"
@@ -37,6 +36,13 @@ class StartTagParsingTests: XCTestCase {
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime, preciseStart: true))
     }
     
+    static var allTests : [(String, (StartTagParsingTests) -> () throws -> Void)] {
+        return [
+            ("testTimeOffset", testTimeOffset),
+            ("testExplicitNotPrecise", testExplicitNotPrecise),
+            ("testExplicitPrecise", testExplicitPrecise),
+        ]
+    }
 }
 
 /*

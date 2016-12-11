@@ -60,7 +60,7 @@
 		__src_cc_ref_Sources/Types/Language.swift /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Types/Language.swift /* Language.swift */; };
 		__src_cc_ref_Sources/Utilities/String.swift /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utilities/String.swift /* String.swift */; };
 		__src_cc_ref_Sources/Utilities/URL.swift /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utilities/URL.swift /* URL.swift */; };
-		__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift */; };
+		__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */; };
 		__src_cc_ref_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift */; };
 		__src_cc_ref_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift */; };
 		__src_cc_ref_Tests/StripTests/StripTests.swift /* StripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/StripTests/StripTests.swift /* StripTests.swift */; };
@@ -140,7 +140,7 @@
 		__PBXFileRef_Sources/Types/Language.swift /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Utilities/String.swift /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/Utilities/URL.swift /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeValueTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineMatching.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/StripTests/StripTests.swift /* StripTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripTests.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 		"_______Group_ParsingTests" /* ParsingTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift */,
+				__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */,
 				E746987E1D8E1EC800C02A8E /* TagTests.swift */,
 				E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */,
 			);
@@ -692,7 +692,7 @@
 			files = (
 				E746987F1D8E1EC800C02A8E /* TagTests.swift in Sources */,
 				E7D52AC51DDE9CC500D5A7DD /* PlaylistParsingTests.swift in Sources */,
-				__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeValueTests.swift in Sources */,
+				__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

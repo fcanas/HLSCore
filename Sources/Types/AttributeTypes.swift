@@ -55,22 +55,26 @@ public struct HexadecimalSequence : Equatable, CustomStringConvertible {
     }
 }
 
-public struct SignedFloat :CustomStringConvertible {
-    public let value :Double
-    public init(_ double: Double) {
-        value = double
+public struct SignedFloat :Equatable, CustomStringConvertible, RawRepresentable {
+    public let rawValue :Double
+    public init(rawValue: Double) {
+        self.rawValue = rawValue
     }
     
     public init?(_ string: String) {
         guard let v = Double(string) else {
             return nil
         }
-        self.init(v)
+        self.init(rawValue:v)
     }
     
     public var description :String {
         get {
-            return value.description
+            return rawValue.description
         }
+    }
+    
+    public static func ==(lhs: SignedFloat, rhs: SignedFloat) -> Bool {
+        return lhs.rawValue == rhs.rawValue
     }
 }
