@@ -11,8 +11,6 @@ let package = Package(
         Target(name: "Serialization",
                dependencies: ["Types"]),
         Target(name: "Parsing",
-               dependencies: ["Types"]),
-        Target(name: "Strip",
-               dependencies: ["Utilities"])
+               dependencies: ["Types"])
     ]
 )

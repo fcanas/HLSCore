@@ -20,7 +20,7 @@ class StringTests: XCTestCase {
         let allStrings = [emptyString, singleCharacter, multipleLines, basic]
         
         for s in allStrings {
-            XCTAssertEqual(s, s.substring(with: s.fullRange))
+            XCTAssertEqual(s, String(s[s.fullRange]))
         }
     }
     

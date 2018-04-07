@@ -41,7 +41,7 @@ extension URL {
             let strippedBaseString = baseString.replacingCharacters(in: commonPrefix.fullRange, with: "")
             let strippedSelfString = selfString.replacingCharacters(in: commonPrefix.fullRange, with: "")
             
-            let numberOfDirectorySlashes = strippedBaseString.characters.reduce(0, { (count :Int, character) -> Int in
+            let numberOfDirectorySlashes = strippedBaseString.reduce(0, { (count :Int, character) -> Int in
                 if character == "/" {
                     return count + 1
                 }

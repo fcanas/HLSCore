@@ -10,14 +10,14 @@ import Foundation
 
 
 struct Parser<A> {
-    typealias Stream = String.CharacterView
+    typealias Stream = Substring
     let parse: (Stream) -> (A, Stream)?
 }
 
 
 extension Parser {
     func run(_ x: String) -> (A, Stream)? {
-        return parse(x.characters)
+        return parse(x[x.fullRange])
     }
     
     func map<Result>(_ f: @escaping (A) -> Result) -> Parser<Result> {

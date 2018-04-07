@@ -24,7 +24,7 @@ extension String {
             return "/"
         }
         
-        return self.substring(to: self.index(after: lastSlashIndex))
+        return String(self[..<self.index(after: lastSlashIndex)])
     }
     
 }

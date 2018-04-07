@@ -87,7 +87,7 @@ extension DecryptionKey {
             case let (DecryptionKey.keyFormatKey, .quotedString(s)):
                 keyFormatVar = s
             case let (DecryptionKey.keyFormatVersionsKey, .quotedString(s)):
-                keyFormatVersionsVar = s.components(separatedBy: "/").flatMap({ (string) -> Int? in
+                keyFormatVersionsVar = s.components(separatedBy: "/").compactMap({ (string) -> Int? in
                     Int(string)
                 })
             default:
@@ -136,9 +136,9 @@ extension StreamInfo {
         for attribute in attributes {
             switch attribute {
             case let (AttributeKey.Bandwidth, .decimalInteger(i)):
-                bandwidthVar = Bitrate(UIntMax(i))
+                bandwidthVar = Bitrate(UInt64(i))
             case let (AttributeKey.AverageBandwidth, .decimalInteger(i)):
-                averageBandwidthVar = Bitrate(UIntMax(i))
+                averageBandwidthVar = Bitrate(UInt64(i))
             case let (AttributeKey.Codecs, .quotedString(s)):
                 codecsVar = s.components(separatedBy: ",").map { Codec(rawValue: $0) }
             case let (AttributeKey.Resolution, .decimalResolution(r)):

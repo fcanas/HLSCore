@@ -6,595 +6,626 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		"HLSCore::HLSCore::ProductTarget" /* HLSCore */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_58 /* Build configuration list for PBXAggregateTarget "HLSCore" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_61 /* PBXTargetDependency */,
+				OBJ_63 /* PBXTargetDependency */,
+				OBJ_65 /* PBXTargetDependency */,
+				OBJ_67 /* PBXTargetDependency */,
+			);
+			name = HLSCore;
+			productName = HLSCore;
+		};
+		"HLSCore::HLSCorePackageTests::ProductTarget" /* HLSCorePackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_76 /* Build configuration list for PBXAggregateTarget "HLSCorePackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_79 /* PBXTargetDependency */,
+				OBJ_81 /* PBXTargetDependency */,
+				OBJ_83 /* PBXTargetDependency */,
+				OBJ_85 /* PBXTargetDependency */,
+			);
+			name = HLSCorePackageTests;
+			productName = HLSCorePackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		E7064DE11D88DB93001D2F60 /* CoreInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */; };
-		E70E8DC71D7A57DA00CB6A1E /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DC61D7A57DA00CB6A1E /* Playlist.swift */; };
-		E70E8DCB1D7B197400CB6A1E /* ParserCombinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DCA1D7B197400CB6A1E /* ParserCombinator.swift */; };
-		E70E8DCD1D7B23D900CB6A1E /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DCC1D7B23D900CB6A1E /* Tokens.swift */; };
-		E70E8DCF1D7D051100CB6A1E /* CharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DCE1D7D051100CB6A1E /* CharacterSet.swift */; };
-		E70E8DD11D7D0CD700CB6A1E /* AttributeValueParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD01D7D0CD700CB6A1E /* AttributeValueParsers.swift */; };
-		E70E8DD31D7D0DEA00CB6A1E /* AttributeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD21D7D0DEA00CB6A1E /* AttributeTypes.swift */; };
-		E70E8DD51D7DEEEC00CB6A1E /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD41D7DEEEC00CB6A1E /* Tags.swift */; };
-		E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD61D7E454900CB6A1E /* AttributeList.swift */; };
-		E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */; };
-		E746987F1D8E1EC800C02A8E /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E746987E1D8E1EC800C02A8E /* TagTests.swift */; };
-		E77717F11DD4163C0021014C /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/Download.swift /* Download.swift */; };
-		E77717F21DD416410021014C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/File.swift /* File.swift */; };
-		E77717F31DD416410021014C /* HLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/HLS.swift /* HLS.swift */; };
-		E77717F41DD416410021014C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/main.swift /* main.swift */; };
-		E77717F51DD416410021014C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/URL.swift /* URL.swift */; };
-		E77717F91DD417AB0021014C /* playlist.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = E77717F61DD416DC0021014C /* playlist.m3u8 */; };
-		E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */; };
-		E782FFDC1DDB7692004533B7 /* MediaPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */; };
-		E7CABBCA1D94AC5700B38C69 /* EncryptionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */; };
-		E7D52AC31DDD421E00D5A7DD /* MasterPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */; };
-		E7D52AC51DDE9CC500D5A7DD /* PlaylistParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */; };
-		_LinkFileRef_Parsing_via_ParsingTests /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
-		_LinkFileRef_Parsing_via_Strip /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
-		_LinkFileRef_Parsing_via_StripTests /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Parsing" /* Parsing.framework */; };
-		_LinkFileRef_Serialization_via_SerializationTests /* Serialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Serialization" /* Serialization.framework */; };
-		_LinkFileRef_Strip_via_StripTests /* Strip in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Strip" /* Strip */; };
-		_LinkFileRef_Types_via_Parsing /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_ParsingTests /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_Serialization /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_SerializationTests /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_Strip /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_StripTests /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Types_via_TypesTests /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Types" /* Types.framework */; };
-		_LinkFileRef_Utilities_via_Parsing /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_ParsingTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_Serialization /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_SerializationTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_Strip /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_StripTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_Types /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_TypesTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		_LinkFileRef_Utilities_via_UtilitiesTests /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utilities" /* Utilities.framework */; };
-		__src_cc_ref_Sources/Serialization/Serializable.swift /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */; };
-		__src_cc_ref_Sources/Strip/Download.swift /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/Download.swift /* Download.swift */; };
-		__src_cc_ref_Sources/Strip/File.swift /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/File.swift /* File.swift */; };
-		__src_cc_ref_Sources/Strip/HLS.swift /* HLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/HLS.swift /* HLS.swift */; };
-		__src_cc_ref_Sources/Strip/URL.swift /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/URL.swift /* URL.swift */; };
-		__src_cc_ref_Sources/Strip/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Strip/main.swift /* main.swift */; };
-		__src_cc_ref_Sources/Types/HLSCore.swift /* HLSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Types/HLSCore.swift /* HLSCore.swift */; };
-		__src_cc_ref_Sources/Types/Language.swift /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Types/Language.swift /* Language.swift */; };
-		__src_cc_ref_Sources/Utilities/String.swift /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utilities/String.swift /* String.swift */; };
-		__src_cc_ref_Sources/Utilities/URL.swift /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utilities/URL.swift /* URL.swift */; };
-		__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */; };
-		__src_cc_ref_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift */; };
-		__src_cc_ref_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift */; };
-		__src_cc_ref_Tests/StripTests/StripTests.swift /* StripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/StripTests/StripTests.swift /* StripTests.swift */; };
-		__src_cc_ref_Tests/TypesTests/HLSCoreTests.swift /* HLSCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/TypesTests/HLSCoreTests.swift /* HLSCoreTests.swift */; };
-		__src_cc_ref_Tests/TypesTests/StringTests.swift /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/TypesTests/StringTests.swift /* StringTests.swift */; };
-		__src_cc_ref_Tests/TypesTests/URLTests.swift /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/TypesTests/URLTests.swift /* URLTests.swift */; };
-		__src_cc_ref_Tests/UtilitiesTests/UtilitiesTests.swift /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/UtilitiesTests/UtilitiesTests.swift /* UtilitiesTests.swift */; };
+		OBJ_100 /* TagToEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* TagToEntity.swift */; };
+		OBJ_101 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Tags.swift */; };
+		OBJ_102 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Tokens.swift */; };
+		OBJ_103 /* TypeParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* TypeParsers.swift */; };
+		OBJ_105 /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Types::Product" /* Types.framework */; };
+		OBJ_106 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_113 /* AttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* AttributeTests.swift */; };
+		OBJ_114 /* PlaylistParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* PlaylistParsingTests.swift */; };
+		OBJ_115 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* TagTests.swift */; };
+		OBJ_117 /* Parsing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Parsing::Product" /* Parsing.framework */; };
+		OBJ_118 /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Types::Product" /* Types.framework */; };
+		OBJ_119 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_127 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Serializable.swift */; };
+		OBJ_129 /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Types::Product" /* Types.framework */; };
+		OBJ_130 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_137 /* MultilineMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* MultilineMatching.swift */; };
+		OBJ_138 /* SerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SerializationTests.swift */; };
+		OBJ_140 /* Serialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Serialization::Product" /* Serialization.framework */; };
+		OBJ_141 /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Types::Product" /* Types.framework */; };
+		OBJ_142 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_156 /* AttributeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* AttributeTypes.swift */; };
+		OBJ_157 /* EncryptionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* EncryptionKey.swift */; };
+		OBJ_158 /* HLSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* HLSCore.swift */; };
+		OBJ_159 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Language.swift */; };
+		OBJ_160 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Playlist.swift */; };
+		OBJ_162 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_168 /* HLSCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* HLSCoreTests.swift */; };
+		OBJ_169 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* StringTests.swift */; };
+		OBJ_170 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* URLTests.swift */; };
+		OBJ_172 /* Types.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Types::Product" /* Types.framework */; };
+		OBJ_173 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_180 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* String.swift */; };
+		OBJ_181 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* URL.swift */; };
+		OBJ_187 /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* UtilitiesTests.swift */; };
+		OBJ_189 /* Utilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "HLSCore::Utilities::Product" /* Utilities.framework */; };
+		OBJ_74 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_93 /* AttributeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* AttributeList.swift */; };
+		OBJ_94 /* AttributeValueParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* AttributeValueParsers.swift */; };
+		OBJ_95 /* CharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CharacterSet.swift */; };
+		OBJ_96 /* CoreInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* CoreInitializers.swift */; };
+		OBJ_97 /* MasterPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* MasterPlaylistParser.swift */; };
+		OBJ_98 /* MediaPlaylistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* MediaPlaylistParser.swift */; };
+		OBJ_99 /* ParserCombinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ParserCombinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E70E8DC11D7A512C00CB6A1E /* PBXContainerItemProxy */ = {
+		E772F895207928800093C930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_Types";
+			remoteGlobalIDString = "HLSCore::Types";
 			remoteInfo = Types;
 		};
-		E70E8DC21D7A512C00CB6A1E /* PBXContainerItemProxy */ = {
+		E772F896207928800093C930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_Utilities";
+			remoteGlobalIDString = "HLSCore::Utilities";
 			remoteInfo = Utilities;
 		};
-		E70E8DC31D7A512C00CB6A1E /* PBXContainerItemProxy */ = {
+		E772F897207928800093C930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_Parsing";
-			remoteInfo = Parsing;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
 		};
-		E70E8DC41D7A512C00CB6A1E /* PBXContainerItemProxy */ = {
+		E772F898207928800093C930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_Serialization";
+			remoteGlobalIDString = "HLSCore::Types";
+			remoteInfo = Types;
+		};
+		E772F899207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F89A207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F89B207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Serialization";
 			remoteInfo = Serialization;
 		};
-		E70E8DC51D7A512C00CB6A1E /* PBXContainerItemProxy */ = {
+		E772F89C207928800093C930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_Strip";
-			remoteInfo = Strip;
+			remoteGlobalIDString = "HLSCore::Types";
+			remoteInfo = Types;
+		};
+		E772F89D207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F89E207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Types";
+			remoteInfo = Types;
+		};
+		E772F89F207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F8A0207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Parsing";
+			remoteInfo = Parsing;
+		};
+		E772F8A1207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Types";
+			remoteInfo = Types;
+		};
+		E772F8A2207928800093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F8A3207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Utilities";
+			remoteInfo = Utilities;
+		};
+		E772F8A4207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Parsing";
+			remoteInfo = Parsing;
+		};
+		E772F8A5207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Serialization";
+			remoteInfo = Serialization;
+		};
+		E772F8A6207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::Types";
+			remoteInfo = Types;
+		};
+		E772F8A7207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::SerializationTests";
+			remoteInfo = SerializationTests;
+		};
+		E772F8A8207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::ParsingTests";
+			remoteInfo = ParsingTests;
+		};
+		E772F8A9207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::UtilitiesTests";
+			remoteInfo = UtilitiesTests;
+		};
+		E772F8AA207928810093C930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "HLSCore::TypesTests";
+			remoteInfo = TypesTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreInitializers.swift; sourceTree = "<group>"; };
-		E70E8DC61D7A57DA00CB6A1E /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
-		E70E8DCA1D7B197400CB6A1E /* ParserCombinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserCombinator.swift; sourceTree = "<group>"; };
-		E70E8DCC1D7B23D900CB6A1E /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
-		E70E8DCE1D7D051100CB6A1E /* CharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSet.swift; sourceTree = "<group>"; };
-		E70E8DD01D7D0CD700CB6A1E /* AttributeValueParsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeValueParsers.swift; sourceTree = "<group>"; };
-		E70E8DD21D7D0DEA00CB6A1E /* AttributeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeTypes.swift; sourceTree = "<group>"; };
-		E70E8DD41D7DEEEC00CB6A1E /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
-		E70E8DD61D7E454900CB6A1E /* AttributeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeList.swift; sourceTree = "<group>"; };
-		E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParsers.swift; sourceTree = "<group>"; };
-		E746987E1D8E1EC800C02A8E /* TagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
-		E77717EB1DD415630021014C /* StripTestBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripTestBundle.m; sourceTree = "<group>"; };
-		E77717ED1DD415630021014C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E77717F61DD416DC0021014C /* playlist.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playlist.m3u8; sourceTree = "<group>"; };
-		E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagToEntity.swift; sourceTree = "<group>"; };
-		E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlaylistParser.swift; sourceTree = "<group>"; };
-		E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionKey.swift; sourceTree = "<group>"; };
-		E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterPlaylistParser.swift; sourceTree = "<group>"; };
-		E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistParsingTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = HLSCore.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
-		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Strip/Download.swift /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Strip/File.swift /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Strip/HLS.swift /* HLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLS.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Strip/URL.swift /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Strip/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Types/HLSCore.swift /* HLSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSCore.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Types/Language.swift /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Utilities/String.swift /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Utilities/URL.swift /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineMatching.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/StripTests/StripTests.swift /* StripTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/TypesTests/HLSCoreTests.swift /* HLSCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSCoreTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/TypesTests/StringTests.swift /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/TypesTests/URLTests.swift /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/UtilitiesTests/UtilitiesTests.swift /* UtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
-		"_____Product_Parsing" /* Parsing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parsing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_ParsingTests" /* ParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_Serialization" /* Serialization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Serialization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_SerializationTests" /* SerializationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SerializationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_Strip" /* Strip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = Strip; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_StripTests" /* StripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = StripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_Types" /* Types.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Types.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_TypesTests" /* TypesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TypesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_Utilities" /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_UtilitiesTests" /* UtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = UtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::Parsing::Product" /* Parsing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parsing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::ParsingTests::Product" /* ParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::Serialization::Product" /* Serialization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Serialization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::SerializationTests::Product" /* SerializationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SerializationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::Types::Product" /* Types.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Types.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::TypesTests::Product" /* TypesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TypesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::Utilities::Product" /* Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"HLSCore::UtilitiesTests::Product" /* UtilitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = UtilitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_10 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		OBJ_12 /* AttributeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeList.swift; sourceTree = "<group>"; };
+		OBJ_13 /* AttributeValueParsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeValueParsers.swift; sourceTree = "<group>"; };
+		OBJ_14 /* CharacterSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSet.swift; sourceTree = "<group>"; };
+		OBJ_15 /* CoreInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreInitializers.swift; sourceTree = "<group>"; };
+		OBJ_16 /* MasterPlaylistParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPlaylistParser.swift; sourceTree = "<group>"; };
+		OBJ_17 /* MediaPlaylistParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlaylistParser.swift; sourceTree = "<group>"; };
+		OBJ_18 /* ParserCombinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserCombinator.swift; sourceTree = "<group>"; };
+		OBJ_19 /* TagToEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagToEntity.swift; sourceTree = "<group>"; };
+		OBJ_20 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		OBJ_21 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
+		OBJ_22 /* TypeParsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeParsers.swift; sourceTree = "<group>"; };
+		OBJ_24 /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		OBJ_26 /* AttributeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTypes.swift; sourceTree = "<group>"; };
+		OBJ_27 /* EncryptionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionKey.swift; sourceTree = "<group>"; };
+		OBJ_28 /* HLSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSCore.swift; sourceTree = "<group>"; };
+		OBJ_29 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		OBJ_30 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		OBJ_33 /* AttributeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTests.swift; sourceTree = "<group>"; };
+		OBJ_34 /* PlaylistParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistParsingTests.swift; sourceTree = "<group>"; };
+		OBJ_35 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		OBJ_37 /* MultilineMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineMatching.swift; sourceTree = "<group>"; };
+		OBJ_38 /* SerializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationTests.swift; sourceTree = "<group>"; };
+		OBJ_40 /* UtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
+		OBJ_42 /* HLSCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSCoreTests.swift; sourceTree = "<group>"; };
+		OBJ_43 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		OBJ_44 /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		"___LinkPhase_Parsing" /* Frameworks */ = {
+		OBJ_104 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_Parsing /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_Parsing /* Types.framework in Frameworks */,
+				OBJ_105 /* Types.framework in Frameworks */,
+				OBJ_106 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_ParsingTests" /* Frameworks */ = {
+		OBJ_116 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_ParsingTests /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_ParsingTests /* Types.framework in Frameworks */,
-				_LinkFileRef_Parsing_via_ParsingTests /* Parsing.framework in Frameworks */,
+				OBJ_117 /* Parsing.framework in Frameworks */,
+				OBJ_118 /* Types.framework in Frameworks */,
+				OBJ_119 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_Serialization" /* Frameworks */ = {
+		OBJ_128 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_Serialization /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_Serialization /* Types.framework in Frameworks */,
+				OBJ_129 /* Types.framework in Frameworks */,
+				OBJ_130 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_SerializationTests" /* Frameworks */ = {
+		OBJ_139 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_SerializationTests /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_SerializationTests /* Types.framework in Frameworks */,
-				_LinkFileRef_Serialization_via_SerializationTests /* Serialization.framework in Frameworks */,
+				OBJ_140 /* Serialization.framework in Frameworks */,
+				OBJ_141 /* Types.framework in Frameworks */,
+				OBJ_142 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_Strip" /* Frameworks */ = {
+		OBJ_161 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_Strip /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_Strip /* Types.framework in Frameworks */,
-				_LinkFileRef_Parsing_via_Strip /* Parsing.framework in Frameworks */,
+				OBJ_162 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_StripTests" /* Frameworks */ = {
+		OBJ_171 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_StripTests /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_StripTests /* Types.framework in Frameworks */,
-				_LinkFileRef_Parsing_via_StripTests /* Parsing.framework in Frameworks */,
-				_LinkFileRef_Strip_via_StripTests /* Strip in Frameworks */,
+				OBJ_172 /* Types.framework in Frameworks */,
+				OBJ_173 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_Types" /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				_LinkFileRef_Utilities_via_Types /* Utilities.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		"___LinkPhase_TypesTests" /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				_LinkFileRef_Utilities_via_TypesTests /* Utilities.framework in Frameworks */,
-				_LinkFileRef_Types_via_TypesTests /* Types.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		"___LinkPhase_Utilities" /* Frameworks */ = {
+		OBJ_182 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_UtilitiesTests" /* Frameworks */ = {
+		OBJ_188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_Utilities_via_UtilitiesTests /* Utilities.framework in Frameworks */,
+				OBJ_189 /* Utilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E77717EA1DD415630021014C /* StripTestBundle */ = {
+		OBJ_11 /* Parsing */ = {
 			isa = PBXGroup;
 			children = (
-				E77717EB1DD415630021014C /* StripTestBundle.m */,
-				E77717ED1DD415630021014C /* Info.plist */,
-			);
-			path = StripTestBundle;
-			sourceTree = "<group>";
-		};
-		TestProducts_ /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				"_____Product_ParsingTests" /* ParsingTests.xctest */,
-				"_____Product_SerializationTests" /* SerializationTests.xctest */,
-				"_____Product_StripTests" /* StripTests.xctest */,
-				"_____Product_TypesTests" /* TypesTests.xctest */,
-				"_____Product_UtilitiesTests" /* UtilitiesTests.xctest */,
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
-		"___RootGroup_" = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Package.swift /* Package.swift */,
-				"_____Configs_" /* Configs */,
-				"_____Sources_" /* Sources */,
-				"_______Tests_" /* Tests */,
-				E77717EA1DD415630021014C /* StripTestBundle */,
-				"____Products_" /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		"____Products_" /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				TestProducts_ /* Tests */,
-				"_____Product_Parsing" /* Parsing.framework */,
-				"_____Product_Serialization" /* Serialization.framework */,
-				"_____Product_Strip" /* Strip */,
-				"_____Product_Types" /* Types.framework */,
-				"_____Product_Utilities" /* Utilities.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		"_____Configs_" /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */,
-			);
-			name = Configs;
-			sourceTree = "<group>";
-		};
-		"_____Sources_" /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				"_______Group_Parsing" /* Parsing */,
-				"_______Group_Serialization" /* Serialization */,
-				"_______Group_Strip" /* Strip */,
-				"_______Group_Types" /* Types */,
-				"_______Group_Utilities" /* Utilities */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		"_______Group_Parsing" /* Parsing */ = {
-			isa = PBXGroup;
-			children = (
-				E70E8DCA1D7B197400CB6A1E /* ParserCombinator.swift */,
-				E70E8DCC1D7B23D900CB6A1E /* Tokens.swift */,
-				E70E8DCE1D7D051100CB6A1E /* CharacterSet.swift */,
-				E70E8DD01D7D0CD700CB6A1E /* AttributeValueParsers.swift */,
-				E70E8DD41D7DEEEC00CB6A1E /* Tags.swift */,
-				E70E8DD61D7E454900CB6A1E /* AttributeList.swift */,
-				E70E8DD81D7E578100CB6A1E /* TypeParsers.swift */,
-				E7064DE01D88DB93001D2F60 /* CoreInitializers.swift */,
-				E782FFD91DD7F4CD004533B7 /* TagToEntity.swift */,
-				E782FFDB1DDB7692004533B7 /* MediaPlaylistParser.swift */,
-				E7D52AC21DDD421E00D5A7DD /* MasterPlaylistParser.swift */,
+				OBJ_12 /* AttributeList.swift */,
+				OBJ_13 /* AttributeValueParsers.swift */,
+				OBJ_14 /* CharacterSet.swift */,
+				OBJ_15 /* CoreInitializers.swift */,
+				OBJ_16 /* MasterPlaylistParser.swift */,
+				OBJ_17 /* MediaPlaylistParser.swift */,
+				OBJ_18 /* ParserCombinator.swift */,
+				OBJ_19 /* TagToEntity.swift */,
+				OBJ_20 /* Tags.swift */,
+				OBJ_21 /* Tokens.swift */,
+				OBJ_22 /* TypeParsers.swift */,
 			);
 			name = Parsing;
 			path = Sources/Parsing;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Group_ParsingTests" /* ParsingTests */ = {
+		OBJ_23 /* Serialization */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift */,
-				E746987E1D8E1EC800C02A8E /* TagTests.swift */,
-				E7D52AC41DDE9CC500D5A7DD /* PlaylistParsingTests.swift */,
-			);
-			name = ParsingTests;
-			path = Tests/ParsingTests;
-			sourceTree = "<group>";
-		};
-		"_______Group_Serialization" /* Serialization */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Sources/Serialization/Serializable.swift /* Serializable.swift */,
+				OBJ_24 /* Serializable.swift */,
 			);
 			name = Serialization;
 			path = Sources/Serialization;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Group_SerializationTests" /* SerializationTests */ = {
+		OBJ_25 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift */,
-				__PBXFileRef_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift */,
-			);
-			name = SerializationTests;
-			path = Tests/SerializationTests;
-			sourceTree = "<group>";
-		};
-		"_______Group_Strip" /* Strip */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Sources/Strip/Download.swift /* Download.swift */,
-				__PBXFileRef_Sources/Strip/File.swift /* File.swift */,
-				__PBXFileRef_Sources/Strip/HLS.swift /* HLS.swift */,
-				__PBXFileRef_Sources/Strip/main.swift /* main.swift */,
-				__PBXFileRef_Sources/Strip/URL.swift /* URL.swift */,
-			);
-			name = Strip;
-			path = Sources/Strip;
-			sourceTree = "<group>";
-		};
-		"_______Group_StripTests" /* StripTests */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Tests/StripTests/StripTests.swift /* StripTests.swift */,
-				E77717F61DD416DC0021014C /* playlist.m3u8 */,
-			);
-			name = StripTests;
-			path = Tests/StripTests;
-			sourceTree = "<group>";
-		};
-		"_______Group_Types" /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Sources/Types/HLSCore.swift /* HLSCore.swift */,
-				__PBXFileRef_Sources/Types/Language.swift /* Language.swift */,
-				E70E8DC61D7A57DA00CB6A1E /* Playlist.swift */,
-				E70E8DD21D7D0DEA00CB6A1E /* AttributeTypes.swift */,
-				E7CABBC91D94AC5700B38C69 /* EncryptionKey.swift */,
+				OBJ_26 /* AttributeTypes.swift */,
+				OBJ_27 /* EncryptionKey.swift */,
+				OBJ_28 /* HLSCore.swift */,
+				OBJ_29 /* Language.swift */,
+				OBJ_30 /* Playlist.swift */,
 			);
 			name = Types;
 			path = Sources/Types;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Group_TypesTests" /* TypesTests */ = {
+		OBJ_31 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/TypesTests/HLSCoreTests.swift /* HLSCoreTests.swift */,
-				__PBXFileRef_Tests/TypesTests/StringTests.swift /* StringTests.swift */,
-				__PBXFileRef_Tests/TypesTests/URLTests.swift /* URLTests.swift */,
+				OBJ_32 /* ParsingTests */,
+				OBJ_36 /* SerializationTests */,
+				OBJ_39 /* UtilitiesTests */,
+				OBJ_41 /* TypesTests */,
 			);
-			name = TypesTests;
-			path = Tests/TypesTests;
-			sourceTree = "<group>";
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Group_Utilities" /* Utilities */ = {
+		OBJ_32 /* ParsingTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/Utilities/String.swift /* String.swift */,
-				__PBXFileRef_Sources/Utilities/URL.swift /* URL.swift */,
+				OBJ_33 /* AttributeTests.swift */,
+				OBJ_34 /* PlaylistParsingTests.swift */,
+				OBJ_35 /* TagTests.swift */,
 			);
-			name = Utilities;
-			path = Sources/Utilities;
-			sourceTree = "<group>";
+			name = ParsingTests;
+			path = Tests/ParsingTests;
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Group_UtilitiesTests" /* UtilitiesTests */ = {
+		OBJ_36 /* SerializationTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/UtilitiesTests/UtilitiesTests.swift /* UtilitiesTests.swift */,
+				OBJ_37 /* MultilineMatching.swift */,
+				OBJ_38 /* SerializationTests.swift */,
+			);
+			name = SerializationTests;
+			path = Tests/SerializationTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_39 /* UtilitiesTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_40 /* UtilitiesTests.swift */,
 			);
 			name = UtilitiesTests;
 			path = Tests/UtilitiesTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Tests_" /* Tests */ = {
+		OBJ_41 /* TypesTests */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_ParsingTests" /* ParsingTests */,
-				"_______Group_SerializationTests" /* SerializationTests */,
-				"_______Group_StripTests" /* StripTests */,
-				"_______Group_TypesTests" /* TypesTests */,
-				"_______Group_UtilitiesTests" /* UtilitiesTests */,
+				OBJ_42 /* HLSCoreTests.swift */,
+				OBJ_43 /* StringTests.swift */,
+				OBJ_44 /* URLTests.swift */,
 			);
-			name = Tests;
+			name = TypesTests;
+			path = Tests/TypesTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"HLSCore::Utilities::Product" /* Utilities.framework */,
+				"HLSCore::UtilitiesTests::Product" /* UtilitiesTests.xctest */,
+				"HLSCore::SerializationTests::Product" /* SerializationTests.xctest */,
+				"HLSCore::Serialization::Product" /* Serialization.framework */,
+				"HLSCore::Parsing::Product" /* Parsing.framework */,
+				"HLSCore::TypesTests::Product" /* TypesTests.xctest */,
+				"HLSCore::ParsingTests::Product" /* ParsingTests.xctest */,
+				"HLSCore::Types::Product" /* Types.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_31 /* Tests */,
+				OBJ_47 /* Products */,
+			);
+			name = "";
 			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* Utilities */,
+				OBJ_11 /* Parsing */,
+				OBJ_23 /* Serialization */,
+				OBJ_25 /* Types */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* String.swift */,
+				OBJ_10 /* URL.swift */,
+			);
+			name = Utilities;
+			path = Sources/Utilities;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"______Target_Parsing" /* Parsing */ = {
+		"HLSCore::Parsing" /* Parsing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_Parsing" /* Build configuration list for PBXNativeTarget "Parsing" */;
+			buildConfigurationList = OBJ_89 /* Build configuration list for PBXNativeTarget "Parsing" */;
 			buildPhases = (
-				CompilePhase_Parsing /* Sources */,
-				"___LinkPhase_Parsing" /* Frameworks */,
+				OBJ_92 /* Sources */,
+				OBJ_104 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Types /* PBXTargetDependency */,
+				OBJ_107 /* PBXTargetDependency */,
+				OBJ_108 /* PBXTargetDependency */,
 			);
 			name = Parsing;
 			productName = Parsing;
-			productReference = "_____Product_Parsing" /* Parsing.framework */;
+			productReference = "HLSCore::Parsing::Product" /* Parsing.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_ParsingTests" /* ParsingTests */ = {
+		"HLSCore::ParsingTests" /* ParsingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_ParsingTests" /* Build configuration list for PBXNativeTarget "ParsingTests" */;
+			buildConfigurationList = OBJ_109 /* Build configuration list for PBXNativeTarget "ParsingTests" */;
 			buildPhases = (
-				CompilePhase_ParsingTests /* Sources */,
-				"___LinkPhase_ParsingTests" /* Frameworks */,
+				OBJ_112 /* Sources */,
+				OBJ_116 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Parsing /* PBXTargetDependency */,
+				OBJ_120 /* PBXTargetDependency */,
+				OBJ_121 /* PBXTargetDependency */,
+				OBJ_122 /* PBXTargetDependency */,
 			);
 			name = ParsingTests;
 			productName = ParsingTests;
-			productReference = "_____Product_ParsingTests" /* ParsingTests.xctest */;
+			productReference = "HLSCore::ParsingTests::Product" /* ParsingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		"______Target_Serialization" /* Serialization */ = {
+		"HLSCore::Serialization" /* Serialization */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_Serialization" /* Build configuration list for PBXNativeTarget "Serialization" */;
+			buildConfigurationList = OBJ_123 /* Build configuration list for PBXNativeTarget "Serialization" */;
 			buildPhases = (
-				CompilePhase_Serialization /* Sources */,
-				"___LinkPhase_Serialization" /* Frameworks */,
+				OBJ_126 /* Sources */,
+				OBJ_128 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Types /* PBXTargetDependency */,
+				OBJ_131 /* PBXTargetDependency */,
+				OBJ_132 /* PBXTargetDependency */,
 			);
 			name = Serialization;
 			productName = Serialization;
-			productReference = "_____Product_Serialization" /* Serialization.framework */;
+			productReference = "HLSCore::Serialization::Product" /* Serialization.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_SerializationTests" /* SerializationTests */ = {
+		"HLSCore::SerializationTests" /* SerializationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_SerializationTests" /* Build configuration list for PBXNativeTarget "SerializationTests" */;
+			buildConfigurationList = OBJ_133 /* Build configuration list for PBXNativeTarget "SerializationTests" */;
 			buildPhases = (
-				CompilePhase_SerializationTests /* Sources */,
-				"___LinkPhase_SerializationTests" /* Frameworks */,
+				OBJ_136 /* Sources */,
+				OBJ_139 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Serialization /* PBXTargetDependency */,
+				OBJ_143 /* PBXTargetDependency */,
+				OBJ_144 /* PBXTargetDependency */,
+				OBJ_145 /* PBXTargetDependency */,
 			);
 			name = SerializationTests;
 			productName = SerializationTests;
-			productReference = "_____Product_SerializationTests" /* SerializationTests.xctest */;
+			productReference = "HLSCore::SerializationTests::Product" /* SerializationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		"______Target_Strip" /* Strip */ = {
+		"HLSCore::SwiftPMPackageDescription" /* HLSCorePackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_Strip" /* Build configuration list for PBXNativeTarget "Strip" */;
+			buildConfigurationList = OBJ_70 /* Build configuration list for PBXNativeTarget "HLSCorePackageDescription" */;
 			buildPhases = (
-				CompilePhase_Strip /* Sources */,
-				"___LinkPhase_Strip" /* Frameworks */,
+				OBJ_73 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Types /* PBXTargetDependency */,
-				__Dependency_Parsing /* PBXTargetDependency */,
 			);
-			name = Strip;
-			productName = Strip;
-			productReference = "_____Product_Strip" /* Strip */;
-			productType = "com.apple.product-type.tool";
+			name = HLSCorePackageDescription;
+			productName = HLSCorePackageDescription;
+			productType = "com.apple.product-type.framework";
 		};
-		"______Target_StripTests" /* StripTests */ = {
+		"HLSCore::Types" /* Types */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_StripTests" /* Build configuration list for PBXNativeTarget "StripTests" */;
+			buildConfigurationList = OBJ_152 /* Build configuration list for PBXNativeTarget "Types" */;
 			buildPhases = (
-				CompilePhase_StripTests /* Sources */,
-				"___LinkPhase_StripTests" /* Frameworks */,
-				E77717F81DD417A00021014C /* Resources */,
+				OBJ_155 /* Sources */,
+				OBJ_161 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Strip /* PBXTargetDependency */,
-			);
-			name = StripTests;
-			productName = StripTests;
-			productReference = "_____Product_StripTests" /* StripTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"______Target_Types" /* Types */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_Types" /* Build configuration list for PBXNativeTarget "Types" */;
-			buildPhases = (
-				CompilePhase_Types /* Sources */,
-				"___LinkPhase_Types" /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				__Dependency_Utilities /* PBXTargetDependency */,
+				OBJ_163 /* PBXTargetDependency */,
 			);
 			name = Types;
 			productName = Types;
-			productReference = "_____Product_Types" /* Types.framework */;
+			productReference = "HLSCore::Types::Product" /* Types.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_TypesTests" /* TypesTests */ = {
+		"HLSCore::TypesTests" /* TypesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_TypesTests" /* Build configuration list for PBXNativeTarget "TypesTests" */;
+			buildConfigurationList = OBJ_164 /* Build configuration list for PBXNativeTarget "TypesTests" */;
 			buildPhases = (
-				CompilePhase_TypesTests /* Sources */,
-				"___LinkPhase_TypesTests" /* Frameworks */,
+				OBJ_167 /* Sources */,
+				OBJ_171 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Types /* PBXTargetDependency */,
+				OBJ_174 /* PBXTargetDependency */,
+				OBJ_175 /* PBXTargetDependency */,
 			);
 			name = TypesTests;
 			productName = TypesTests;
-			productReference = "_____Product_TypesTests" /* TypesTests.xctest */;
+			productReference = "HLSCore::TypesTests::Product" /* TypesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		"______Target_Utilities" /* Utilities */ = {
+		"HLSCore::Utilities" /* Utilities */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_Utilities" /* Build configuration list for PBXNativeTarget "Utilities" */;
+			buildConfigurationList = OBJ_176 /* Build configuration list for PBXNativeTarget "Utilities" */;
 			buildPhases = (
-				CompilePhase_Utilities /* Sources */,
-				"___LinkPhase_Utilities" /* Frameworks */,
+				OBJ_179 /* Sources */,
+				OBJ_182 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -602,670 +633,830 @@
 			);
 			name = Utilities;
 			productName = Utilities;
-			productReference = "_____Product_Utilities" /* Utilities.framework */;
+			productReference = "HLSCore::Utilities::Product" /* Utilities.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_UtilitiesTests" /* UtilitiesTests */ = {
+		"HLSCore::UtilitiesTests" /* UtilitiesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_UtilitiesTests" /* Build configuration list for PBXNativeTarget "UtilitiesTests" */;
+			buildConfigurationList = OBJ_183 /* Build configuration list for PBXNativeTarget "UtilitiesTests" */;
 			buildPhases = (
-				CompilePhase_UtilitiesTests /* Sources */,
-				"___LinkPhase_UtilitiesTests" /* Frameworks */,
+				OBJ_186 /* Sources */,
+				OBJ_188 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_Utilities /* PBXTargetDependency */,
+				OBJ_190 /* PBXTargetDependency */,
 			);
 			name = UtilitiesTests;
 			productName = UtilitiesTests;
-			productReference = "_____Product_UtilitiesTests" /* UtilitiesTests.xctest */;
+			productReference = "HLSCore::UtilitiesTests::Product" /* UtilitiesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		__RootObject_ /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"HLSCore::Parsing" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::ParsingTests" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::Serialization" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::SerializationTests" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::Types" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::TypesTests" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::Utilities" = {
+						LastSwiftMigration = 0930;
+					};
+					"HLSCore::UtilitiesTests" = {
+						LastSwiftMigration = 0930;
+					};
+				};
 			};
-			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "HLSCore" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "HLSCore" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = "___RootGroup_";
-			productRefGroup = "____Products_" /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_47 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"______Target_Parsing" /* Parsing */,
-				"______Target_Serialization" /* Serialization */,
-				"______Target_Strip" /* Strip */,
-				"______Target_Types" /* Types */,
-				"______Target_Utilities" /* Utilities */,
-				"______Target_ParsingTests" /* ParsingTests */,
-				"______Target_SerializationTests" /* SerializationTests */,
-				"______Target_StripTests" /* StripTests */,
-				"______Target_TypesTests" /* TypesTests */,
-				"______Target_UtilitiesTests" /* UtilitiesTests */,
+				"HLSCore::HLSCore::ProductTarget" /* HLSCore */,
+				"HLSCore::SwiftPMPackageDescription" /* HLSCorePackageDescription */,
+				"HLSCore::HLSCorePackageTests::ProductTarget" /* HLSCorePackageTests */,
+				"HLSCore::Parsing" /* Parsing */,
+				"HLSCore::ParsingTests" /* ParsingTests */,
+				"HLSCore::Serialization" /* Serialization */,
+				"HLSCore::SerializationTests" /* SerializationTests */,
+				"HLSCore::Types" /* Types */,
+				"HLSCore::TypesTests" /* TypesTests */,
+				"HLSCore::Utilities" /* Utilities */,
+				"HLSCore::UtilitiesTests" /* UtilitiesTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		E77717F81DD417A00021014C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E77717F91DD417AB0021014C /* playlist.m3u8 in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		CompilePhase_Parsing /* Sources */ = {
+		OBJ_112 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				E70E8DD11D7D0CD700CB6A1E /* AttributeValueParsers.swift in Sources */,
-				E70E8DCB1D7B197400CB6A1E /* ParserCombinator.swift in Sources */,
-				E70E8DD51D7DEEEC00CB6A1E /* Tags.swift in Sources */,
-				E70E8DD71D7E454900CB6A1E /* AttributeList.swift in Sources */,
-				E7064DE11D88DB93001D2F60 /* CoreInitializers.swift in Sources */,
-				E70E8DCF1D7D051100CB6A1E /* CharacterSet.swift in Sources */,
-				E782FFDA1DD7F4CD004533B7 /* TagToEntity.swift in Sources */,
-				E70E8DD91D7E578100CB6A1E /* TypeParsers.swift in Sources */,
-				E7D52AC31DDD421E00D5A7DD /* MasterPlaylistParser.swift in Sources */,
-				E782FFDC1DDB7692004533B7 /* MediaPlaylistParser.swift in Sources */,
-				E70E8DCD1D7B23D900CB6A1E /* Tokens.swift in Sources */,
+				OBJ_113 /* AttributeTests.swift in Sources */,
+				OBJ_114 /* PlaylistParsingTests.swift in Sources */,
+				OBJ_115 /* TagTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_ParsingTests /* Sources */ = {
+		OBJ_126 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				E746987F1D8E1EC800C02A8E /* TagTests.swift in Sources */,
-				E7D52AC51DDE9CC500D5A7DD /* PlaylistParsingTests.swift in Sources */,
-				__src_cc_ref_Tests/ParsingTests/ParsingTests.swift /* AttributeTests.swift in Sources */,
+				OBJ_127 /* Serializable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_Serialization /* Sources */ = {
+		OBJ_136 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/Serialization/Serializable.swift /* Serializable.swift in Sources */,
+				OBJ_137 /* MultilineMatching.swift in Sources */,
+				OBJ_138 /* SerializationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_SerializationTests /* Sources */ = {
+		OBJ_155 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/SerializationTests/MultilineMatching.swift /* MultilineMatching.swift in Sources */,
-				__src_cc_ref_Tests/SerializationTests/SerializationTests.swift /* SerializationTests.swift in Sources */,
+				OBJ_156 /* AttributeTypes.swift in Sources */,
+				OBJ_157 /* EncryptionKey.swift in Sources */,
+				OBJ_158 /* HLSCore.swift in Sources */,
+				OBJ_159 /* Language.swift in Sources */,
+				OBJ_160 /* Playlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_Strip /* Sources */ = {
+		OBJ_167 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/Strip/Download.swift /* Download.swift in Sources */,
-				__src_cc_ref_Sources/Strip/File.swift /* File.swift in Sources */,
-				__src_cc_ref_Sources/Strip/HLS.swift /* HLS.swift in Sources */,
-				__src_cc_ref_Sources/Strip/main.swift /* main.swift in Sources */,
-				__src_cc_ref_Sources/Strip/URL.swift /* URL.swift in Sources */,
+				OBJ_168 /* HLSCoreTests.swift in Sources */,
+				OBJ_169 /* StringTests.swift in Sources */,
+				OBJ_170 /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_StripTests /* Sources */ = {
+		OBJ_179 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/StripTests/StripTests.swift /* StripTests.swift in Sources */,
-				E77717F41DD416410021014C /* main.swift in Sources */,
-				E77717F21DD416410021014C /* File.swift in Sources */,
-				E77717F11DD4163C0021014C /* Download.swift in Sources */,
-				E77717F31DD416410021014C /* HLS.swift in Sources */,
-				E77717F51DD416410021014C /* URL.swift in Sources */,
+				OBJ_180 /* String.swift in Sources */,
+				OBJ_181 /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_Types /* Sources */ = {
+		OBJ_186 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/Types/HLSCore.swift /* HLSCore.swift in Sources */,
-				__src_cc_ref_Sources/Types/Language.swift /* Language.swift in Sources */,
-				E70E8DD31D7D0DEA00CB6A1E /* AttributeTypes.swift in Sources */,
-				E70E8DC71D7A57DA00CB6A1E /* Playlist.swift in Sources */,
-				E7CABBCA1D94AC5700B38C69 /* EncryptionKey.swift in Sources */,
+				OBJ_187 /* UtilitiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_TypesTests /* Sources */ = {
+		OBJ_73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/TypesTests/HLSCoreTests.swift /* HLSCoreTests.swift in Sources */,
-				__src_cc_ref_Tests/TypesTests/StringTests.swift /* StringTests.swift in Sources */,
-				__src_cc_ref_Tests/TypesTests/URLTests.swift /* URLTests.swift in Sources */,
+				OBJ_74 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_Utilities /* Sources */ = {
+		OBJ_92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/Utilities/String.swift /* String.swift in Sources */,
-				__src_cc_ref_Sources/Utilities/URL.swift /* URL.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CompilePhase_UtilitiesTests /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				__src_cc_ref_Tests/UtilitiesTests/UtilitiesTests.swift /* UtilitiesTests.swift in Sources */,
+				OBJ_93 /* AttributeList.swift in Sources */,
+				OBJ_94 /* AttributeValueParsers.swift in Sources */,
+				OBJ_95 /* CharacterSet.swift in Sources */,
+				OBJ_96 /* CoreInitializers.swift in Sources */,
+				OBJ_97 /* MasterPlaylistParser.swift in Sources */,
+				OBJ_98 /* MediaPlaylistParser.swift in Sources */,
+				OBJ_99 /* ParserCombinator.swift in Sources */,
+				OBJ_100 /* TagToEntity.swift in Sources */,
+				OBJ_101 /* Tags.swift in Sources */,
+				OBJ_102 /* Tokens.swift in Sources */,
+				OBJ_103 /* TypeParsers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		__Dependency_Parsing /* PBXTargetDependency */ = {
+		OBJ_107 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_Parsing" /* Parsing */;
-			targetProxy = E70E8DC31D7A512C00CB6A1E /* PBXContainerItemProxy */;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F898207928800093C930 /* PBXContainerItemProxy */;
 		};
-		__Dependency_Serialization /* PBXTargetDependency */ = {
+		OBJ_108 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_Serialization" /* Serialization */;
-			targetProxy = E70E8DC41D7A512C00CB6A1E /* PBXContainerItemProxy */;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F899207928800093C930 /* PBXContainerItemProxy */;
 		};
-		__Dependency_Strip /* PBXTargetDependency */ = {
+		OBJ_120 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_Strip" /* Strip */;
-			targetProxy = E70E8DC51D7A512C00CB6A1E /* PBXContainerItemProxy */;
+			target = "HLSCore::Parsing" /* Parsing */;
+			targetProxy = E772F8A0207928800093C930 /* PBXContainerItemProxy */;
 		};
-		__Dependency_Types /* PBXTargetDependency */ = {
+		OBJ_121 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_Types" /* Types */;
-			targetProxy = E70E8DC11D7A512C00CB6A1E /* PBXContainerItemProxy */;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F8A1207928800093C930 /* PBXContainerItemProxy */;
 		};
-		__Dependency_Utilities /* PBXTargetDependency */ = {
+		OBJ_122 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_Utilities" /* Utilities */;
-			targetProxy = E70E8DC21D7A512C00CB6A1E /* PBXContainerItemProxy */;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F8A2207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_131 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F895207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_132 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F897207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_143 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Serialization" /* Serialization */;
+			targetProxy = E772F89B207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F89C207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_145 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F89D207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F896207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_174 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F89E207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_175 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F89F207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_190 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F89A207928800093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Utilities" /* Utilities */;
+			targetProxy = E772F8A3207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Parsing" /* Parsing */;
+			targetProxy = E772F8A4207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Serialization" /* Serialization */;
+			targetProxy = E772F8A5207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::Types" /* Types */;
+			targetProxy = E772F8A6207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::SerializationTests" /* SerializationTests */;
+			targetProxy = E772F8A7207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::ParsingTests" /* ParsingTests */;
+			targetProxy = E772F8A8207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::UtilitiesTests" /* UtilitiesTests */;
+			targetProxy = E772F8A9207928810093C930 /* PBXContainerItemProxy */;
+		};
+		OBJ_85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "HLSCore::TypesTests" /* TypesTests */;
+			targetProxy = E772F8AA207928810093C930 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		_ReleaseConf_Parsing /* Release */ = {
+		OBJ_110 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/Parsing_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Parsing;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_ParsingTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/ParsingTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = ParsingTests;
+			};
+			name = Debug;
+		};
+		OBJ_111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/ParsingTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = ParsingTests;
 			};
 			name = Release;
 		};
-		_ReleaseConf_Serialization /* Release */ = {
+		OBJ_124 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/Serialization_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Serialization;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_SerializationTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/SerializationTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_Strip /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_StripTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/StripTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_Types /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/Types_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Types;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_TypesTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/TypesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_Utilities /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/Utilities_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Utilities;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_UtilitiesTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/UtilitiesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		"___DebugConf_Parsing" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/Parsing_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Parsing;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Serialization;
 			};
 			name = Debug;
 		};
-		"___DebugConf_ParsingTests" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/ParsingTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		"___DebugConf_Serialization" /* Debug */ = {
+		OBJ_125 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/Serialization_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Serialization;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Serialization;
 			};
-			name = Debug;
+			name = Release;
 		};
-		"___DebugConf_SerializationTests" /* Debug */ = {
+		OBJ_134 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/SerializationTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SerializationTests;
 			};
 			name = Debug;
 		};
-		"___DebugConf_Strip" /* Debug */ = {
+		OBJ_135 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/SerializationTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
-				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SerializationTests;
 			};
-			name = Debug;
+			name = Release;
 		};
-		"___DebugConf_StripTests" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/StripTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		"___DebugConf_Types" /* Debug */ = {
+		OBJ_153 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/Types_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Types;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Types;
 			};
 			name = Debug;
 		};
-		"___DebugConf_TypesTests" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/TypesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		"___DebugConf_Utilities" /* Debug */ = {
+		OBJ_154 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/Types_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Types;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Types;
+			};
+			name = Release;
+		};
+		OBJ_165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/TypesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = TypesTests;
+			};
+			name = Debug;
+		};
+		OBJ_166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/TypesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = TypesTests;
+			};
+			name = Release;
+		};
+		OBJ_177 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = HLSCore.xcodeproj/Utilities_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = Utilities;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Utilities;
 			};
 			name = Debug;
 		};
-		"___DebugConf_UtilitiesTests" /* Debug */ = {
+		OBJ_178 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = HLSCore.xcodeproj/UtilitiesTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/Utilities_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		"_____Release_" /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				PRODUCT_BUNDLE_IDENTIFIER = Utilities;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Utilities;
 			};
 			name = Release;
 		};
-		"_______Debug_" /* Debug */ = {
+		OBJ_184 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_HLSCore.xcodeproj/Configs/Project.xcconfig /* HLSCore.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/UtilitiesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = UtilitiesTests;
+			};
+			name = Debug;
+		};
+		OBJ_185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/UtilitiesTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = UtilitiesTests;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+		OBJ_59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 3 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		OBJ_72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 3 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		OBJ_77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/Parsing_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Parsing;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Parsing;
+			};
+			name = Debug;
+		};
+		OBJ_91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = HLSCore.xcodeproj/Parsing_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Parsing;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Parsing;
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		"___RootConfs_" /* Build configuration list for PBXProject "HLSCore" */ = {
+		OBJ_109 /* Build configuration list for PBXNativeTarget "ParsingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"_______Debug_" /* Debug */,
-				"_____Release_" /* Release */,
+				OBJ_110 /* Debug */,
+				OBJ_111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_Parsing" /* Build configuration list for PBXNativeTarget "Parsing" */ = {
+		OBJ_123 /* Build configuration list for PBXNativeTarget "Serialization" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_Parsing" /* Debug */,
-				_ReleaseConf_Parsing /* Release */,
+				OBJ_124 /* Debug */,
+				OBJ_125 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_ParsingTests" /* Build configuration list for PBXNativeTarget "ParsingTests" */ = {
+		OBJ_133 /* Build configuration list for PBXNativeTarget "SerializationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_ParsingTests" /* Debug */,
-				_ReleaseConf_ParsingTests /* Release */,
+				OBJ_134 /* Debug */,
+				OBJ_135 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_Serialization" /* Build configuration list for PBXNativeTarget "Serialization" */ = {
+		OBJ_152 /* Build configuration list for PBXNativeTarget "Types" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_Serialization" /* Debug */,
-				_ReleaseConf_Serialization /* Release */,
+				OBJ_153 /* Debug */,
+				OBJ_154 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_SerializationTests" /* Build configuration list for PBXNativeTarget "SerializationTests" */ = {
+		OBJ_164 /* Build configuration list for PBXNativeTarget "TypesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_SerializationTests" /* Debug */,
-				_ReleaseConf_SerializationTests /* Release */,
+				OBJ_165 /* Debug */,
+				OBJ_166 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_Strip" /* Build configuration list for PBXNativeTarget "Strip" */ = {
+		OBJ_176 /* Build configuration list for PBXNativeTarget "Utilities" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_Strip" /* Debug */,
-				_ReleaseConf_Strip /* Release */,
+				OBJ_177 /* Debug */,
+				OBJ_178 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_StripTests" /* Build configuration list for PBXNativeTarget "StripTests" */ = {
+		OBJ_183 /* Build configuration list for PBXNativeTarget "UtilitiesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_StripTests" /* Debug */,
-				_ReleaseConf_StripTests /* Release */,
+				OBJ_184 /* Debug */,
+				OBJ_185 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_Types" /* Build configuration list for PBXNativeTarget "Types" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "HLSCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_Types" /* Debug */,
-				_ReleaseConf_Types /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_TypesTests" /* Build configuration list for PBXNativeTarget "TypesTests" */ = {
+		OBJ_58 /* Build configuration list for PBXAggregateTarget "HLSCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_TypesTests" /* Debug */,
-				_ReleaseConf_TypesTests /* Release */,
+				OBJ_59 /* Debug */,
+				OBJ_60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_Utilities" /* Build configuration list for PBXNativeTarget "Utilities" */ = {
+		OBJ_70 /* Build configuration list for PBXNativeTarget "HLSCorePackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_Utilities" /* Debug */,
-				_ReleaseConf_Utilities /* Release */,
+				OBJ_71 /* Debug */,
+				OBJ_72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		"_______Confs_UtilitiesTests" /* Build configuration list for PBXNativeTarget "UtilitiesTests" */ = {
+		OBJ_76 /* Build configuration list for PBXAggregateTarget "HLSCorePackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_UtilitiesTests" /* Debug */,
-				_ReleaseConf_UtilitiesTests /* Release */,
+				OBJ_77 /* Debug */,
+				OBJ_78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
+		};
+		OBJ_89 /* Build configuration list for PBXNativeTarget "Parsing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_90 /* Debug */,
+				OBJ_91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = __RootObject_ /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }

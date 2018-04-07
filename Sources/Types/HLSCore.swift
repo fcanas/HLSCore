@@ -95,11 +95,11 @@ public struct Bitrate : Comparable {
         return lhs.value < rhs.value
     }
     
-    public func toUIntMax() -> UIntMax {
-        return value.toUIntMax()
+    public func toUIntMax() -> UInt64 {
+        return UInt64(value)
     }
     
-    public init(_ v: UIntMax) {
+    public init(_ v: UInt64) {
         value = UInt(v)
     }
 }

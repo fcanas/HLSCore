@@ -145,7 +145,7 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
     })
     
     guard playlistBuilder.fatalTag == nil else {
-        print("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag)")
+        print("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag!)")
         return nil
     }
     

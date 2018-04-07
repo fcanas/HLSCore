@@ -38,7 +38,7 @@ func character(in characterSet: CharacterSet ) -> Parser<Character> {
 func string(_ string: String) -> Parser<String> {
     return Parser<String> { stream in
         var remainder = stream
-        for char in string.characters {
+        for char in string {
             guard let (_, newRemainder) = character(condition: { $0 == char }).parse(remainder) else {
                 return nil
             }

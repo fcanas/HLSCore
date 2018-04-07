@@ -64,9 +64,9 @@ class AttributeValueTests :XCTestCase {
         XCTAssertNil(TypeParser.float.run("-1")?.0)
         XCTAssertNil(TypeParser.float.run("-1.1")?.0)
         
-        XCTAssertEqualWithAccuracy(TypeParser.float.run("0.1")!.0, 0.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.float.run("1.1")!.0, 1.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.float.run("18446744073709551615.18446744073709551615")!.0, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.float.run("0.1")!.0, 0.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.float.run("1.1")!.0, 1.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.float.run("18446744073709551615.18446744073709551615")!.0, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
     }
     
     func testSignedFloatingPoint() {
@@ -76,14 +76,14 @@ class AttributeValueTests :XCTestCase {
         XCTAssertNil(TypeParser.signedFloat.run("1")?.0)
         XCTAssertNil(TypeParser.signedFloat.run("0")?.0)
         XCTAssertNil(TypeParser.signedFloat.run("-1")?.0)
+
+        XCTAssertEqual(TypeParser.signedFloat.run("0.1")!.0.rawValue, 0.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.signedFloat.run("1.1")!.0.rawValue, 1.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.signedFloat.run("18446744073709551615.18446744073709551615")!.0.rawValue, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
         
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("0.1")!.0.rawValue, 0.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("1.1")!.0.rawValue, 1.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("18446744073709551615.18446744073709551615")!.0.rawValue, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
-        
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("-0.1")!.0.rawValue, -0.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("-1.1")!.0.rawValue, -1.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(TypeParser.signedFloat.run("-18446744073709551615.18446744073709551615")!.0.rawValue, -18446744073709551615.18446744073709551615, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.signedFloat.run("-0.1")!.0.rawValue, -0.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.signedFloat.run("-1.1")!.0.rawValue, -1.1, accuracy: 0.0001)
+        XCTAssertEqual(TypeParser.signedFloat.run("-18446744073709551615.18446744073709551615")!.0.rawValue, -18446744073709551615.18446744073709551615, accuracy: 0.0001)
     }
     
     func testQuotedString() {
