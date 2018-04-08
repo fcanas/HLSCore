@@ -6,15 +6,15 @@ import XCTest
 class StringExtensionTests: XCTestCase {
 
     func testFullRange() {
-        let emptyString :NSString = ""
-        let singleCharacter :NSString = "A"
-        let multipleLines :NSString = "Something on\nmultiple lines\nis good to test."
-        let basic :NSString = "Some basic string"
+        let emptyString = ""
+        let singleCharacter = "A"
+        let multipleLines = "Something on\nmultiple lines\nis good to test."
+        let basic = "Some basic string"
 
         let allStrings = [emptyString, singleCharacter, multipleLines, basic]
 
         for s in allStrings {
-            XCTAssertEqual(s as String, s.substring(with: s.fullRange))
+            XCTAssertEqual(s, String(s[s.fullRange]))
         }
     }
 

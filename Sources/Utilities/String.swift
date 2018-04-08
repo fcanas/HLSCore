@@ -28,11 +28,3 @@ extension String {
     }
     
 }
-
-extension NSString {
-    public var fullRange :NSRange {
-        get {
-            return NSRange(location: 0, length: self.length)
-        }
-    }
-}
