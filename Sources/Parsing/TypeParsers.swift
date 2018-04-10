@@ -8,12 +8,13 @@
 
 import Foundation
 import Types
+import FFCParserCombinator
 
 /// Raw Type Parsers
 
 struct TypeParser {
     
-    static let url = { URL(string: $0) } <^!> ({ String($0) } <^> character(in: CharacterSet.urlAllowed).many1)
+    static let url = { URL(string: $0) } <^!> ({ String($0) } <^> CharacterSet.urlAllowed.parser().many1)
 
     static let hex = BasicParser.hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters))! } <^> BasicParser.hexDigit.many1)
 
@@ -23,13 +24,13 @@ struct TypeParser {
         (neg ?? "") + num
         })
 
-    static let quoteString = { QuotedString($0) } <^> BasicParser.quote *> character(in: CharacterSet.forQuotedString ).many <* BasicParser.quote
+    static let quoteString = { QuotedString($0) } <^> BasicParser.quote *> CharacterSet.forQuotedString.parser().many <* BasicParser.quote
 
-    static let enumString = EnumeratedString.init <^> character(in: CharacterSet.forEnumeratedString).many1
+    static let enumString = EnumeratedString.init <^> CharacterSet.forEnumeratedString.parser().many1
 
     static let resolution = Resolution.init <^> BasicParser.int <* BasicParser.x <&> BasicParser.int
 
-    static let date = dateFromString <^> ( { String($0) } <^> character(in: CharacterSet.iso8601).many1 )
+    static let date = dateFromString <^> ( { String($0) } <^> CharacterSet.iso8601.parser().many1 )
 
     static let byteRange = { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> (BasicParser.int <&> (character { $0 == "@" } *> BasicParser.int ).optional)
 }

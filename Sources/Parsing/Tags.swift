@@ -8,9 +8,10 @@
 
 import Foundation
 import Types
+import FFCParserCombinator
 
 /// The first tag
-let PlaylistStart = string("#EXTM3U")
+let PlaylistStart :Parser<String> = "#EXTM3U"
 
 let URLPseudoTag = Tag.url <^> TypeParser.url
 
@@ -47,53 +48,53 @@ let ExclusiveMasterPlaylistTag = AnyTag.master <^> EXTXMEDIA <|>
 
 // MARK: Basic Tags
 
-let EXTVERSION = Tag.version <^> string("#EXT-X-VERSION:") *> BasicParser.int
+let EXTVERSION = Tag.version <^> "#EXT-X-VERSION:" *> BasicParser.int
 
-let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> string("#EXT-X-INDEPENDENT-SEGMENTS")
+let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> ("#EXT-X-INDEPENDENT-SEGMENTS" as Parser<String>)
 
-let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( string("#EXT-X-START:") *> attributeList ))
+let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( "#EXT-X-START:" *> attributeList ))
 
 // MARK: Media Segment Tags
 
-let EXTINF = Tag.MediaPlaylist.Segment.inf <^> string("#EXTINF:") *> (( decimalFloatingPoint <|> decimalInteger ) <* character { $0 == "," } <&> ({ String($0) } <^!> character(in: CharacterSet.newlines.inverted).many).optional)
+let EXTINF = Tag.MediaPlaylist.Segment.inf <^> "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* character { $0 == "," } <&> ({ (characters :[Character]) -> String in return String(characters) } <^!> (CharacterSet.newlines.inverted).parser().many))
 
-let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( string("#EXT-X-BYTERANGE:") *> TypeParser.byteRange )
+let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( "#EXT-X-BYTERANGE:" *> TypeParser.byteRange )
 
-let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> string("#EXT-X-DISCONTINUITY")
+let EXTXDISCONTINUITY = { _ in Tag.MediaPlaylist.Segment.discontinuity } <^> "#EXT-X-DISCONTINUITY"
 
-let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> (DecryptionKey.init <^!> string("#EXT-X-KEY:") *> attributeList )
+let EXTXKEY = Tag.MediaPlaylist.Segment.key <^> (DecryptionKey.init <^!> "#EXT-X-KEY:" *> attributeList )
 
-let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> ( MediaInitializationSection.init <^!> string("#EXT-X-MAP:") *> attributeList )
+let EXTXMAP = Tag.MediaPlaylist.Segment.map <^> ( MediaInitializationSection.init <^!> "#EXT-X-MAP:" *> attributeList )
 
-let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> string("#EXT-X-PROGRAM-DATE-TIME:") *> TypeParser.date
+let EXTXPROGRAMDATETIME = Tag.MediaPlaylist.Segment.programDateTime <^> "#EXT-X-PROGRAM-DATE-TIME:" *> TypeParser.date
 
-let EXTXDATERANGE = Tag.MediaPlaylist.Segment.dateRange <^> string("#EXT-X-DATERANGE:") *> attributeList
+let EXTXDATERANGE = Tag.MediaPlaylist.Segment.dateRange <^> "#EXT-X-DATERANGE:" *> attributeList
 
 // MARK: Media Playlist Tags
 
-let EXTXTARGETDURATION = Tag.MediaPlaylist.targetDuration <^> string("#EXT-X-TARGETDURATION:") *> decimalInteger
+let EXTXTARGETDURATION = Tag.MediaPlaylist.targetDuration <^> "#EXT-X-TARGETDURATION:" *> decimalInteger
 
-let EXTXMEDIASEQUENCE = Tag.MediaPlaylist.mediaSequence <^> string("#EXT-X-MEDIA-SEQUENCE:") *> decimalInteger
+let EXTXMEDIASEQUENCE = Tag.MediaPlaylist.mediaSequence <^> "#EXT-X-MEDIA-SEQUENCE:" *> decimalInteger
 
-let EXTXDISCONTINUITYSEQUENCE = Tag.MediaPlaylist.discontinuitySequence <^> string("#EXT-X-DISCONTINUITY-SEQUENCE:") *> decimalInteger
+let EXTXDISCONTINUITYSEQUENCE = Tag.MediaPlaylist.discontinuitySequence <^> "#EXT-X-DISCONTINUITY-SEQUENCE:" *> decimalInteger
 
-let EXTXENDLIST = { _ in Tag.MediaPlaylist.endList } <^> string("#EXT-X-ENDLIST")
+let EXTXENDLIST = { _ in Tag.MediaPlaylist.endList } <^> "#EXT-X-ENDLIST"
 
-let EXTXPLAYLISTTYPE = Tag.MediaPlaylist.playlistType <^> string("#EXT-X-PLAYLIST-TYPE:") *> enumeratedString
+let EXTXPLAYLISTTYPE = Tag.MediaPlaylist.playlistType <^> "#EXT-X-PLAYLIST-TYPE:" *> enumeratedString
 
-let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> string("#EXT-X-I-FRAMES-ONLY")
+let EXTXIFRAMESONLY = { _ in Tag.MediaPlaylist.iFramesOnly } <^> "#EXT-X-I-FRAMES-ONLY"
 
 // MARK: Master Playlist Tags
 
-let EXTXMEDIA = Tag.MasterPlaylist.media <^> ( Rendition.init <^!> string("#EXT-X-MEDIA:") *> attributeList)
+let EXTXMEDIA = Tag.MasterPlaylist.media <^> ( Rendition.init <^!> "#EXT-X-MEDIA:" *> attributeList)
 
-let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> ( StreamInfo.init <^!>  string("#EXT-X-STREAM-INF:") *> attributeList <* BasicParser.newline.many <&> TypeParser.url)
+let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> ( StreamInfo.init <^!>  "#EXT-X-STREAM-INF:" *> attributeList <* BasicParser.newline.many <&> TypeParser.url)
 
-let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> string("#EXT-X-I-FRAME-STREAM-INF:") *> attributeList
+let EXTXIFRAMESTREAMINF = Tag.MasterPlaylist.iFramesStreamInfo <^> "#EXT-X-I-FRAME-STREAM-INF:" *> attributeList
 
-let EXTXSESSIONDATA = Tag.MasterPlaylist.sessionData <^> string("#EXT-X-SESSION-DATA:") *> attributeList
+let EXTXSESSIONDATA = Tag.MasterPlaylist.sessionData <^> "#EXT-X-SESSION-DATA:" *> attributeList
 
-let EXTXSESSIONKEY = Tag.MasterPlaylist.sessionKey <^> string("#EXT-X-SESSION-KEY:") *> attributeList
+let EXTXSESSIONKEY = Tag.MasterPlaylist.sessionKey <^> "#EXT-X-SESSION-KEY:" *> attributeList
 
 // MARK: Tag Taxonomy
 

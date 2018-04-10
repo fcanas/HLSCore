@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FFCParserCombinator",
+        "repositoryURL": "https://github.com/fcanas/FFCParserCombinator.git",
+        "state": {
+          "branch": null,
+          "revision": "0b1d5274ead76821982e781a165e112d5dac992d",
+          "version": "0.0.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

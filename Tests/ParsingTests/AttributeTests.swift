@@ -3,58 +3,7 @@ import XCTest
 import Types
 
 class AttributeValueTests :XCTestCase {
-    
-    func testInt() {
-        // Not a number
-        XCTAssertNil(BasicParser.int.run("")?.0)
-        XCTAssertNil(BasicParser.int.run("a")?.0)
-        XCTAssertNil(BasicParser.int.run("abcdef")?.0)
-        XCTAssertNil(BasicParser.int.run("-1")?.0)
-        
-        // Normal numbers in full range
-        XCTAssertEqual(BasicParser.int.run(String(UInt.min))?.0, UInt.min)
-        XCTAssertEqual(BasicParser.int.run("0")?.0, 0)
-        XCTAssertEqual(BasicParser.int.run("1")?.0, 1)
-        XCTAssertEqual(BasicParser.int.run("1234")?.0, 1234)
-        // 2^64-1 (18446744073709551615)
-        // Defined as the maximum for "decimal-integer" in HLS specification
-        XCTAssertEqual(BasicParser.int.run("18446744073709551615")?.0, 18446744073709551615)
-        XCTAssertEqual(BasicParser.int.run(String(UInt.max))?.0, UInt.max)
-        
-        // Starts with numbers
-        XCTAssertEqual(BasicParser.int.run("0abcdef")?.0, 0)
-        XCTAssertEqual(BasicParser.int.run("1-")?.0, 1)
-        XCTAssertEqual(BasicParser.int.run("1234&234")?.0, 1234)
-        XCTAssertEqual(BasicParser.int.run("18446744073709551615\n")?.0, 18446744073709551615)
-    }
-    
-    func testHexSequence() {
-        // Not a number
-        XCTAssertNil(BasicParser.int.run("")?.0)
-        XCTAssertNil(BasicParser.int.run("A")?.0)
-        XCTAssertNil(BasicParser.int.run("ABCDEF")?.0)
-        XCTAssertNil(BasicParser.int.run("-1")?.0)
-        XCTAssertNil(hexSequence.run("0x")?.0)
-        XCTAssertNil(hexSequence.run("0X")?.0)
-        
-        // Lower Case x
-        XCTAssertEqual(TypeParser.hex.run("0x0")?.0, HexadecimalSequence(value: 0))
-        XCTAssertEqual(TypeParser.hex.run("0x00000000")?.0, HexadecimalSequence(value: 0))
-        XCTAssertEqual(TypeParser.hex.run("0x1")?.0, HexadecimalSequence(value: 1))
-        XCTAssertEqual(TypeParser.hex.run("0x1234")?.0, HexadecimalSequence(value: 0x1234))
-        XCTAssertEqual(TypeParser.hex.run("0xABCD")?.0, HexadecimalSequence(value: 0xabcd))
-        XCTAssertEqual(TypeParser.hex.run("0xFFFFFFFF")?.0, HexadecimalSequence(value: 0xffffffff))
-        
-        // Upper Case X
-        XCTAssertEqual(TypeParser.hex.run("0X0")?.0, HexadecimalSequence(value: 0))
-        XCTAssertEqual(TypeParser.hex.run("0X00000000")?.0, HexadecimalSequence(value: 0))
-        XCTAssertEqual(TypeParser.hex.run("0X1")?.0, HexadecimalSequence(value: 1))
-        XCTAssertEqual(TypeParser.hex.run("0X1234")?.0, HexadecimalSequence(value: 0x1234))
-        XCTAssertEqual(TypeParser.hex.run("0XABCD")?.0, HexadecimalSequence(value: 0xabcd))
-        XCTAssertEqual(TypeParser.hex.run("0XFFFFFFFF")?.0, HexadecimalSequence(value: 0xffffffff))
-        
-    }
-    
+
     func testFloatingPoint() {
         XCTAssertNil(TypeParser.float.run("")?.0)
         XCTAssertNil(TypeParser.float.run("A0.1")?.0)
@@ -63,12 +12,12 @@ class AttributeValueTests :XCTestCase {
         XCTAssertNil(TypeParser.float.run("0")?.0)
         XCTAssertNil(TypeParser.float.run("-1")?.0)
         XCTAssertNil(TypeParser.float.run("-1.1")?.0)
-        
+
         XCTAssertEqual(TypeParser.float.run("0.1")!.0, 0.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.float.run("1.1")!.0, 1.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.float.run("18446744073709551615.18446744073709551615")!.0, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
     }
-    
+
     func testSignedFloatingPoint() {
         XCTAssertNil(TypeParser.signedFloat.run("")?.0)
         XCTAssertNil(TypeParser.signedFloat.run("A0.1")?.0)
@@ -80,12 +29,12 @@ class AttributeValueTests :XCTestCase {
         XCTAssertEqual(TypeParser.signedFloat.run("0.1")!.0.rawValue, 0.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.signedFloat.run("1.1")!.0.rawValue, 1.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.signedFloat.run("18446744073709551615.18446744073709551615")!.0.rawValue, 18446744073709551615.18446744073709551615, accuracy: 0.0001)
-        
+
         XCTAssertEqual(TypeParser.signedFloat.run("-0.1")!.0.rawValue, -0.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.signedFloat.run("-1.1")!.0.rawValue, -1.1, accuracy: 0.0001)
         XCTAssertEqual(TypeParser.signedFloat.run("-18446744073709551615.18446744073709551615")!.0.rawValue, -18446744073709551615.18446744073709551615, accuracy: 0.0001)
     }
-    
+
     func testQuotedString() {
         XCTAssertNil(TypeParser.quoteString.run("something"))
         XCTAssertNil(TypeParser.quoteString.run("something\""))
@@ -128,8 +77,6 @@ class AttributeValueTests :XCTestCase {
     
     static var allTests : [(String, (AttributeValueTests) -> () throws -> Void)] {
         return [
-            ("testInt", testInt),
-            ("testHexSequence", testHexSequence),
             ("testFloatingPoint", testFloatingPoint),
             ("testSignedFloatingPoint", testSignedFloatingPoint),
             ("testQuotedString", testQuotedString),

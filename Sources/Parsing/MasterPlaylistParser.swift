@@ -8,6 +8,7 @@
 
 import Foundation
 import Types
+import FFCParserCombinator
 
 public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many

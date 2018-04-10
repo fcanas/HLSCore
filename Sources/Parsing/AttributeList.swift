@@ -8,6 +8,7 @@
 
 import Foundation
 import Types
+import FFCParserCombinator
 
 typealias AttributeName = String
 
@@ -17,13 +18,13 @@ typealias AttributePair = (AttributeName, AttributeValue)
 
 /// Parsers
 
-let attributeName = { AttributeName($0) } <^> character(in: CharacterSet.forAttributeName).many1
+let attributeName = { AttributeName($0) } <^> CharacterSet.forAttributeName.parser().many1
 
 let attributeParameter = hexSequence <|> decimalFloatingPoint <|> signedDecimalFloatingPoint <|> quotedString <|> decimalResolution <|> decimalInteger <|> enumeratedString
 
 
 
-let attribute = attributeName <* string("=") <&> attributeParameter
+let attribute = attributeName <* "=" <&> attributeParameter
 
 func builtAttributeList(attributes :[(AttributeName, AttributeValue)]) -> AttributeList {
     return attributes.reduce(AttributeList(), { (a, kv) -> AttributeList in
@@ -33,7 +34,7 @@ func builtAttributeList(attributes :[(AttributeName, AttributeValue)]) -> Attrib
     })
 }
 
-let attributeList = builtAttributeList <^> attribute.followed(by: ( string(",") *> attribute ).many, combine: { (single, list) -> [AttributePair] in
+let attributeList = builtAttributeList <^> attribute.followed(by: ( "," *> attribute ).many, combine: { (single, list) -> [AttributePair] in
     [single] + list
 })
 
