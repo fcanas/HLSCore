@@ -10,45 +10,9 @@ import Foundation
 import Types
 import FFCParserCombinator
 
-/// The first tag
-let PlaylistStart :Parser<String> = "#EXTM3U"
-
-let URLPseudoTag = Tag.url <^> TypeParser.url
-
-// MARK: Aggregate Tags
-
-let MediaPlaylistTag = ExclusiveMediaPlaylistTag <|> SegmentTag <|> PlaylistTag
-
-let MasterPlaylistTag = ExclusiveMasterPlaylistTag <|> PlaylistTag
-
-let PlaylistTag = AnyTag.playlist <^> EXTVERSION <|>
-                                      EXTXINDEPENDENTSEGMENTS <|>
-                                      URLPseudoTag
-
-let SegmentTag = AnyTag.segment <^> EXTINF <|>
-                                    EXTXBYTERANGE <|>
-                                    EXTXDISCONTINUITY <|>
-                                    EXTXKEY <|>
-                                    EXTXMAP <|>
-                                    EXTXPROGRAMDATETIME <|>
-                                    EXTXDATERANGE
-
-let ExclusiveMediaPlaylistTag = AnyTag.media <^> EXTXTARGETDURATION <|>
-                                                 EXTXMEDIASEQUENCE <|>
-                                                 EXTXDISCONTINUITYSEQUENCE <|>
-                                                 EXTXENDLIST <|>
-                                                 EXTXPLAYLISTTYPE <|>
-                                                 EXTXIFRAMESONLY
-
-let ExclusiveMasterPlaylistTag = AnyTag.master <^> EXTXMEDIA <|>
-                                                   EXTXSTREAMINF <|>
-                                                   EXTXIFRAMESTREAMINF <|>
-                                                   EXTXSESSIONDATA <|>
-                                                   EXTXSESSIONKEY
-
 // MARK: Basic Tags
 
-let EXTVERSION = Tag.version <^> "#EXT-X-VERSION:" *> BasicParser.int
+let EXTVERSION = Tag.version <^> "#EXT-X-VERSION:" *> UInt.parser
 
 let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> ("#EXT-X-INDEPENDENT-SEGMENTS" as Parser<String>)
 

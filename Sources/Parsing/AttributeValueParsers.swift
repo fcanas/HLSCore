@@ -127,7 +127,7 @@ struct EnumeratedString : RawRepresentable, Equatable, CustomStringConvertible {
 
 /// Attribute Value Parsers
 
-let decimalInteger = AttributeValue.init <^> BasicParser.int
+let decimalInteger = AttributeValue.init <^> UInt.parser
 
 let hexSequence = AttributeValue.init <^> TypeParser.hex
 

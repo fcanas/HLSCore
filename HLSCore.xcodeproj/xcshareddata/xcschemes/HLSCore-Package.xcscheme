@@ -28,23 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::Serialization"
-               BuildableName = "Serialization.framework"
-               BlueprintName = "Serialization"
-               ReferencedContainer = "container:HLSCore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFCParserCombinator::FFCParserCombinator"
-               BuildableName = "FFCParserCombinator.framework"
-               BlueprintName = "FFCParserCombinator"
+               BlueprintIdentifier = "HLSCore::Parsing"
+               BuildableName = "Parsing.framework"
+               BlueprintName = "Parsing"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -70,9 +56,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::Parsing"
-               BuildableName = "Parsing.framework"
-               BlueprintName = "Parsing"
+               BlueprintIdentifier = "HLSCore::Serialization"
+               BuildableName = "Serialization.framework"
+               BlueprintName = "Serialization"
+               ReferencedContainer = "container:HLSCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FFCParserCombinator::FFCParserCombinator"
+               BuildableName = "FFCParserCombinator.framework"
+               BlueprintName = "FFCParserCombinator"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -84,26 +84,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::TypesTests"
-               BuildableName = "TypesTests.xctest"
-               BlueprintName = "TypesTests"
-               ReferencedContainer = "container:HLSCore.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::SerializationTests"
-               BuildableName = "SerializationTests.xctest"
-               BlueprintName = "SerializationTests"
-               ReferencedContainer = "container:HLSCore.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -121,6 +101,26 @@
                BlueprintIdentifier = "HLSCore::ParsingTests"
                BuildableName = "ParsingTests.xctest"
                BlueprintName = "ParsingTests"
+               ReferencedContainer = "container:HLSCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "HLSCore::SerializationTests"
+               BuildableName = "SerializationTests.xctest"
+               BlueprintName = "SerializationTests"
+               ReferencedContainer = "container:HLSCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "HLSCore::TypesTests"
+               BuildableName = "TypesTests.xctest"
+               BlueprintName = "TypesTests"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
