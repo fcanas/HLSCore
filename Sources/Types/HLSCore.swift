@@ -36,11 +36,13 @@ public enum MediaType : String {
 public struct Rendition {
     public let type: MediaType
     public let uri: URL?
-    let groupID :String
-    let language :Language?
-    let associatedLanguage :Language?
+    public let groupID :String
+    public let language :Language?
+    public let associatedLanguage :Language?
     public let name :String
-    
+    public let defaultRendition :Bool
+    public let forced :Bool
+
     public init(mediaType: MediaType, uri: URL?, groupID: String, language: Language?, associatedLanguage: Language?, name: String, defaultRendition: Bool = false, forced: Bool = false) {
         self.type = mediaType
         self.uri = uri
@@ -51,9 +53,6 @@ public struct Rendition {
         self.defaultRendition = defaultRendition
         self.forced = forced
     }
-    
-    fileprivate let defaultRendition :Bool
-    fileprivate let forced :Bool
 }
 
 extension Rendition : Equatable {

@@ -88,6 +88,17 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     let streams = playlistBuilder.streams.map({
         StreamInfo(bandwidth: $0.bandwidth, averageBandwidth: $0.averageBandwidth, codecs: $0.codecs, resolution: $0.resolution, frameRate: $0.frameRate, uri: URL(string: $0.uri.absoluteString, relativeTo: url )!)
     })
+
+    let renditions = playlistBuilder.renditions.map {
+        Rendition(mediaType: $0.type,
+                  uri: $0.uri.flatMap({URL(string: $0.absoluteString, relativeTo: url)}),
+                  groupID: $0.groupID,
+                  language: $0.language,
+                  associatedLanguage: $0.associatedLanguage,
+                  name: $0.name,
+                  defaultRendition: $0.defaultRendition,
+                  forced: $0.forced)
+    }
     
-    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: streams, renditions: playlistBuilder.renditions, start: playlistBuilder.start)
+    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: streams, renditions: renditions, start: playlistBuilder.start)
 }
