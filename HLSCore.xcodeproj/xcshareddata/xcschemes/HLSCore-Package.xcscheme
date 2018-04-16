@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "HLSCore::Utilities"
+               BuildableName = "Utilities.framework"
+               BlueprintName = "Utilities"
+               ReferencedContainer = "container:HLSCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FFCLog::FFCLog"
+               BuildableName = "FFCLog.framework"
+               BlueprintName = "FFCLog"
+               ReferencedContainer = "container:HLSCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "HLSCore::Types"
                BuildableName = "Types.framework"
                BlueprintName = "Types"
@@ -28,23 +56,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::Parsing"
-               BuildableName = "Parsing.framework"
-               BlueprintName = "Parsing"
-               ReferencedContainer = "container:HLSCore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::Utilities"
-               BuildableName = "Utilities.framework"
-               BlueprintName = "Utilities"
+               BlueprintIdentifier = "FFCParserCombinator::FFCParserCombinator"
+               BuildableName = "FFCParserCombinator.framework"
+               BlueprintName = "FFCParserCombinator"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -70,9 +84,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFCParserCombinator::FFCParserCombinator"
-               BuildableName = "FFCParserCombinator.framework"
-               BlueprintName = "FFCParserCombinator"
+               BlueprintIdentifier = "HLSCore::Parsing"
+               BuildableName = "Parsing.framework"
+               BlueprintName = "Parsing"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -88,9 +102,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::UtilitiesTests"
-               BuildableName = "UtilitiesTests.xctest"
-               BlueprintName = "UtilitiesTests"
+               BlueprintIdentifier = "HLSCore::TypesTests"
+               BuildableName = "TypesTests.xctest"
+               BlueprintName = "TypesTests"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -98,9 +112,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::ParsingTests"
-               BuildableName = "ParsingTests.xctest"
-               BlueprintName = "ParsingTests"
+               BlueprintIdentifier = "HLSCore::UtilitiesTests"
+               BuildableName = "UtilitiesTests.xctest"
+               BlueprintName = "UtilitiesTests"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -118,9 +132,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "HLSCore::TypesTests"
-               BuildableName = "TypesTests.xctest"
-               BlueprintName = "TypesTests"
+               BlueprintIdentifier = "HLSCore::ParsingTests"
+               BuildableName = "ParsingTests.xctest"
+               BlueprintName = "ParsingTests"
                ReferencedContainer = "container:HLSCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -141,9 +155,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "HLSCore::Types"
-            BuildableName = "Types.framework"
-            BlueprintName = "Types"
+            BlueprintIdentifier = "HLSCore::Utilities"
+            BuildableName = "Utilities.framework"
+            BlueprintName = "Utilities"
             ReferencedContainer = "container:HLSCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "FFCLog",
+        "repositoryURL": "https://github.com/fcanas/FFCLog.git",
+        "state": {
+          "branch": null,
+          "revision": "2065d65b29b6c6e296c204c094597e325a905121",
+          "version": null
+        }
+      },
+      {
         "package": "FFCParserCombinator",
         "repositoryURL": "https://github.com/fcanas/FFCParserCombinator.git",
         "state": {

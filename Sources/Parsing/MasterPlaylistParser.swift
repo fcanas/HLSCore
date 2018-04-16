@@ -9,6 +9,7 @@
 import Foundation
 import Types
 import FFCParserCombinator
+import FFCLog
 
 public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many
@@ -16,9 +17,9 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
     let parseResult = parser.run(string)
     
     if let remainingChars = parseResult?.1 , (remainingChars.count > 0) {
-        print("REMAINDER:\n\(String(remainingChars))")
+        log("REMAINDER:\n\(String(remainingChars))", level: .error)
     } else {
-        print("NO REMAINDER")
+        log("NO REMAINDER", level: .info)
     }
     
     guard let tags = parseResult?.0 else {
@@ -72,13 +73,13 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                 // print("\(attributes)\(url)")
             case let .iFramesStreamInfo(attributes):
                 // TODO: iFrame Stream Info
-                print("Unprocessed iFrame Stream Info :: \(attributes)")
+                log("Unprocessed iFrame Stream Info :: \(attributes)", level: .error)
             case let .sessionData(attributes):
                 // TODO: Session Data
-                print("Unprocessed Session Data :: \(attributes)")
+                log("Unprocessed Session Data :: \(attributes)", level: .error)
             case let .sessionKey(attributes):
                 // TODO: Session Key
-                print("Unprocessed Session Key :: \(attributes)")
+                log("Unprocessed Session Key :: \(attributes)", level: .error)
             }
         }
         

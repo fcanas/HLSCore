@@ -16,7 +16,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "0.0.5")
+        .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "0.0.5"),
+        .package(url: "https://github.com/fcanas/FFCLog.git", .revision("2065d65b29b6c6e296c204c094597e325a905121")),
     ],
     targets: [
         .target(name: "Utilities",
@@ -32,7 +33,7 @@ let package = Package(
         .testTarget(name: "SerializationTests",
                     dependencies:["Serialization"]),
         .target(name: "Parsing",
-               dependencies: ["Types", "FFCParserCombinator"]),
+               dependencies: ["Types", "FFCParserCombinator", "FFCLog"]),
         .testTarget(name: "ParsingTests",
                     dependencies:["Parsing"]),
     ],

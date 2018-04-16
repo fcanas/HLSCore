@@ -9,6 +9,7 @@
 import Foundation
 import Types
 import FFCParserCombinator
+import FFCLog
 
 let newlines = BasicParser.newline.many1
 
@@ -42,9 +43,9 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
     }
     
     if let remainingChars = parseResult?.1 , (remainingChars.count > 0) {
-        print("REMAINDER:\n\(String(remainingChars))")
+        log("REMAINDER:\n\(String(remainingChars))", level: .error)
     } else {
-        print("NO REMAINDER")
+        log("NO REMAINDER", level: .info)
     }
     
     guard let tags = parseResult?.0 else {
@@ -146,7 +147,7 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
     })
     
     guard playlistBuilder.fatalTag == nil else {
-        print("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag!)")
+        log("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag!)", level: .fatal)
         return nil
     }
     
