@@ -23,6 +23,7 @@ let MasterPlaylistTag = ExclusiveMasterPlaylistTag <|> PlaylistTag
 let PlaylistTag = AnyTag.playlist <^> EXTVERSION
                                   <|> EXTXINDEPENDENTSEGMENTS
                                   <|> URLPseudoTag
+                                  <|> COMMENT
 
 let SegmentTag = AnyTag.segment <^> EXTINF
                                 <|> EXTXBYTERANGE

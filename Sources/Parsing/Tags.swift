@@ -60,6 +60,8 @@ let EXTXSESSIONDATA = Tag.MasterPlaylist.sessionData <^> "#EXT-X-SESSION-DATA:" 
 
 let EXTXSESSIONKEY = Tag.MasterPlaylist.sessionKey <^> "#EXT-X-SESSION-KEY:" *> attributeList
 
+let COMMENT = Tag.comment <^> "#" *> ( { (chars: [Character]) in String(chars) } <^> CharacterSet(charactersIn: "\r\n").inverted.parser().many)
+
 // MARK: Tag Taxonomy
 
 enum AnyTag {
@@ -75,6 +77,8 @@ enum Tag {
     
     case independentSegments
     case startIndicator(StartIndicator)
+
+    case comment(String)
     
     /// Not a tag, but definitely a top-level element. Makes parsing easier.
     case url(URL)

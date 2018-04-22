@@ -76,6 +76,8 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
                 
                 builder.segments.append(MediaSegment(uri: fullSegmentURL, duration: duration, title: openSegment?.title, byteRange: openSegment?.byteRange, decryptionKey: builder.activeKey, date: openSegment?.programDateTime, mediaInitializationSection: builder.activeMediaInitializationSection))
                 builder.openSegment = nil
+            case .comment(_):
+                break
             }
         case let .media(media):
             switch media {

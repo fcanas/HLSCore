@@ -58,6 +58,8 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                 // TODO: Move URL tag into the media or segment type?
                 returnState.fatalTag = tag
                 break
+            case .comment(_):
+                break
             }
             break
         case .media(_):

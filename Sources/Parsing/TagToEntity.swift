@@ -25,6 +25,8 @@ func entity(fromTag tag:AnyTag) -> Any? {
             return startIndicator
         case .url(_):
             return nil
+        case .comment(_):
+            return nil
         }
     case .media(_):
         return nil
