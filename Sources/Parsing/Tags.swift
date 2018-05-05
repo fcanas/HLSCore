@@ -14,7 +14,7 @@ import FFCParserCombinator
 
 let EXTVERSION = Tag.version <^> "#EXT-X-VERSION:" *> UInt.parser
 
-let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> ("#EXT-X-INDEPENDENT-SEGMENTS" as Parser<String>)
+let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> "#EXT-X-INDEPENDENT-SEGMENTS"
 
 let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( "#EXT-X-START:" *> attributeList ))
 

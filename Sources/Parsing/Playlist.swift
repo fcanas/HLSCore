@@ -10,7 +10,7 @@ import FFCParserCombinator
 import Types
 
 /// The first tag
-let PlaylistStart :Parser<String> = "#EXTM3U"
+let PlaylistStart :Parser<Substring, String> = "#EXTM3U"
 
 let URLPseudoTag = Tag.url <^> TypeParser.url
 

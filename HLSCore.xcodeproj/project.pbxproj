@@ -1718,7 +1718,7 @@
             "OBJ_50",
             "OBJ_53",
          );
-         name = "FFCParserCombinator 0.0.5";
+         name = "FFCParserCombinator 0.0.6";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1751,7 +1751,7 @@
       };
       "OBJ_52" = {
          isa = "PBXFileReference";
-         path = "Tokens.swift";
+         path = "StringParsing.swift";
          sourceTree = "<group>";
       };
       "OBJ_53" = {
@@ -1764,16 +1764,16 @@
       "OBJ_54" = {
          isa = "PBXGroup";
          children = (
-            "HLSCore::Utilities::Product",
-            "FFCLog::FFCLog::Product",
-            "HLSCore::TypesTests::Product",
-            "HLSCore::Types::Product",
-            "FFCParserCombinator::FFCParserCombinator::Product",
-            "HLSCore::UtilitiesTests::Product",
+            "HLSCore::Parsing::Product",
             "HLSCore::SerializationTests::Product",
             "HLSCore::ParsingTests::Product",
+            "HLSCore::UtilitiesTests::Product",
             "HLSCore::Serialization::Product",
-            "HLSCore::Parsing::Product",
+            "FFCLog::FFCLog::Product",
+            "HLSCore::Utilities::Product",
+            "HLSCore::TypesTests::Product",
+            "FFCParserCombinator::FFCParserCombinator::Product",
+            "HLSCore::Types::Product",
          );
          name = "Products";
          path = "";
