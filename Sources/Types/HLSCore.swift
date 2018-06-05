@@ -101,10 +101,6 @@ public struct Codec : RawRepresentable, Equatable, Hashable, Comparable {
         self.rawValue = rawValue
     }
     
-    public var hashValue: Int {
-        return rawValue.hashValue
-    }
-    
     public static func <(lhs: Codec, rhs: Codec) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
