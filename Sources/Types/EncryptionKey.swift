@@ -16,15 +16,24 @@ public enum EncryptionMethod :String {
 
 public let IdentityDecryptionKeyFormat = "identity"
 
-public struct DecryptionKey {
+public struct InitializationVector: Equatable {
+    public let low: UInt64
+    public let high: UInt64
+    public init(low: UInt64, high: UInt64) {
+        self.low = low
+        self.high = high
+    }
+}
+
+public struct DecryptionKey: Equatable {
     
     public let method :EncryptionMethod
     public let uri :URL
-    public let initializationVector :(low: UInt64, high: UInt64)?
+    public let initializationVector :InitializationVector?
     public let keyFormat :String
     public let keyFormatVersions :[Int]?
     
-    public init(method: EncryptionMethod, uri: URL, initializationVector: (low: UInt64, high: UInt64)? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersions: [Int]? = nil) {
+    public init(method: EncryptionMethod, uri: URL, initializationVector: InitializationVector? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersions: [Int]? = nil) {
         self.method = method
         self.uri = uri
         self.initializationVector = initializationVector
@@ -42,31 +51,6 @@ public struct DecryptionKey {
     }
     
     public static let None :DecryptionKey = DecryptionKey.init()
-    
-}
-
-extension DecryptionKey : Equatable {
-    
-    public static func ==(lhs: DecryptionKey, rhs: DecryptionKey) -> Bool {
-        
-        let formatVersionEquality :Bool
-        
-        switch (lhs.keyFormatVersions, rhs.keyFormatVersions) {
-        case let (.some(a), .some(b)):
-            formatVersionEquality = a == b
-        case (.none, .none):
-            formatVersionEquality = true
-        default:
-            formatVersionEquality = false
-        }
-        
-        return lhs.method == rhs.method
-            && lhs.uri == rhs.uri
-            && lhs.initializationVector?.0 == rhs.initializationVector?.0
-            && lhs.initializationVector?.1 == rhs.initializationVector?.1
-            && lhs.keyFormat == rhs.keyFormat
-            && formatVersionEquality
-    }
     
 }
 

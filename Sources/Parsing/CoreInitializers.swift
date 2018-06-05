@@ -65,7 +65,7 @@ extension DecryptionKey {
         
         var methodVar :EncryptionMethod? = nil
         var uriVar :URL? = nil
-        var initializationVectorVar :(UInt64, UInt64)? = nil
+        var initializationVectorVar :InitializationVector? = nil
         var keyFormatVar :String = IdentityDecryptionKeyFormat
         var keyFormatVersionsVar :[Int]? = nil
         
@@ -83,7 +83,7 @@ extension DecryptionKey {
                 uriVar = u
             case let (DecryptionKey.initializationVectorKey, .hexadecimalSequence(h)):
                 // TODO: Extend HexadecimalSequence to encode 128-bit numbers
-                initializationVectorVar = (UInt64(h.value), UInt64(h.value))
+                initializationVectorVar = InitializationVector(low: UInt64(h.value), high: UInt64(h.value))
             case let (DecryptionKey.keyFormatKey, .quotedString(s)):
                 keyFormatVar = s
             case let (DecryptionKey.keyFormatVersionsKey, .quotedString(s)):

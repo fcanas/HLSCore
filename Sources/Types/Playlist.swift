@@ -35,7 +35,7 @@ public struct MasterPlaylist : Playlist {
 
 /// Media Playlist
 
-public struct MediaPlaylist : Playlist {
+public struct MediaPlaylist : Playlist, Equatable {
     
     public enum PlaylistType : String {
         case VOD = "VOD"
@@ -70,10 +70,4 @@ public struct MediaPlaylist : Playlist {
     
     // TODO : a playlist should probably _be_ a sequence of media segments
     public let segments :[MediaSegment]
-}
-
-extension MediaPlaylist : Equatable {
-    public static func ==(lhs: MediaPlaylist, rhs: MediaPlaylist) -> Bool {
-        return lhs.type == rhs.type && lhs.version == rhs.version && lhs.uri == rhs.uri && lhs.targetDuration == rhs.targetDuration && lhs.closed == rhs.closed && lhs.start == rhs.start && lhs.segments == rhs.segments
-    }
 }
