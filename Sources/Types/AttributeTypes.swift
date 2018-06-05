@@ -16,11 +16,6 @@ public struct Resolution : Equatable, CustomStringConvertible {
         self.height = height
     }
     
-    public static func ==(lhs: Resolution, rhs: Resolution) -> Bool {
-        return lhs.width == rhs.width &&
-            lhs.height == rhs.height
-    }
-    
     public var description: String {
         get {
             return "\(width)x\(height)"
@@ -42,10 +37,6 @@ public struct HexadecimalSequence : Equatable, CustomStringConvertible {
     
     public init(value v: UInt) {
         value = v
-    }
-    
-    public static func ==(lhs: HexadecimalSequence, rhs: HexadecimalSequence) -> Bool {
-        return lhs.value == rhs.value
     }
     
     public var description :String {
@@ -72,9 +63,5 @@ public struct SignedFloat :Equatable, CustomStringConvertible, RawRepresentable 
         get {
             return rawValue.description
         }
-    }
-    
-    public static func ==(lhs: SignedFloat, rhs: SignedFloat) -> Bool {
-        return lhs.rawValue == rhs.rawValue
     }
 }

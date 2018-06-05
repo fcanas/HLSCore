@@ -13,10 +13,6 @@ public struct Language : Equatable {
     public init(_ string: String) {
         value = string
     }
-    
-    public static func ==(lhs :Language, rhs: Language) -> Bool {
-        return lhs.value == rhs.value
-    }
 }
 
 public extension Language {

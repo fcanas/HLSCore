@@ -10,18 +10,12 @@ import Foundation
 import Utilities
 
 /// EXT-X-START
-public struct StartIndicator {
+public struct StartIndicator: Equatable {
     let timeOffset :TimeInterval
     let preciseStart :Bool
     public init(at timeOffset: TimeInterval, preciseStart: Bool = false) {
         self.timeOffset = timeOffset
         self.preciseStart = preciseStart
-    }
-}
-
-extension StartIndicator : Equatable {
-    public static func ==(lhs: StartIndicator, rhs: StartIndicator) -> Bool {
-        return lhs.timeOffset == rhs.timeOffset && lhs.preciseStart == rhs.preciseStart
     }
 }
 
@@ -33,7 +27,7 @@ public enum MediaType : String {
 }
 
 /// EXT-X-MEDIA
-public struct Rendition {
+public struct Rendition: Equatable {
     public let type: MediaType
     public let uri: URL?
     public let groupID :String
@@ -52,13 +46,6 @@ public struct Rendition {
         self.name = name
         self.defaultRendition = defaultRendition
         self.forced = forced
-    }
-}
-
-extension Rendition : Equatable {
-    public static func ==(lhs: Rendition, rhs: Rendition) -> Bool {
-        return lhs.language == rhs.language &&
-               lhs.name == rhs.name
     }
 }
 
@@ -85,10 +72,6 @@ public struct RenditionGroup {
 /// Bits per second
 public struct Bitrate : Comparable {
     public let value :UInt
-    
-    public static func ==(lhs: Bitrate, rhs: Bitrate) -> Bool {
-        return lhs.value == rhs.value
-    }
     
     public static func <(lhs: Bitrate, rhs: Bitrate) -> Bool {
         return lhs.value < rhs.value
@@ -120,10 +103,6 @@ public struct Codec : RawRepresentable, Equatable, Hashable, Comparable {
     
     public var hashValue: Int {
         return rawValue.hashValue
-    }
-    
-    public static func ==(lhs: Codec, rhs: Codec) -> Bool {
-        return lhs.rawValue == rhs.rawValue
     }
     
     public static func <(lhs: Codec, rhs: Codec) -> Bool {
@@ -205,12 +184,6 @@ public struct MediaInitializationSection {
     }
 }
 
-public struct MediaResource {
+public struct MediaResource: Equatable {
     public let uri :URL
-}
-
-extension MediaResource : Equatable {
-    public static func ==(lhs: MediaResource, rhs: MediaResource) -> Bool {
-        return lhs.uri.absoluteString == rhs.uri.absoluteString
-    }
 }

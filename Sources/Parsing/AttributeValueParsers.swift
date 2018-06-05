@@ -11,7 +11,7 @@ import Types
 import FFCParserCombinator
 
 /// Attributes in Attribute lists can take on a limited number of types.
-enum AttributeValue {
+enum AttributeValue: Equatable {
     case decimalInteger(UInt)
     case hexadecimalSequence(HexadecimalSequence)
     case decimalFloatingPoint(Double)
@@ -73,30 +73,6 @@ extension AttributeValue : CustomStringConvertible {
 
 }
 
-extension AttributeValue : Equatable {
-    static func ==(lhs: AttributeValue, rhs: AttributeValue) -> Bool {
-        
-        switch (lhs, rhs) {
-        case let (.decimalInteger(l), .decimalInteger(r)) where l == r:
-            return true
-        case let (.hexadecimalSequence(l), .hexadecimalSequence(r)) where l == r:
-            return true
-        case let (.decimalFloatingPoint(l), .decimalFloatingPoint(r)) where l == r:
-            return true
-        case let (.signedDecimalFloatingPoint(l), .signedDecimalFloatingPoint(r)) where l == r:
-            return true
-        case let (.quotedString(l), .quotedString(r)) where l == r:
-            return true
-        case let (.enumeratedString(l), .enumeratedString(r)) where l == r:
-            return true
-        case let (.decimalResolution(l), .decimalResolution(r)) where l == r:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
 typealias QuotedString = String
 
 struct EnumeratedString : RawRepresentable, Equatable, CustomStringConvertible {
@@ -114,10 +90,6 @@ struct EnumeratedString : RawRepresentable, Equatable, CustomStringConvertible {
         self.rawValue = rawValue
     }
 
-    static func ==(lhs: EnumeratedString, rhs: EnumeratedString) -> Bool {
-        return lhs.rawValue == rhs.rawValue
-    }
-    
     var description: String {
         get {
             return rawValue
