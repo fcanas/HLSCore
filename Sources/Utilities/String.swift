@@ -10,12 +10,6 @@ import Foundation
 
 extension String {
     
-    public var fullRange :Range<Index> {
-        get {
-            return Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
-        }
-    }
-    
     public func deepestDirectoryPath() -> String {
         if self.hasSuffix("/") {
             return self
