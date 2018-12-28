@@ -33,7 +33,7 @@ class SerializationTests: XCTestCase {
         let key = DecryptionKey(method:.AES128, uri:URL(string:"ex.key")!)
         let encryptedSegments = setDecryptionKey(key, forSegments: unencryptedSegments)
         
-        let playlist :MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments + encryptedSegments)
+        let playlist :MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments + encryptedSegments, independentSegments: false, mediaSequence: 0)
         
         let stringResource = MediaPlaylistSerializer().serialize(playlist)
         

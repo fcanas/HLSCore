@@ -34,6 +34,8 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
         var start :StartIndicator?
         var segments :[MediaSegment] = []
         var closed :Bool = false
+        var independentSegments: Bool = false
+        var mediaSequence: UInt = 0
         
         var activeKey :DecryptionKey?
         var activeMediaInitializationSection :MediaInitializationSection?
@@ -63,7 +65,7 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
             case let .version(version):
                 builder.version = version
             case .independentSegments:
-                // TODO: encode independent segments in structs
+                builder.independentSegments = true
                 break
             case let .startIndicator(start):
                 builder.start = start
@@ -91,8 +93,13 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
                 default:
                     builder.fatalTag = tag
                 }
-            case .mediaSequence(_):
-                // TODO: Media Sequence Unimplemented
+            case let .mediaSequence(s):
+                switch s {
+                case let .decimalInteger(s):
+                    builder.mediaSequence = s
+                default:
+                    builder.fatalTag = tag
+                }
                 break
             case .discontinuitySequence(_):
                 // TODO: Discontinuity Sequence Unimplemented
@@ -158,5 +165,5 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
         return nil
     }
     
-    return MediaPlaylist(type: playlistBuilder.playlistType, version: playlistBuilder.version, uri: url, targetDuration: targetDuration, closed: playlistBuilder.closed, start: playlistBuilder.start, segments: playlistBuilder.segments)
+    return MediaPlaylist(type: playlistBuilder.playlistType, version: playlistBuilder.version, uri: url, targetDuration: targetDuration, closed: playlistBuilder.closed, start: playlistBuilder.start, segments: playlistBuilder.segments, independentSegments: playlistBuilder.independentSegments, mediaSequence: playlistBuilder.mediaSequence)
 }
