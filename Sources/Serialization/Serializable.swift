@@ -50,7 +50,11 @@ public struct MediaPlaylistSerializer : Serializer {
         if playlist.version > 1 {
             output = output._append("#EXT-X-VERSION:\(Int(playlist.version))", line: newline)
         }
-        
+
+        if playlist.mediaSequence != 0 {
+            output = output._append("#EXT-X-MEDIA-SEQUENCE:\(playlist.mediaSequence)", line: newline)
+        }
+
         if let type = playlist.type {
             output = output._append("#EXT-X-PLAYLIST-TYPE:\(type)", line: newline)
         }
