@@ -24,6 +24,7 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
         var byteRange :CountableClosedRange<UInt>?
         var programDateTime :Date?
         var discontinuity :Bool?
+        var mediaInitializationSection: MediaInitializationSection?
     }
     
     struct PlaylistBuilder {
@@ -138,7 +139,7 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
                 // TODO: Date Range
                 break
             }
-            
+            openSegment.mediaInitializationSection = builder.activeMediaInitializationSection
             builder.openSegment = openSegment
             
         case .master(_):

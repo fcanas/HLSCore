@@ -180,6 +180,8 @@ public struct MediaInitializationSection {
     }
 }
 
+extension MediaInitializationSection: Equatable {}
+
 public struct MediaResource: Equatable {
     public let uri :URL
 }
