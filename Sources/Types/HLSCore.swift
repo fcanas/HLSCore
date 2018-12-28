@@ -151,7 +151,7 @@ public struct MediaSegment {
     
     // EXT-X-BYTERANGE
     
-    let byteRange :CountableClosedRange<UInt>?
+    public let byteRange :CountableClosedRange<UInt>?
     
     public var decryptionKey :DecryptionKey?
     

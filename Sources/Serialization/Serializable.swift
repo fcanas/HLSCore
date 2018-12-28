@@ -67,6 +67,10 @@ public struct MediaPlaylistSerializer : Serializer {
                 }
             }
             output = output._append("#EXTINF:\(segment.duration),", line: newline)
+            if let byteRange = segment.byteRange, let start = byteRange.first {
+                let length = byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex)
+                output = output._append("#EXT-X-BYTERANGE:\(length-1)@\(start)", line: newline)
+            }
             output = output._append(segment.resource.uri.relativeString, line: newline)
         }
         
