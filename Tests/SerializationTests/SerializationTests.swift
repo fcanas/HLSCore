@@ -35,7 +35,7 @@ class SerializationTests: XCTestCase {
         
         let playlist :MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments + encryptedSegments)
         
-        let stringResource = MediaPlaylistSerlializer().serialize(playlist)
+        let stringResource = MediaPlaylistSerializer().serialize(playlist)
         
         XCTAssertEqual(stringResource.uri.absoluteString, urlString)
         
