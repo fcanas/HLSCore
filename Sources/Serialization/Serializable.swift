@@ -33,7 +33,7 @@ extension String {
     }
 }
 
-public struct MediaPlaylistSerlializer : Serializer {
+public struct MediaPlaylistSerializer : Serializer {
     
     let usesRelativeURI :Bool = true
     
