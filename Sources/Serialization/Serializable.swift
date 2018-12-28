@@ -57,7 +57,23 @@ public struct MediaPlaylistSerializer : Serializer {
         
         var decryptionKey :DecryptionKey? = nil
         
+        var lastOutputMediaInitialization: MediaInitializationSection?
+
+        if playlist.independentSegments {
+            output = output._append("#EXT-X-INDEPENDENT-SEGMENTS", line: newline)
+        }
+
         for segment in playlist.segments {
+
+            if let smi = segment.mediaInitializationSection, smi != lastOutputMediaInitialization {
+                var tagString = "#EXT-X-MAP:URI=\"\(smi.uri)\""
+                if let byteRange = smi.byteRange {
+                    tagString = tagString + ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex) - 1)@\(byteRange.first!)\""
+                }
+                output = output._append(tagString, line: newline)
+                lastOutputMediaInitialization = smi
+            }
+
             if segment.decryptionKey != decryptionKey {
                 decryptionKey = segment.decryptionKey
                 if let key = decryptionKey {
