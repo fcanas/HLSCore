@@ -32,7 +32,7 @@ struct TypeParser {
 
     static let date = dateFromString <^> ( { String($0) } <^> CharacterSet.iso8601.parser().many1 )
 
-    static let byteRange = { return ($0.1 ?? 0)...(($0.1 ?? 0) + $0.0)  } <^> (UInt.parser <&> (character { $0 == "@" } *> UInt.parser ).optional)
+    static let byteRange = { return ($0.1 ?? 0)...(($0.1 ?? 0) + ($0.0 - 1))  } <^> (UInt.parser <&> ("@" *> UInt.parser).optional)
 }
 
 @available(OSX 10.12, *) private let dateFormatter = ISO8601DateFormatter()
