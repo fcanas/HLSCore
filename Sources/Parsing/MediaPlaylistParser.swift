@@ -139,7 +139,8 @@ public func parseMediaPlaylist(string :String, atURL url: URL) -> MediaPlaylist?
             case let .key(key):
                 builder.activeKey = key
             case let .map(mediaInitialization):
-                builder.activeMediaInitializationSection = mediaInitialization
+                let mediaInitializationURI = URL(string:mediaInitialization.uri.absoluteString, relativeTo: url)!
+                builder.activeMediaInitializationSection = MediaInitializationSection(uri: mediaInitializationURI, byteRange: mediaInitialization.byteRange)
             case let .programDateTime(date):
                 openSegment.programDateTime = date
             case .dateRange(_):
