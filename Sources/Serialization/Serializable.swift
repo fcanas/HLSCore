@@ -70,7 +70,7 @@ public struct MediaPlaylistSerializer : Serializer {
         for segment in playlist.segments {
 
             if let smi = segment.mediaInitializationSection, smi != lastOutputMediaInitialization {
-                var tagString = "#EXT-X-MAP:URI=\"\(smi.uri)\""
+                var tagString = "#EXT-X-MAP:URI=\"\(smi.uri.relativeString)\""
                 if let byteRange = smi.byteRange {
                     tagString = tagString + ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex) - 1)@\(byteRange.first!)\""
                 }
