@@ -72,7 +72,7 @@ public struct MediaPlaylistSerializer : Serializer {
             if let smi = segment.mediaInitializationSection, smi != lastOutputMediaInitialization {
                 var tagString = "#EXT-X-MAP:URI=\"\(smi.uri.relativeString)\""
                 if let byteRange = smi.byteRange {
-                    tagString = tagString + ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex) - 1)@\(byteRange.first!)\""
+                    tagString = tagString + ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex))@\(byteRange.first!)\""
                 }
                 output = output._append(tagString, line: newline)
                 lastOutputMediaInitialization = smi
@@ -89,7 +89,7 @@ public struct MediaPlaylistSerializer : Serializer {
             output = output._append("#EXTINF:\(segment.duration),", line: newline)
             if let byteRange = segment.byteRange, let start = byteRange.first {
                 let length = byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex)
-                output = output._append("#EXT-X-BYTERANGE:\(length-1)@\(start)", line: newline)
+                output = output._append("#EXT-X-BYTERANGE:\(length)@\(start)", line: newline)
             }
             output = output._append(segment.resource.uri.relativeString, line: newline)
         }
