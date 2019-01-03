@@ -13,11 +13,11 @@ It is built in the service of private tools and the command-line tool,
 
 ## Organization
 
-HLSCore is five packages. The organization of the project will change as real tools are
+HLSCore is four packages. The organization of the project will change as real tools are
 built on HLSCore.
 
-* *Types* — Defines the core elements of HLS as Swift structs and enums
 * *Parsing* — An HLS playlist parser built on [parser combinators](https://github.com/fcanas/FFCParserCombinator)
+* *Types* — Defines the core elements of HLS as Swift structs and enums
 * *Serialization* — Converts HLS playlists defined in Types into strings
 * *Utilities* — Shared bits of code
 
