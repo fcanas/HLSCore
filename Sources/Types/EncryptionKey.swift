@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum EncryptionMethod :String {
+public enum EncryptionMethod: String {
     case None = "NONE"
     case AES128 = "AES-128"
     case SampleAES = "SAMPLE-AES"
@@ -26,13 +26,13 @@ public struct InitializationVector: Equatable {
 }
 
 public struct DecryptionKey: Equatable {
-    
-    public let method :EncryptionMethod
-    public let uri :URL
-    public let initializationVector :InitializationVector?
-    public let keyFormat :String
-    public let keyFormatVersions :[Int]?
-    
+
+    public let method: EncryptionMethod
+    public let uri: URL
+    public let initializationVector: InitializationVector?
+    public let keyFormat: String
+    public let keyFormatVersions: [Int]?
+
     public init(method: EncryptionMethod, uri: URL, initializationVector: InitializationVector? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersions: [Int]? = nil) {
         self.method = method
         self.uri = uri
@@ -40,21 +40,21 @@ public struct DecryptionKey: Equatable {
         self.keyFormat = keyFormat
         self.keyFormatVersions = keyFormatVersions
     }
-    
+
     private init() {
         self.method = .None
-        self.uri = URL(string:"")!
+        self.uri = URL(string: "")!
         self.keyFormat = IdentityDecryptionKeyFormat
-        
+
         keyFormatVersions = nil
         initializationVector = nil
     }
-    
-    public static let None :DecryptionKey = DecryptionKey.init()
-    
+
+    public static let None: DecryptionKey = DecryptionKey.init()
+
 }
 
-public func setDecryptionKey(_ key :DecryptionKey, forSegments segments: [MediaSegment]) -> [MediaSegment] {
+public func setDecryptionKey(_ key: DecryptionKey, forSegments segments: [MediaSegment]) -> [MediaSegment] {
     return segments.map {
         var segment = $0
         segment.decryptionKey = key

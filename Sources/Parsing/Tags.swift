@@ -59,7 +59,7 @@ let EXTXSESSIONDATA = Tag.MasterPlaylist.sessionData <^> "#EXT-X-SESSION-DATA:" 
 
 let EXTXSESSIONKEY = Tag.MasterPlaylist.sessionKey <^> "#EXT-X-SESSION-KEY:" *> attributeList
 
-let COMMENT = Tag.comment <^> "#" *> ( { (chars: [Character]) in String(chars) } <^> CharacterSet(charactersIn: "\r\n").inverted.parser().many)
+let COMMENT = Tag.comment <^> "#" *> ({ (chars: [Character]) in String(chars) } <^> CharacterSet(charactersIn: "\r\n").inverted.parser().many)
 
 // MARK: Tag Taxonomy
 
@@ -71,17 +71,17 @@ enum AnyTag {
 }
 
 enum Tag {
-    
+
     case version(UInt)
-    
+
     case independentSegments
     case startIndicator(StartIndicator)
 
     case comment(String)
-    
+
     /// Not a tag, but definitely a top-level element. Makes parsing easier.
     case url(URL)
-    
+
     enum MediaPlaylist {
         case targetDuration(AttributeValue)
         case mediaSequence(AttributeValue)
@@ -89,20 +89,20 @@ enum Tag {
         case endList
         case playlistType(AttributeValue)
         case iFramesOnly
-        
+
         enum Segment {
             case inf(AttributeValue, String?)
             case byteRange(CountableClosedRange<UInt>)
             case discontinuity
-            
+
             case key(DecryptionKey)
             case map(MediaInitializationSection)
-            
+
             case programDateTime(Date?)
             case dateRange(AttributeList)
         }
     }
-    
+
     enum MasterPlaylist {
         case media(Rendition)
         case streamInfo(StreamInfo)
@@ -111,4 +111,3 @@ enum Tag {
         case sessionKey(AttributeList)
     }
 }
-

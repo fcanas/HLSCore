@@ -5,5 +5,5 @@ XCTMain([
      testCase(
         HLSCoreTests.allTests +
         RenditionGroupTests.allTests
-    ),
+    )
 ])

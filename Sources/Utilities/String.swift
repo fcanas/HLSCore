@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    
+
     public func deepestDirectoryPath() -> String {
         if self.hasSuffix("/") {
             return self
@@ -17,8 +17,8 @@ extension String {
         guard let lastSlashIndex = self.range(of: "/", options: .backwards)?.lowerBound else {
             return "/"
         }
-        
+
         return String(self[..<self.index(after: lastSlashIndex)])
     }
-    
+
 }

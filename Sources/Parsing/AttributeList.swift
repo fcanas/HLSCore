@@ -30,7 +30,7 @@ let attributeList = builtAttributeList <^> attribute.followed(by: ( "," *> attri
     [single] + list
 })
 
-func builtAttributeList(attributes :[(AttributeName, AttributeValue)]) -> AttributeList {
+func builtAttributeList(attributes: [(AttributeName, AttributeValue)]) -> AttributeList {
     return attributes.reduce(AttributeList(), { (a, kv) -> AttributeList in
         var r = a
         r[kv.0] = kv.1

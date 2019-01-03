@@ -327,7 +327,7 @@ class AutoEncoding: XCTestCase {
         """
         let url = URL(string: "https://www.example.com/media.m3u8")!
 
-        let parsed = parseMediaPlaylist(string: playlist, atURL:url)!
+        let parsed = parseMediaPlaylist(string: playlist, atURL: url)!
 
         let rebuilt = MediaPlaylistSerializer().serialize(parsed).value!
 

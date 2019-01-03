@@ -12,8 +12,8 @@ import Types
 /// Builds stand-alone structs from an AnyTag enum
 ///
 /// May not be useful beyond development and initial testing.
-func entity(fromTag tag:AnyTag) -> Any? {
-    
+func entity(fromTag tag: AnyTag) -> Any? {
+
     switch tag {
     case let .playlist(playlist):
         switch playlist {
@@ -50,5 +50,5 @@ func entity(fromTag tag:AnyTag) -> Any? {
     case .master(_):
         return nil
     }
-    
+
 }

@@ -11,36 +11,36 @@ import Types
 @testable import Parsing
 
 class StartTagParsingTests: XCTestCase {
-    
+
     func testTimeOffset() {
-        let startTime :TimeInterval = 1.3
+        let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime)"
         let (parsedTag, _) = EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime))
     }
-    
+
     func testExplicitNotPrecise() {
-        let startTime :TimeInterval = 1.3
+        let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime),PRECISE=NO"
         let (parsedTag, _) = EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime))
     }
-    
+
     func testExplicitPrecise() {
-        let startTime :TimeInterval = 1.3
+        let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime),PRECISE=YES"
         let (parsedTag, _) = EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime, preciseStart: true))
     }
-    
-    static var allTests : [(String, (StartTagParsingTests) -> () throws -> Void)] {
+
+    static var allTests: [(String, (StartTagParsingTests) -> () throws -> Void)] {
         return [
             ("testTimeOffset", testTimeOffset),
             ("testExplicitNotPrecise", testExplicitNotPrecise),
-            ("testExplicitPrecise", testExplicitPrecise),
+            ("testExplicitPrecise", testExplicitPrecise)
         ]
     }
 }
