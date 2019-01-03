@@ -22,28 +22,27 @@ extension StartIndicator {
     static private let timeOffsetKey = "TIME-OFFSET"
     static private let preciseKey = "PRECISE"
 
-    
-    init?(attributes :AttributeList) {
-        
-        var timeOffset :TimeInterval?
-        var precise :Bool?
-        
+    init?(attributes: AttributeList) {
+
+        var timeOffset: TimeInterval?
+        var precise: Bool?
+
         for attribute in attributes {
             switch attribute {
             case let (StartIndicator.timeOffsetKey, .decimalFloatingPoint(time)):
                 timeOffset = time
             case let (StartIndicator.preciseKey, .enumeratedString(p)):
                 assert(p == .yes || p == .no, "PRECISE attribute in EXT-X-START must be YES or NO")
-                precise = p == .yes ? true : false;
+                precise = p == .yes ? true : false
             default:
                 return nil
             }
         }
-        
+
         guard let offset = timeOffset else {
             return nil
         }
-        
+
         if let precise = precise {
             self.init(at: offset, preciseStart: precise)
         } else {
@@ -54,21 +53,21 @@ extension StartIndicator {
 }
 
 extension DecryptionKey {
-    
+
     static private let methodKey = "METHOD"
     static private let uriKey = "URI"
     static private let initializationVectorKey = "IV"
     static private let keyFormatKey = "KEYFORMAT"
     static private let keyFormatVersionsKey = "KEYFORMATVERSIONS"
-    
+
     init?(attributes: AttributeList) {
-        
-        var methodVar :EncryptionMethod? = nil
-        var uriVar :URL? = nil
-        var initializationVectorVar :InitializationVector? = nil
-        var keyFormatVar :String = IdentityDecryptionKeyFormat
-        var keyFormatVersionsVar :[Int]? = nil
-        
+
+        var methodVar: EncryptionMethod?
+        var uriVar: URL?
+        var initializationVectorVar: InitializationVector?
+        var keyFormatVar: String = IdentityDecryptionKeyFormat
+        var keyFormatVersionsVar: [Int]?
+
         for attribute in attributes {
             switch attribute {
             case let (DecryptionKey.methodKey, .enumeratedString(m)):
@@ -94,25 +93,25 @@ extension DecryptionKey {
                 break
             }
         }
-        
+
         guard let method = methodVar else {
             return nil
         }
-        
+
         if method != .None && uriVar == nil {
             return nil
         }
-        
+
         guard let u = uriVar else {
             return nil
         }
-        
+
         self.init(method: method, uri: u, initializationVector: initializationVectorVar, keyFormat: keyFormatVar, keyFormatVersions: keyFormatVersionsVar)
     }
 }
 
 extension StreamInfo {
-    
+
     fileprivate struct AttributeKey {
         static fileprivate let Bandwidth = "BANDWIDTH"
         static fileprivate let AverageBandwidth = "AVERAGE-BANDWIDTH"
@@ -124,15 +123,15 @@ extension StreamInfo {
         static fileprivate let Subtitles = "SUBTITLES"
         static fileprivate let ClosedCaptions = "CLOSED-CAPTIONS"
     }
-    
-    init?(attributes: AttributeList, uri :URL) {
-        
-        var bandwidthVar :Bitrate? = nil
-        var averageBandwidthVar :Bitrate? = nil
-        var codecsVar :[Codec] = []
-        var resolutionVar :Resolution? = nil
-        var framerateVar :Double? = nil
-        
+
+    init?(attributes: AttributeList, uri: URL) {
+
+        var bandwidthVar: Bitrate?
+        var averageBandwidthVar: Bitrate?
+        var codecsVar: [Codec] = []
+        var resolutionVar: Resolution?
+        var framerateVar: Double?
+
         for attribute in attributes {
             switch attribute {
             case let (AttributeKey.Bandwidth, .decimalInteger(i)):
@@ -149,31 +148,31 @@ extension StreamInfo {
                 break
             }
         }
-        
+
         guard let b = bandwidthVar else {
             return nil
         }
-        
+
         self.init(bandwidth: b, averageBandwidth: averageBandwidthVar, codecs: codecsVar, resolution: resolutionVar, frameRate: framerateVar, uri: uri)
     }
 }
 
 extension MediaInitializationSection {
-    
+
     fileprivate struct AttributeKey {
         static fileprivate let URI = "URI"
         static fileprivate let ByteRange = "BYTERANGE"
     }
-    
+
     init?(attributes: AttributeList) {
-        
-        var urlVar :URL?
-        var byteRangeVar :CountableClosedRange<UInt>?
-        
+
+        var urlVar: URL?
+        var byteRangeVar: CountableClosedRange<UInt>?
+
         for attribute in attributes {
             switch attribute {
             case let (AttributeKey.URI, .quotedString(urlString)):
-                urlVar = URL(string:urlString)
+                urlVar = URL(string: urlString)
             case let (AttributeKey.ByteRange, .quotedString(byteRangeString)):
                 let parseResults = TypeParser.byteRange.run(byteRangeString)
                 guard let range = parseResults?.0 else {
@@ -184,22 +183,22 @@ extension MediaInitializationSection {
                 break
             }
         }
-        
+
         guard let url = urlVar else {
             return nil
         }
-        
+
         self.init(uri: url, byteRange: byteRangeVar)
     }
-    
+
 }
 
 extension MediaSegment {
-    
+
     init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?, discontinuity: Bool = false) {
-        
-        var durationVar :TimeInterval? = nil
-        
+
+        var durationVar: TimeInterval?
+
         switch duration {
         case let .decimalFloatingPoint(boundDuration):
             durationVar = boundDuration
@@ -210,28 +209,28 @@ extension MediaSegment {
         default:
             break
         }
-        
-        guard let duration :TimeInterval = durationVar, let uri = uri else {
+
+        guard let duration: TimeInterval = durationVar, let uri = uri else {
             return nil
         }
-        
+
         // TODO : Our string parser will currently return a zero-length string 
         // when nothing is found, even for an optional string. If that's fixed,
         // this sanitization should be unnecessary.
-        let sanitizedTitle :String?
+        let sanitizedTitle: String?
         if title == "" {
             sanitizedTitle = nil
         } else {
             sanitizedTitle = title
         }
-        
+
         self.init(uri: uri, duration: duration, title: sanitizedTitle, byteRange: range)
     }
-    
+
 }
 
 extension Rendition {
-    
+
     fileprivate struct AttributeKey {
         static fileprivate let type = "TYPE"
         static fileprivate let uri = "URI"
@@ -245,18 +244,18 @@ extension Rendition {
         static fileprivate let instreamID = "INSTREAM-ID"
         static fileprivate let characteristics = "CHARACTERISTICS"
     }
-    
+
     init?(attributes: AttributeList) {
-        
+
         var type: MediaType?
-        var uri :URL? = nil
-        var groupID :String? = nil
-        var language :Language? = nil
-        var associatedLanguage :Language? = nil
-        var name :String? = nil
+        var uri: URL?
+        var groupID: String?
+        var language: Language?
+        var associatedLanguage: Language?
+        var name: String?
         var defaultRendition = false
         var forced = false
-        
+
         for attribute in attributes {
             switch attribute {
             case let (AttributeKey.type, .enumeratedString(typeString)):
@@ -272,12 +271,12 @@ extension Rendition {
             case let (AttributeKey.name, .quotedString(nameString)):
                 name = nameString
             case let (AttributeKey.default, .enumeratedString(boolString)):
-                guard let isDefault = ["YES":true, "NO":false][boolString.rawValue] else {
+                guard let isDefault = ["YES": true, "NO": false][boolString.rawValue] else {
                     return nil
                 }
                 defaultRendition = isDefault
             case let (AttributeKey.autoselect, .enumeratedString(boolString)):
-                guard let isForced = ["YES":true, "NO":false][boolString.rawValue] else {
+                guard let isForced = ["YES": true, "NO": false][boolString.rawValue] else {
                     return nil
                 }
                 forced = isForced
@@ -285,13 +284,13 @@ extension Rendition {
                 break
             }
         }
-        
+
         guard let mediaType = type, let group = groupID, let renditionName = name else {
             return nil
         }
-        
-        self.init(mediaType: mediaType, uri:uri, groupID:group, language: language, associatedLanguage: associatedLanguage, name: renditionName, defaultRendition: defaultRendition, forced: forced)
-        
+
+        self.init(mediaType: mediaType, uri: uri, groupID: group, language: language, associatedLanguage: associatedLanguage, name: renditionName, defaultRendition: defaultRendition, forced: forced)
+
     }
-    
+
 }

@@ -13,7 +13,7 @@ import FFCParserCombinator
 /// Raw Type Parsers
 
 struct TypeParser {
-    
+
     static let url = { URL(string: $0) } <^!> ({ String($0) } <^> CharacterSet.urlAllowed.parser().many1)
 
     static let hex = BasicParser.hexPrefix *> ({ characters in HexadecimalSequence(string: String(characters))! } <^> BasicParser.hexDigit.many1)
@@ -30,14 +30,14 @@ struct TypeParser {
 
     static let resolution = Resolution.init <^> UInt.parser <* BasicParser.x <&> UInt.parser
 
-    static let date = dateFromString <^> ( { String($0) } <^> CharacterSet.iso8601.parser().many1 )
+    static let date = dateFromString <^> ({ String($0) } <^> CharacterSet.iso8601.parser().many1 )
 
     static let byteRange = { return ($0.1 ?? 0)...(($0.1 ?? 0) + ($0.0 - 1))  } <^> (UInt.parser <&> ("@" *> UInt.parser).optional)
 }
 
 @available(OSX 10.12, *) private let dateFormatter = ISO8601DateFormatter()
 
-private let legacyFormatter :DateFormatter = {
+private let legacyFormatter: DateFormatter = {
     let f = DateFormatter()
     f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     return f
@@ -47,7 +47,6 @@ private func dateFromString(_ string: String) -> Date? {
     if #available(OSX 10.12, *) {
         return dateFormatter.date(from: string)
     }
-    
+
     return legacyFormatter.date(from: string)
 }
-

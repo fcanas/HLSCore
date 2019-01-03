@@ -6,10 +6,10 @@
 //  Copyright © 2016 Fabian Canas. All rights reserved.
 //
 
-public struct Language : Equatable {
-    
-    let value :String
-    
+public struct Language: Equatable {
+
+    let value: String
+
     public init(_ string: String) {
         value = string
     }

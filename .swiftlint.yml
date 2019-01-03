@@ -1,0 +1,4 @@
+disabled_rules:
+  - empty_enum_arguments
+excluded:
+  - .build

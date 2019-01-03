@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "0.0.6"),
-        .package(url: "https://github.com/fcanas/FFCLog.git", from: "0.0.1"),
+        .package(url: "https://github.com/fcanas/FFCLog.git", from: "0.0.1")
     ],
     targets: [
         .target(name: "Utilities",
@@ -35,9 +35,8 @@ let package = Package(
         .target(name: "Parsing",
                dependencies: ["Types", "FFCParserCombinator", "FFCLog"]),
         .testTarget(name: "ParsingTests",
-                    dependencies:["Parsing"]),
+                    dependencies:["Parsing"])
     ],
     swiftLanguageVersions: [4]
-
 
 )

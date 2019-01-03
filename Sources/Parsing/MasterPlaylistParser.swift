@@ -13,36 +13,36 @@ import FFCLog
 
 public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many
-    
+
     let parseResult = parser.run(string)
-    
-    if let remainingChars = parseResult?.1 , (remainingChars.count > 0) {
+
+    if let remainingChars = parseResult?.1, (remainingChars.count > 0) {
         log("REMAINDER:\n\(String(remainingChars))", level: .error)
     } else {
         log("NO REMAINDER", level: .info)
     }
-    
+
     guard let tags = parseResult?.0 else {
         return nil
     }
-    
+
     struct PlaylistBuilder {
-        var version :UInt = 1
-        var streams :[StreamInfo] = []
-        var start :StartIndicator?
-        var independentSegments :Bool = false
-        var renditions :[Rendition] = []
-        
-        var fatalTag :AnyTag?
+        var version: UInt = 1
+        var streams: [StreamInfo] = []
+        var start: StartIndicator?
+        var independentSegments: Bool = false
+        var renditions: [Rendition] = []
+
+        var fatalTag: AnyTag?
         init() {
             start = nil
         }
     }
-    
+
     let playlistBuilder = tags.reduce(PlaylistBuilder(), { (state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder in
-        
+
         var returnState = state
-        
+
         switch tag {
         case let .playlist(playlistTag):
             switch playlistTag {
@@ -84,10 +84,10 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                 log("Unprocessed Session Key :: \(attributes)", level: .error)
             }
         }
-        
+
         return returnState
     })
-    
+
     let streams = playlistBuilder.streams.map({
         StreamInfo(bandwidth: $0.bandwidth, averageBandwidth: $0.averageBandwidth, codecs: $0.codecs, resolution: $0.resolution, frameRate: $0.frameRate, uri: URL(string: $0.uri.absoluteString, relativeTo: url )!)
     })
@@ -102,6 +102,6 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                   defaultRendition: $0.defaultRendition,
                   forced: $0.forced)
     }
-    
+
     return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: streams, renditions: renditions, start: playlistBuilder.start)
 }

@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Resolution : Equatable, CustomStringConvertible {
-    public let width :UInt
-    public let height :UInt
+public struct Resolution: Equatable, CustomStringConvertible {
+    public let width: UInt
+    public let height: UInt
     public init(width: UInt, height: UInt) {
         self.width = width
         self.height = height
     }
-    
+
     public var description: String {
         get {
             return "\(width)x\(height)"
@@ -23,8 +23,8 @@ public struct Resolution : Equatable, CustomStringConvertible {
     }
 }
 
-public struct HexadecimalSequence : Equatable, CustomStringConvertible {
-    public let value :UInt
+public struct HexadecimalSequence: Equatable, CustomStringConvertible {
+    public let value: UInt
     /**
      * param string - a hex string, upper or lower case, without preceeding 0x
      */
@@ -34,32 +34,32 @@ public struct HexadecimalSequence : Equatable, CustomStringConvertible {
         }
         value = v
     }
-    
+
     public init(value v: UInt) {
         value = v
     }
-    
-    public var description :String {
+
+    public var description: String {
         get {
-            return "0x" + String(value, radix:16, uppercase: true)
+            return "0x" + String(value, radix: 16, uppercase: true)
         }
     }
 }
 
-public struct SignedFloat :Equatable, CustomStringConvertible, RawRepresentable {
-    public let rawValue :Double
+public struct SignedFloat: Equatable, CustomStringConvertible, RawRepresentable {
+    public let rawValue: Double
     public init(rawValue: Double) {
         self.rawValue = rawValue
     }
-    
+
     public init?(_ string: String) {
         guard let v = Double(string) else {
             return nil
         }
-        self.init(rawValue:v)
+        self.init(rawValue: v)
     }
-    
-    public var description :String {
+
+    public var description: String {
         get {
             return rawValue.description
         }
