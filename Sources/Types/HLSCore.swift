@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Utilities
 
 /// EXT-X-START
 public struct StartIndicator: Equatable {

@@ -8,7 +8,6 @@ let package = Package(
             name: "HLSCore",
             type: .dynamic,
             targets: [
-                "Utilities",
                 "Types",
                 "Serialization",
                 "Parsing"
@@ -20,12 +19,8 @@ let package = Package(
         .package(url: "https://github.com/fcanas/FFCLog.git", from: "0.0.1")
     ],
     targets: [
-        .target(name: "Utilities",
-               dependencies: ["FFCParserCombinator"]),
-        .testTarget(name: "UtilitiesTests",
-                    dependencies:["Utilities"]),
         .target(name: "Types",
-               dependencies: ["Utilities"]),
+               dependencies: ["FFCParserCombinator"]),
         .testTarget(name: "TypesTests",
                     dependencies:["Types"]),
         .target(name: "Serialization",

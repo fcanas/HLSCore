@@ -18,7 +18,7 @@ extension URL {
      *
      * [RFC 1808](https://tools.ietf.org/html/rfc1808) is relevant, but not strictly followed.
      */
-    public func relativeURL(baseURL: URL) -> URL {
+    func relativeURL(baseURL: URL) -> URL {
         let baseString = baseURL.absoluteString
         let selfString = absoluteString
 

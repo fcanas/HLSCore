@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Utilities
 
 public protocol Playlist {
     var version: UInt { get }
