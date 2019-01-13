@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
 
-    public func deepestDirectoryPath() -> String {
+    func deepestDirectoryPath() -> String {
         if self.hasSuffix("/") {
             return self
         }

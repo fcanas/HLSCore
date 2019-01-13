@@ -1,7 +1,7 @@
 //  Copyright © 2016 Fabian Canas. All rights reserved.
 
 import XCTest
-@testable import Utilities
+@testable import Types
 
 class StringExtensionTests: XCTestCase {
 
