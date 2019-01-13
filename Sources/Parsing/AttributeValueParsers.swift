@@ -51,23 +51,21 @@ enum AttributeValue: Equatable {
 
 extension AttributeValue: CustomStringConvertible {
     var description: String {
-        get {
-            switch self {
-            case let .decimalInteger(int):
-                return int.description
-            case let .hexadecimalSequence(hex):
-                return hex.description
-            case let .decimalFloatingPoint(float):
-                return float.description
-            case let .signedDecimalFloatingPoint(signedFloat):
-                return signedFloat.description
-            case let .quotedString(string):
-                return string
-            case let .enumeratedString(enumeratedString):
-                return enumeratedString.description
-            case let .decimalResolution(resolution):
-                return resolution.description
-            }
+        switch self {
+        case let .decimalInteger(int):
+            return int.description
+        case let .hexadecimalSequence(hex):
+            return hex.description
+        case let .decimalFloatingPoint(float):
+            return float.description
+        case let .signedDecimalFloatingPoint(signedFloat):
+            return signedFloat.description
+        case let .quotedString(string):
+            return string
+        case let .enumeratedString(enumeratedString):
+            return enumeratedString.description
+        case let .decimalResolution(resolution):
+            return resolution.description
         }
     }
 
@@ -91,9 +89,7 @@ struct EnumeratedString: RawRepresentable, Equatable, CustomStringConvertible {
     }
 
     var description: String {
-        get {
-            return rawValue
-        }
+        return rawValue
     }
 }
 

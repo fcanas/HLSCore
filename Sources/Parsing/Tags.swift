@@ -19,7 +19,7 @@ let EXTXINDEPENDENTSEGMENTS = { _ in Tag.independentSegments } <^> "#EXT-X-INDEP
 let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( "#EXT-X-START:" *> attributeList ))
 
 // MARK: Media Segment Tags
-let EXTINF = Tag.MediaPlaylist.Segment.inf <^> "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* "," <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
+let EXTINF = Tag.MediaPlaylist.Segment.inf <^> "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* ","  <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
 
 let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( "#EXT-X-BYTERANGE:" *> TypeParser.byteRange )
 

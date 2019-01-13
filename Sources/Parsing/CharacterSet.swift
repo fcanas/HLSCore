@@ -12,7 +12,8 @@ extension CharacterSet {
     /// Characters allowed in an upper-case hex number, not including an X for prefixing
     ///
     ///`[0...9, A...F]`
-    static let hexidecimalDigits = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: "A"..."F"))
+    static let hexidecimalDigits = CharacterSet.decimalDigits
+                                               .union(CharacterSet(charactersIn: "A"..."F"))
 
     /// Characters allowed in a quoted string.
     /// 
@@ -22,11 +23,20 @@ extension CharacterSet {
     /// Valid characters in an enumerated string
     ///
     /// Like a quoted string additionally not allowing whitespace nor commas
-    static let forEnumeratedString = CharacterSet(charactersIn: ",\"").union(CharacterSet.whitespacesAndNewlines).inverted
+    static let forEnumeratedString = CharacterSet.whitespacesAndNewlines
+                                                 .union(CharacterSet(charactersIn: ",\""))
+                                                 .inverted
 
     /// Valid characters in a URL
-    static let urlAllowed = CharacterSet.urlUserAllowed.union(.urlHostAllowed).union(.urlPathAllowed).union(.urlQueryAllowed).union(.urlFragmentAllowed).union(.urlPasswordAllowed).union(CharacterSet(charactersIn: ":"))
+    static let urlAllowed = CharacterSet.urlUserAllowed
+                                        .union(.urlHostAllowed)
+                                        .union(.urlPathAllowed)
+                                        .union(.urlQueryAllowed)
+                                        .union(.urlFragmentAllowed)
+                                        .union(.urlPasswordAllowed)
+                                        .union(CharacterSet(charactersIn: ":"))
 
     /// Valid characters in an ISO 8601 date
-    static let iso8601 = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: "WTZ/+:−-"))
+    static let iso8601 = CharacterSet.decimalDigits
+                                     .union(CharacterSet(charactersIn: "WTZ/+:−-"))
 }

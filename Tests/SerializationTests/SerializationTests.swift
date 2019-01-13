@@ -29,18 +29,26 @@ class SerializationTests: XCTestCase {
                         MediaSegment(uri: s4URL, duration: 2.9)]
 
         let unencryptedSegments =  [MediaSegment(uri: s5URL, duration: 3.0),
-                                  MediaSegment(uri: s6URL, duration: 3.2)]
+                                    MediaSegment(uri: s6URL, duration: 3.2)]
         let key = DecryptionKey(method: .AES128, uri: URL(string: "ex.key")!)
         let encryptedSegments = setDecryptionKey(key, forSegments: unencryptedSegments)
 
-        let playlist: MediaPlaylist = MediaPlaylist(type: .VOD, version: 3, uri: URL(string: urlString)!, targetDuration: 3, closed: true, start: nil, segments: segments + encryptedSegments, independentSegments: false, mediaSequence: 0)
+        let playlist: MediaPlaylist = MediaPlaylist(type: .VOD,
+                                                    version: 3,
+                                                    uri: URL(string: urlString)!,
+                                                    targetDuration: 3,
+                                                    closed: true,
+                                                    start: nil,
+                                                    segments: segments + encryptedSegments,
+                                                    independentSegments: false,
+                                                    mediaSequence: 0)
 
         let stringResource = MediaPlaylistSerializer().serialize(playlist)
 
         XCTAssertEqual(stringResource.uri.absoluteString, urlString)
 
         let expectedPlaylist =
-            "#EXTM3U" + "\n" +
+                "#EXTM3U" + "\n" +
                 "#EXT-X-TARGETDURATION:3" + "\n" +
                 "#EXT-X-VERSION:3" + "\n" +
                 "#EXT-X-PLAYLIST-TYPE:VOD" + "\n" +
@@ -59,7 +67,6 @@ class SerializationTests: XCTestCase {
                 "s6.ts" + "\n"
 
         AssertMatchMultilineString(stringResource.value!, expectedPlaylist, separator: "\n")
-
     }
 
     static var allTests: [(String, (SerializationTests) -> () throws -> Void)] {

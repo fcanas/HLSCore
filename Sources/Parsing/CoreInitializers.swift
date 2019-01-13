@@ -106,7 +106,11 @@ extension DecryptionKey {
             return nil
         }
 
-        self.init(method: method, uri: u, initializationVector: initializationVectorVar, keyFormat: keyFormatVar, keyFormatVersions: keyFormatVersionsVar)
+        self.init(method: method,
+                  uri: u,
+                  initializationVector: initializationVectorVar,
+                  keyFormat: keyFormatVar,
+                  keyFormatVersions: keyFormatVersionsVar)
     }
 }
 
@@ -153,7 +157,12 @@ extension StreamInfo {
             return nil
         }
 
-        self.init(bandwidth: b, averageBandwidth: averageBandwidthVar, codecs: codecsVar, resolution: resolutionVar, frameRate: framerateVar, uri: uri)
+        self.init(bandwidth: b,
+                  averageBandwidth: averageBandwidthVar,
+                  codecs: codecsVar,
+                  resolution: resolutionVar,
+                  frameRate: framerateVar,
+                  uri: uri)
     }
 }
 
@@ -195,17 +204,19 @@ extension MediaInitializationSection {
 
 extension MediaSegment {
 
-    init?(duration: AttributeValue, title: String?, range: CountableClosedRange<UInt>?, uri: URL?, discontinuity: Bool = false) {
+    init?(duration: AttributeValue,
+          title: String?,
+          range: CountableClosedRange<UInt>?,
+          uri: URL?,
+          discontinuity: Bool = false) {
 
         var durationVar: TimeInterval?
 
         switch duration {
         case let .decimalFloatingPoint(boundDuration):
             durationVar = boundDuration
-            break
         case let .decimalInteger(boundDuration):
             durationVar = TimeInterval(boundDuration)
-            break
         default:
             break
         }
@@ -289,7 +300,14 @@ extension Rendition {
             return nil
         }
 
-        self.init(mediaType: mediaType, uri: uri, groupID: group, language: language, associatedLanguage: associatedLanguage, name: renditionName, defaultRendition: defaultRendition, forced: forced)
+        self.init(mediaType: mediaType,
+                  uri: uri,
+                  groupID: group,
+                  language: language,
+                  associatedLanguage: associatedLanguage,
+                  name: renditionName,
+                  defaultRendition: defaultRendition,
+                  forced: forced)
 
     }
 

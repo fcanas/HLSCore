@@ -36,7 +36,14 @@ public struct Rendition: Equatable {
     public let defaultRendition: Bool
     public let forced: Bool
 
-    public init(mediaType: MediaType, uri: URL?, groupID: String, language: Language?, associatedLanguage: Language?, name: String, defaultRendition: Bool = false, forced: Bool = false) {
+    public init(mediaType: MediaType,
+                uri: URL?,
+                groupID: String,
+                language: Language?,
+                associatedLanguage: Language?,
+                name: String,
+                defaultRendition: Bool = false,
+                forced: Bool = false) {
         self.type = mediaType
         self.uri = uri
         self.groupID = groupID
@@ -72,7 +79,7 @@ public struct RenditionGroup {
 public struct Bitrate: Comparable {
     public let value: UInt
 
-    public static func <(lhs: Bitrate, rhs: Bitrate) -> Bool {
+    public static func < (lhs: Bitrate, rhs: Bitrate) -> Bool {
         return lhs.value < rhs.value
     }
 
@@ -100,7 +107,7 @@ public struct Codec: RawRepresentable, Equatable, Hashable, Comparable {
         self.rawValue = rawValue
     }
 
-    public static func <(lhs: Codec, rhs: Codec) -> Bool {
+    public static func < (lhs: Codec, rhs: Codec) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 }
@@ -116,7 +123,11 @@ public struct StreamInfo {
 
     public let uri: URL
 
-    public init(bandwidth: Bitrate, averageBandwidth: Bitrate?, codecs: [Codec], resolution: Resolution?, frameRate: Double?, uri: URL) {
+    public init(bandwidth: Bitrate,
+                averageBandwidth: Bitrate?,
+                codecs: [Codec],
+                resolution: Resolution?,
+                frameRate: Double?, uri: URL) {
         self.bandwidth = bandwidth
         self.averageBandwidth = averageBandwidth
         self.codecs = codecs
@@ -133,7 +144,13 @@ public struct MediaSegment {
 
     public var resource: MediaResource
 
-    public init(uri: URL, duration: TimeInterval, title: String? = nil, byteRange: CountableClosedRange<UInt>? = nil, decryptionKey: DecryptionKey? = nil, date: Date? = nil, mediaInitializationSection: MediaInitializationSection? = nil) {
+    public init(uri: URL,
+                duration: TimeInterval,
+                title: String? = nil,
+                byteRange: CountableClosedRange<UInt>? = nil,
+                decryptionKey: DecryptionKey? = nil,
+                date: Date? = nil,
+                mediaInitializationSection: MediaInitializationSection? = nil) {
         resource = MediaResource(uri: uri)
         self.duration = duration
         self.title = title

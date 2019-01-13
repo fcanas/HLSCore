@@ -11,6 +11,21 @@ import Types
 import FFCParserCombinator
 import FFCLog
 
+private struct PlaylistBuilder {
+    var version: UInt = 1
+    var streams: [StreamInfo] = []
+    var start: StartIndicator?
+    var independentSegments: Bool = false
+    var renditions: [Rendition] = []
+    let url: URL
+
+    var fatalTag: AnyTag?
+    init(rootURL: URL) {
+        url = rootURL
+        start = nil
+    }
+}
+
 public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many
 
@@ -26,71 +41,16 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
         return nil
     }
 
-    struct PlaylistBuilder {
-        var version: UInt = 1
-        var streams: [StreamInfo] = []
-        var start: StartIndicator?
-        var independentSegments: Bool = false
-        var renditions: [Rendition] = []
+    let playlistBuilder = tags.reduce(PlaylistBuilder(rootURL: url), reducePlaylistBuilder)
 
-        var fatalTag: AnyTag?
-        init() {
-            start = nil
-        }
+    let streams = playlistBuilder.streams.map {
+        StreamInfo(bandwidth: $0.bandwidth,
+                   averageBandwidth: $0.averageBandwidth,
+                   codecs: $0.codecs,
+                   resolution: $0.resolution,
+                   frameRate: $0.frameRate,
+                   uri: URL(string: $0.uri.absoluteString, relativeTo: url )!)
     }
-
-    let playlistBuilder = tags.reduce(PlaylistBuilder(), { (state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder in
-
-        var returnState = state
-
-        switch tag {
-        case let .playlist(playlistTag):
-            switch playlistTag {
-            case let .version(versionNumber):
-                returnState.version = versionNumber
-            case .independentSegments:
-                returnState.independentSegments = true
-            case let .startIndicator(start):
-                returnState.start = start
-            case .url(_):
-                // Playlist URLs are handled by the #EXT-X-STREAM-INF tag since
-                // they're required to be sequential
-                // TODO: Move URL tag into the media or segment type?
-                returnState.fatalTag = tag
-                break
-            case .comment(_):
-                break
-            }
-            break
-        case .media(_):
-            returnState.fatalTag = tag
-        case .segment(_):
-            returnState.fatalTag = tag
-        case let .master(masterTag):
-            switch masterTag {
-            case let .media(rendition):
-                returnState.renditions.append(rendition)
-            case let .streamInfo(streamInfo):
-                returnState.streams.append(streamInfo)
-                // print("\(attributes)\(url)")
-            case let .iFramesStreamInfo(attributes):
-                // TODO: iFrame Stream Info
-                log("Unprocessed iFrame Stream Info :: \(attributes)", level: .error)
-            case let .sessionData(attributes):
-                // TODO: Session Data
-                log("Unprocessed Session Data :: \(attributes)", level: .error)
-            case let .sessionKey(attributes):
-                // TODO: Session Key
-                log("Unprocessed Session Key :: \(attributes)", level: .error)
-            }
-        }
-
-        return returnState
-    })
-
-    let streams = playlistBuilder.streams.map({
-        StreamInfo(bandwidth: $0.bandwidth, averageBandwidth: $0.averageBandwidth, codecs: $0.codecs, resolution: $0.resolution, frameRate: $0.frameRate, uri: URL(string: $0.uri.absoluteString, relativeTo: url )!)
-    })
 
     let renditions = playlistBuilder.renditions.map {
         Rendition(mediaType: $0.type,
@@ -103,5 +63,53 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                   forced: $0.forced)
     }
 
-    return MasterPlaylist(version: playlistBuilder.version, uri: url, streams: streams, renditions: renditions, start: playlistBuilder.start)
+    return MasterPlaylist(version: playlistBuilder.version,
+                          uri: url, streams: streams,
+                          renditions: renditions,
+                          start: playlistBuilder.start)
+}
+
+private func reducePlaylistBuilder(state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder {
+    var returnState = state
+
+    switch tag {
+    case let .playlist(playlistTag):
+        switch playlistTag {
+        case let .version(versionNumber):
+            returnState.version = versionNumber
+        case .independentSegments:
+            returnState.independentSegments = true
+        case let .startIndicator(start):
+            returnState.start = start
+        case .url(_):
+            // Playlist URLs are handled by the #EXT-X-STREAM-INF tag since
+            // they're required to be sequential
+            // TODO: Move URL tag into the media or segment type?
+            returnState.fatalTag = tag
+        case .comment(_):
+            break
+        }
+    case .media(_):
+        returnState.fatalTag = tag
+    case .segment(_):
+        returnState.fatalTag = tag
+    case let .master(masterTag):
+        switch masterTag {
+        case let .media(rendition):
+            returnState.renditions.append(rendition)
+        case let .streamInfo(streamInfo):
+            returnState.streams.append(streamInfo)
+        case let .iFramesStreamInfo(attributes):
+            // TODO: iFrame Stream Info
+            log("Unprocessed iFrame Stream Info :: \(attributes)", level: .error)
+        case let .sessionData(attributes):
+            // TODO: Session Data
+            log("Unprocessed Session Data :: \(attributes)", level: .error)
+        case let .sessionKey(attributes):
+            // TODO: Session Key
+            log("Unprocessed Session Key :: \(attributes)", level: .error)
+        }
+    }
+
+    return returnState
 }
