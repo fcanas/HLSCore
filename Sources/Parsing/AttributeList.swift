@@ -22,19 +22,21 @@ import FFCParserCombinator
  whitespace.
  */
 
-typealias AttributeList = Dictionary<AttributeName, AttributeValue>
+typealias AttributeList = [AttributeName: AttributeValue]
 
 typealias AttributePair = (AttributeName, AttributeValue)
 
-let attributeList = builtAttributeList <^> attribute.followed(by: ( "," *> attribute ).many, combine: { (single, list) -> [AttributePair] in
-    [single] + list
-})
+let attributeList = builtAttributeList
+                <^> attribute.followed(by: ( "," *> attribute ).many,
+                                       combine: { (single, list) -> [AttributePair] in
+                                                    [single] + list
+                                                })
 
 func builtAttributeList(attributes: [(AttributeName, AttributeValue)]) -> AttributeList {
-    return attributes.reduce(AttributeList(), { (a, kv) -> AttributeList in
-        var r = a
-        r[kv.0] = kv.1
-        return r
+    return attributes.reduce(AttributeList(), { (attributeList, keyValue) -> AttributeList in
+        var newAttributeList = attributeList
+        newAttributeList[keyValue.0] = keyValue.1
+        return newAttributeList
     })
 }
 
@@ -59,7 +61,9 @@ let attribute = attributeName <* "=" <&> attributeValue
 typealias AttributeName = String
 
 extension CharacterSet {
-    static let forAttributeName = CharacterSet(charactersIn: "A"..."Z").union(CharacterSet(charactersIn: "0"..."9")).union(CharacterSet(charactersIn: "-"))
+    static let forAttributeName = CharacterSet(charactersIn: "A"..."Z")
+                                              .union(CharacterSet(charactersIn: "0"..."9"))
+                                              .union(CharacterSet(charactersIn: "-"))
 }
 
 let attributeName = { AttributeName($0) } <^> CharacterSet.forAttributeName.parser().many1
@@ -103,7 +107,13 @@ let attributeName = { AttributeName($0) } <^> CharacterSet.forAttributeName.pars
  (width); the second is a vertical pixel dimension (height).
  */
 
-let attributeValue = hexSequence <|> decimalFloatingPoint <|> signedDecimalFloatingPoint <|> quotedString <|> decimalResolution <|> decimalInteger <|> enumeratedString
+let attributeValue = hexSequence
+                 <|> decimalFloatingPoint
+                 <|> signedDecimalFloatingPoint
+                 <|> quotedString
+                 <|> decimalResolution
+                 <|> decimalInteger
+                 <|> enumeratedString
 
 /**
  The type of the AttributeValue for a given AttributeName is specified

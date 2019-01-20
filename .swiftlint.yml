@@ -1,4 +1,8 @@
 disabled_rules:
   - empty_enum_arguments
+  - identifier_name
+  - todo
+  - nesting
 excluded:
   - .build
+  - Tests

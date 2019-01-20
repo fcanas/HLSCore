@@ -17,9 +17,7 @@ public struct Resolution: Equatable, CustomStringConvertible {
     }
 
     public var description: String {
-        get {
-            return "\(width)x\(height)"
-        }
+        return "\(width)x\(height)"
     }
 }
 
@@ -40,9 +38,7 @@ public struct HexadecimalSequence: Equatable, CustomStringConvertible {
     }
 
     public var description: String {
-        get {
-            return "0x" + String(value, radix: 16, uppercase: true)
-        }
+        return "0x" + String(value, radix: 16, uppercase: true)
     }
 }
 
@@ -60,8 +56,6 @@ public struct SignedFloat: Equatable, CustomStringConvertible, RawRepresentable 
     }
 
     public var description: String {
-        get {
-            return rawValue.description
-        }
+        return rawValue.description
     }
 }

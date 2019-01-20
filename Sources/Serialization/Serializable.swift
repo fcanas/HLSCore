@@ -72,7 +72,7 @@ public struct MediaPlaylistSerializer: Serializer {
             if let smi = segment.mediaInitializationSection, smi != lastOutputMediaInitialization {
                 var tagString = "#EXT-X-MAP:URI=\"\(smi.uri.relativeString)\""
                 if let byteRange = smi.byteRange {
-                    tagString = tagString + ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex))@\(byteRange.first!)\""
+                    tagString += ",BYTERANGE=\"\(byteRange.distance(from: byteRange.startIndex, to: byteRange.endIndex))@\(byteRange.first!)\""
                 }
                 output = output._append(tagString, line: newline)
                 lastOutputMediaInitialization = smi
@@ -105,23 +105,21 @@ public struct MediaPlaylistSerializer: Serializer {
 private extension DecryptionKey {
 
     var playlistString: String {
-        get {
-            var out = "#EXT-X-KEY:METHOD=\(method.rawValue)"
-            if method != .None {
-                out += ",URI=\"\(uri)\""
+        var out = "#EXT-X-KEY:METHOD=\(method.rawValue)"
+        if method != .None {
+            out += ",URI=\"\(uri)\""
 
-                if let iv = initializationVector {
-                    out += String(format: ",%8x%8x", iv.high, iv.low)
-                }
-                if keyFormat != "identity" {
-                    out += "," + keyFormat
-                }
-                if let v = keyFormatVersions {
-                    out += "," + v.map({ String($0) }).joined(separator: "/")
-                }
+            if let iv = initializationVector {
+                out += String(format: ",%8x%8x", iv.high, iv.low)
             }
-            return out
+            if keyFormat != "identity" {
+                out += "," + keyFormat
+            }
+            if let v = keyFormatVersions {
+                out += "," + v.map({ String($0) }).joined(separator: "/")
+            }
         }
+        return out
     }
 
 }

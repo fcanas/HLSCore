@@ -33,7 +33,11 @@ public struct DecryptionKey: Equatable {
     public let keyFormat: String
     public let keyFormatVersions: [Int]?
 
-    public init(method: EncryptionMethod, uri: URL, initializationVector: InitializationVector? = nil, keyFormat: String = IdentityDecryptionKeyFormat, keyFormatVersions: [Int]? = nil) {
+    public init(method: EncryptionMethod,
+                uri: URL,
+                initializationVector: InitializationVector? = nil,
+                keyFormat: String = IdentityDecryptionKeyFormat,
+                keyFormatVersions: [Int]? = nil) {
         self.method = method
         self.uri = uri
         self.initializationVector = initializationVector

@@ -33,7 +33,10 @@ extension URL {
             // By checking the scheme, user, host, and port are equal, we avoid
             // the problem of creating relative URLs where they're not 
             // appropriate, and that further checking is effectively on the path
-            guard baseURL.scheme == self.scheme && baseURL.user == self.user && baseURL.host == self.host && baseURL.port == self.port else {
+            guard baseURL.scheme == self.scheme
+               && baseURL.user == self.user
+               && baseURL.host == self.host
+               && baseURL.port == self.port else {
                 return self
             }
 
