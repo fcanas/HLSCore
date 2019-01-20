@@ -4,7 +4,7 @@ language: swift
 osx_image: xcode10.1
 install: 
   - swift package update
-  - brew update && brew install swiftlint
+  - brew update && brew upgrade swiftlint
 script:
   - swiftlint
   - swift build
