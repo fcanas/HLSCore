@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "0.1"),
+        .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "0.1.0"),
         .package(url: "https://github.com/fcanas/FFCLog.git", from: "0.0.1")
     ],
     targets: [
