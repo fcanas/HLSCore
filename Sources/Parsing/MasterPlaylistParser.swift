@@ -26,22 +26,26 @@ private struct PlaylistBuilder {
     }
 }
 
-public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylist? {
+public func parseMasterPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MasterPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many
 
     let parseResult = parser.run(string)
 
     if let remainingChars = parseResult?.1, (remainingChars.count > 0) {
-        log("REMAINDER:\n\(String(remainingChars))", level: .error)
+        logger.log("REMAINDER:\n\(String(remainingChars))", level: .error)
     } else {
-        log("NO REMAINDER", level: .info)
+        logger.log("NO REMAINDER", level: .info)
     }
 
     guard let tags = parseResult?.0 else {
         return nil
     }
 
-    let playlistBuilder = tags.reduce(PlaylistBuilder(rootURL: url), reducePlaylistBuilder)
+    let reducer = { (state: PlaylistBuilder, tag: AnyTag) in
+        reducePlaylistBuilder(state: state, tag: tag, logger: logger)
+    }
+
+    let playlistBuilder = tags.reduce(PlaylistBuilder(rootURL: url), reducer)
 
     let streams = playlistBuilder.streams.map {
         StreamInfo(bandwidth: $0.bandwidth,
@@ -69,7 +73,7 @@ public func parseMasterPlaylist(string: String, atURL url: URL) -> MasterPlaylis
                           start: playlistBuilder.start)
 }
 
-private func reducePlaylistBuilder(state: PlaylistBuilder, tag: AnyTag) -> PlaylistBuilder {
+private func reducePlaylistBuilder(state: PlaylistBuilder, tag: AnyTag, logger: Logger) -> PlaylistBuilder {
     var returnState = state
 
     switch tag {
@@ -101,13 +105,13 @@ private func reducePlaylistBuilder(state: PlaylistBuilder, tag: AnyTag) -> Playl
             returnState.streams.append(streamInfo)
         case let .iFramesStreamInfo(attributes):
             // TODO: iFrame Stream Info
-            log("Unprocessed iFrame Stream Info :: \(attributes)", level: .error)
+            logger.log("Unprocessed iFrame Stream Info :: \(attributes)", level: .error)
         case let .sessionData(attributes):
             // TODO: Session Data
-            log("Unprocessed Session Data :: \(attributes)", level: .error)
+            logger.log("Unprocessed Session Data :: \(attributes)", level: .error)
         case let .sessionKey(attributes):
             // TODO: Session Key
-            log("Unprocessed Session Key :: \(attributes)", level: .error)
+            logger.log("Unprocessed Session Key :: \(attributes)", level: .error)
         }
     }
 
