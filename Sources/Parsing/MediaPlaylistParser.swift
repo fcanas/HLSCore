@@ -45,15 +45,15 @@ private struct PlaylistBuilder {
     }
 }
 
-public func parseMediaPlaylist(string: String, atURL url: URL) -> MediaPlaylist? {
+public func parseMediaPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MediaPlaylist? {
     let parser = PlaylistStart *> newlines *> ( MediaPlaylistTag <* newlines ).many
 
     let parseResult = parser.run(string)
 
     if let remainingChars = parseResult?.1, (remainingChars.count > 0) {
-        log("REMAINDER:\n\(String(remainingChars))", level: .error)
+        logger.log("REMAINDER:\n\(String(remainingChars))", level: .error)
     } else {
-        log("NO REMAINDER", level: .info)
+        logger.log("NO REMAINDER", level: .info)
     }
 
     guard let tags = parseResult?.0 else {
@@ -63,7 +63,7 @@ public func parseMediaPlaylist(string: String, atURL url: URL) -> MediaPlaylist?
     let playlistBuilder = tags.reduce(PlaylistBuilder(rootURL: url), reduceTag)
 
     guard playlistBuilder.fatalTag == nil else {
-        log("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag!)", level: .fatal)
+        logger.log("Fatal tag encountered in media playlist: \(playlistBuilder.fatalTag!)", level: .fatal)
         return nil
     }
 
