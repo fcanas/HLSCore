@@ -9,6 +9,7 @@
 import XCTest
 import Types
 import Parsing
+import FFCLog
 
 class ParsingTests: XCTestCase {
     func testMediaPlaylist() {
@@ -60,8 +61,54 @@ class ParsingTests: XCTestCase {
         XCTAssertEqual(playlist, parsedPlaylist)
     }
 
-    func testMasterPlaylist() {
+    func testMasterPlaylistLogRemainder() {
+        var inputPlaylist: String
+        inputPlaylist = "#EXTM3U" + "\n"
 
+        let urlString = "http://example.com/test/playlist.m3u8"
+        let url = URL(string: urlString)!
+
+        let error = TestOutputStream()
+        let info = TestOutputStream()
+        let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
+
+        _ = parseMasterPlaylist(string: inputPlaylist, atURL: url, logger: logger)
+
+        XCTAssertEqual(error.logs, ["NO REMAINDER"])
+        XCTAssertEqual(info.logs, [])
+
+        inputPlaylist += "XYZ"
+        error.logs = []
+
+        _ = parseMasterPlaylist(string: inputPlaylist, atURL: url, logger: logger)
+
+        XCTAssertEqual(error.logs, [])
+        XCTAssertEqual(info.logs, ["REMAINDER:\nXYZ"])
+    }
+
+    func testMediaPlaylistLogRemainder() {
+        var inputPlaylist: String
+        inputPlaylist = "#EXTM3U" + "\n"
+
+        let urlString = "http://example.com/test/playlist.m3u8"
+        let url = URL(string: urlString)!
+
+        let error = TestOutputStream()
+        let info = TestOutputStream()
+        let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
+
+        _ = parseMediaPlaylist(string: inputPlaylist, atURL: url, logger: logger)
+
+        XCTAssertEqual(error.logs, ["NO REMAINDER"])
+        XCTAssertEqual(info.logs, [])
+
+        inputPlaylist += "XYZ"
+        error.logs = []
+
+        _ = parseMediaPlaylist(string: inputPlaylist, atURL: url, logger: logger)
+
+        XCTAssertEqual(error.logs, [])
+        XCTAssertEqual(info.logs, ["REMAINDER:\nXYZ"])
     }
 
     static var allTests: [(String, (ParsingTests) -> () throws -> Void)] {
@@ -69,4 +116,14 @@ class ParsingTests: XCTestCase {
             ("testMediaPlaylist", testMediaPlaylist)
         ]
     }
+}
+
+class TestOutputStream: LogOutputStream {
+
+    var logs: [String] = []
+
+    func write(_ string: String) {
+        logs.append(string)
+    }
+
 }
