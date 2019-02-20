@@ -32,8 +32,15 @@ extension StartIndicator {
             case let (StartIndicator.timeOffsetKey, .decimalFloatingPoint(time)):
                 timeOffset = time
             case let (StartIndicator.preciseKey, .enumeratedString(p)):
-                assert(p == .yes || p == .no, "PRECISE attribute in EXT-X-START must be YES or NO")
-                precise = p == .yes ? true : false
+                switch p {
+                case .yes:
+                    precise = true
+                case .no:
+                    precise = false
+                default:
+                    assert(false, "PRECISE attribute in EXT-X-START must be YES or NO")
+                    precise = false
+                }
             default:
                 return nil
             }
