@@ -68,8 +68,8 @@ class ParsingTests: XCTestCase {
         let urlString = "http://example.com/test/playlist.m3u8"
         let url = URL(string: urlString)!
 
-        let error = TestOutputStream()
-        let info = TestOutputStream()
+        let error = FakeOutputStream()
+        let info = FakeOutputStream()
         let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
 
         _ = parseMasterPlaylist(string: inputPlaylist, atURL: url, logger: logger)
@@ -93,8 +93,8 @@ class ParsingTests: XCTestCase {
         let urlString = "http://example.com/test/playlist.m3u8"
         let url = URL(string: urlString)!
 
-        let error = TestOutputStream()
-        let info = TestOutputStream()
+        let error = FakeOutputStream()
+        let info = FakeOutputStream()
         let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
 
         _ = parseMediaPlaylist(string: inputPlaylist, atURL: url, logger: logger)
@@ -116,14 +116,4 @@ class ParsingTests: XCTestCase {
             ("testMediaPlaylist", testMediaPlaylist)
         ]
     }
-}
-
-class TestOutputStream: LogOutputStream {
-
-    var logs: [String] = []
-
-    func write(_ string: String) {
-        logs.append(string)
-    }
-
 }

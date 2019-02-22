@@ -56,7 +56,7 @@ class StartTagParsingTests: XCTestCase {
     func testTimeOffset() {
         let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime)"
-        let (parsedTag, _) = EXTXSTART.run(tag)!
+        let (parsedTag, _) = HLS.Playlist.EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime))
     }
@@ -64,7 +64,7 @@ class StartTagParsingTests: XCTestCase {
     func testExplicitNotPrecise() {
         let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime),PRECISE=NO"
-        let (parsedTag, _) = EXTXSTART.run(tag)!
+        let (parsedTag, _) = HLS.Playlist.EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime))
     }
@@ -72,7 +72,7 @@ class StartTagParsingTests: XCTestCase {
     func testExplicitPrecise() {
         let startTime: TimeInterval = 1.3
         let tag = "#EXT-X-START:TIME-OFFSET=\(startTime),PRECISE=YES"
-        let (parsedTag, _) = EXTXSTART.run(tag)!
+        let (parsedTag, _) = HLS.Playlist.EXTXSTART.run(tag)!
         let startIndicator = entity(fromTag: AnyTag.playlist(parsedTag)) as! StartIndicator
         XCTAssertEqual(startIndicator, StartIndicator(at: startTime, preciseStart: true))
     }
@@ -85,62 +85,3 @@ class StartTagParsingTests: XCTestCase {
         ]
     }
 }
-
-/*
- 
-class DateTimeTagTests: XCTestCase {
-    @available (OSX 10.12, *)
-    func testBasicDateTag() {
-        let date = Date(timeIntervalSinceReferenceDate: 496636022)
-        let timeString = ISO8601DateFormatter().string(from: date)
-        let dateTag = "#EXT-X-PROGRAM-DATE-TIME:\(timeString)"
-        let (parsedDate, _) = EXTXPROGRAMDATETIME.run(dateTag)!
-        let dateTime = entity(fromTag: AnyTag.segment(parsedDate))
-        XCTAssertEqual(parsedDate, date)
-    }
-    
-}
- 
-class MediaSegmentParsingTests: XCTestCase {
-    
-    func testBasicMediaSegment() {
-        let urlString = "http://example.com/"
-        let duration = 1.03
-        let infoTag = "#EXTINF:\(duration),\n\(urlString)"
-        let (mediaSegment, _) = MediaSegmentParser.run(infoTag)!
-        let segment = MediaSegment(uri: URL(string:urlString)!, duration: duration)
-        XCTAssertEqual(mediaSegment, segment)
-    }
-    
-    func testMediaSegmentWithTitle() {
-        let urlString = "http://example.com/"
-        let duration = 1.25
-        let title = "A title, which can be any UTF8 without linebreaks? 🐐"
-        let infoTag = "#EXTINF:\(duration),\(title)\n\(urlString)"
-        let (mediaSegment, _) = MediaSegmentParser.run(infoTag)!
-        let segment = MediaSegment(uri: URL(string:urlString)!, duration: duration, title: title)
-        XCTAssertEqual(mediaSegment, segment)
-    }
-    
-    func testMediaSegmentWithTitleAndSimpleByteRange() {
-        let urlString = "http://example.com/"
-        let duration = 1.25
-        let title = "A title, which can be any UTF8 without linebreaks? 🐐"
-        let infoTag = "#EXTINF:\(duration),\(title)\n#EXT-X-BYTERANGE:1234\n\(urlString)"
-        let (mediaSegment, _) = MediaSegmentParser.run(infoTag)!
-        let segment = MediaSegment(uri: URL(string:urlString)!, duration: duration, title: title, byteRange: 0...1234)
-        XCTAssertEqual(mediaSegment, segment)
-    }
-    
-    func testMediaSegmentWithTitleAndFullyQualifiedByteRange() {
-        let urlString = "http://example.com/"
-        let duration = 1.25
-        let title = "A title, which can be any UTF8 without linebreaks? 🐐"
-        let infoTag = "#EXTINF:\(duration),\(title)\n#EXT-X-BYTERANGE:1234@5678\n\(urlString)"
-        let (mediaSegment, _) = MediaSegmentParser.run(infoTag)!
-        let segment = MediaSegment(uri: URL(string:urlString)!, duration: duration, title: title, byteRange: 5678...6912)
-        XCTAssertEqual(mediaSegment, segment)
-    }
- 
-}
-*/

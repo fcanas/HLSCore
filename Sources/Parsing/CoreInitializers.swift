@@ -39,7 +39,7 @@ extension StartIndicator {
                     precise = false
                 default:
                     assert(false, "PRECISE attribute in EXT-X-START must be YES or NO")
-                    precise = false
+                    precise = nil
                 }
             default:
                 return nil
