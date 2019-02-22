@@ -27,7 +27,7 @@ private struct PlaylistBuilder {
 }
 
 public func parseMasterPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MasterPlaylist? {
-    let parser = PlaylistStart *> newlines *> ( MasterPlaylistTag <* newlines ).many
+    let parser = HLS.Playlist.StartTag *> newlines *> ( HLS.Playlist.Master.TagParser <* newlines ).many
 
     let parseResult = parser.run(string)
 

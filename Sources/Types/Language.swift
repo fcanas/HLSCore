@@ -16,10 +16,10 @@ public struct Language: Equatable {
 }
 
 public extension Language {
-    public static let de = Language("de")
-    public static let en = Language("en")
-    public static let es = Language("es")
-    public static let fr = Language("fr")
-    public static let ja = Language("ja")
-    public static let zh = Language("zh")
+    static let de = Language("de")
+    static let en = Language("en")
+    static let es = Language("es")
+    static let fr = Language("fr")
+    static let ja = Language("ja")
+    static let zh = Language("zh")
 }

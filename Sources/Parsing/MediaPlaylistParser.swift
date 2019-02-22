@@ -46,7 +46,7 @@ private struct PlaylistBuilder {
 }
 
 public func parseMediaPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MediaPlaylist? {
-    let parser = PlaylistStart *> newlines *> ( MediaPlaylistTag <* newlines ).many
+    let parser = HLS.Playlist.StartTag *> newlines *> ( HLS.Playlist.Media.TagParser <* newlines ).many
 
     let parseResult = parser.run(string)
 
