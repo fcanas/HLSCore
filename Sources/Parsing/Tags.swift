@@ -87,7 +87,9 @@ enum HLS {
                     <|> EXTXPROGRAMDATETIME
                     <|> EXTXDATERANGE
 
-                static let EXTINF = Tag.MediaPlaylist.Segment.inf <^> "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* ","  <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
+                static let EXTINF = Tag.MediaPlaylist.Segment.inf <^>
+                    "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* ","
+                    <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
 
                 static let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( "#EXT-X-BYTERANGE:" *> TypeParser.byteRange )
 
