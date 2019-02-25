@@ -21,7 +21,8 @@ class AutoEncoding: XCTestCase {
 
         let rebuilt = MediaPlaylistSerializer().serialize(parsed).value!
 
-        AssertMatchMultilineString(mediaPlaylist, rebuilt, separator: "\n")
+        AssertMatchMultilineString(mediaPlaylist, rebuilt, separator: "\n") // Indicates per-line differences
+        XCTAssertEqual(mediaPlaylist, rebuilt) // Sanity check for custom matcher
     }
 
 }
@@ -47,6 +48,7 @@ private let mediaPlaylist =
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:551782@1642095
     main.mp4
+    #EXT-X-KEY:METHOD=AES-128,URI="ex.key"
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:548996@2193877
     main.mp4
@@ -89,6 +91,7 @@ private let mediaPlaylist =
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:549905@9342872
     main.mp4
+    #EXT-X-KEY:METHOD=AES-128,URI="ex2.key"
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:550852@9892777
     main.mp4
