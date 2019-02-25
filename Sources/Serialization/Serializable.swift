@@ -59,7 +59,7 @@ public struct MediaPlaylistSerializer: Serializer {
             output = output._append("#EXT-X-PLAYLIST-TYPE:\(type)", line: newline)
         }
 
-        var decryptionKey: DecryptionKey?
+        var activeDecryptionKey: DecryptionKey?
 
         var lastOutputMediaInitialization: MediaInitializationSection?
 
@@ -78,9 +78,9 @@ public struct MediaPlaylistSerializer: Serializer {
                 lastOutputMediaInitialization = smi
             }
 
-            if segment.decryptionKey != decryptionKey {
-                decryptionKey = segment.decryptionKey
-                if let key = decryptionKey {
+            if segment.decryptionKey != activeDecryptionKey {
+                activeDecryptionKey = segment.decryptionKey
+                if let key = activeDecryptionKey {
                     output = output._append(key.playlistString, line: newline)
                 } else {
                     output = output._append(DecryptionKey.None.playlistString, line: newline)
