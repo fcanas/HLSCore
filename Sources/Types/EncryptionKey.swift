@@ -8,10 +8,10 @@
 
 import Foundation
 
-public enum EncryptionMethod: String {
-    case None = "NONE"
-    case AES128 = "AES-128"
-    case SampleAES = "SAMPLE-AES"
+public enum EncryptionMethod: Equatable {
+    case None
+    case AES128(URL)
+    case SampleAES(URL)
 }
 
 public let IdentityDecryptionKeyFormat = "identity"
@@ -28,18 +28,15 @@ public struct InitializationVector: Equatable {
 public struct DecryptionKey: Equatable {
 
     public let method: EncryptionMethod
-    public let uri: URL
     public let initializationVector: InitializationVector?
     public let keyFormat: String
     public let keyFormatVersions: [Int]?
 
     public init(method: EncryptionMethod,
-                uri: URL,
                 initializationVector: InitializationVector? = nil,
                 keyFormat: String = IdentityDecryptionKeyFormat,
                 keyFormatVersions: [Int]? = nil) {
         self.method = method
-        self.uri = uri
         self.initializationVector = initializationVector
         self.keyFormat = keyFormat
         self.keyFormatVersions = keyFormatVersions
@@ -47,7 +44,6 @@ public struct DecryptionKey: Equatable {
 
     private init() {
         self.method = .None
-        self.uri = URL(string: "")!
         self.keyFormat = IdentityDecryptionKeyFormat
 
         keyFormatVersions = nil

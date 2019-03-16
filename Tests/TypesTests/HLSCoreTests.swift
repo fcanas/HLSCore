@@ -9,18 +9,6 @@
 import XCTest
 import Types
 
-class HLSCoreTests: XCTestCase {
-    func testExample() {
-
-    }
-
-    static var allTests: [(String, (HLSCoreTests) -> () throws -> Void)] {
-        return [
-            ("testExample", testExample)
-        ]
-    }
-}
-
 class RenditionGroupTests: XCTestCase {
 
     func testNoDefaultRendition() {
@@ -128,7 +116,6 @@ class RenditionGroupTests: XCTestCase {
     }
 }
 
-
 class StreamInfoTests: XCTestCase {
 
     func testSorting() {
@@ -159,6 +146,27 @@ class StreamInfoTests: XCTestCase {
 
         let height = [a,b,c].sorted(by: { $0.resolution!.height < $1.resolution!.height })
         XCTAssertEqual(height, [c, b, a])
+    }
+}
+
+class BitrateTests: XCTestCase {
+    func testBitrateEquatable() {
+        for _ in 1...100 {
+            let randomValue = UInt64(UInt.random(in: UInt.min...UInt.max))
+            XCTAssertEqual(Bitrate(randomValue), Bitrate(randomValue))
+        }
+    }
+
+    func testBitrateComparable() {
+        for _ in 1...100 {
+            let randomValueA = UInt64(UInt.random(in: UInt.min...UInt.max))
+            let randomValueB = UInt64(UInt.random(in: UInt.min...UInt.max))
+
+            XCTAssertEqual(Bitrate(randomValueA) > Bitrate(randomValueB),  randomValueA > randomValueB)
+            XCTAssertEqual(Bitrate(randomValueA) < Bitrate(randomValueB),  randomValueA < randomValueB)
+            XCTAssertEqual(Bitrate(randomValueA) <= Bitrate(randomValueB), randomValueA <= randomValueB)
+            XCTAssertEqual(Bitrate(randomValueA) >= Bitrate(randomValueB), randomValueA >= randomValueB)
+        }
     }
 
 }

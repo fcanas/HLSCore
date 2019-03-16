@@ -29,7 +29,6 @@ enum HLS {
 
         static let EXTXSTART = Tag.startIndicator <^> ( StartIndicator.init <^!> ( "#EXT-X-START:" *> attributeList ))
 
-
         static let COMMENT = Tag.comment <^> "#" *> ({ (chars: [Character]) in String(chars) } <^> CharacterSet(charactersIn: "\r\n").inverted.parser().many)
 
         static let URLPseudoTag = Tag.url <^> TypeParser.url
@@ -42,7 +41,7 @@ enum HLS {
                 <|> EXTXIFRAMESTREAMINF
                 <|> EXTXSESSIONDATA
                 <|> EXTXSESSIONKEY
-            
+
             static let EXTXMEDIA = Tag.MasterPlaylist.media <^> ( Rendition.init <^!> "#EXT-X-MEDIA:" *> attributeList)
 
             static let EXTXSTREAMINF = Tag.MasterPlaylist.streamInfo <^> ( StreamInfo.init <^!>  "#EXT-X-STREAM-INF:" *> attributeList <* BasicParser.newline.many <&> TypeParser.url)
@@ -89,7 +88,7 @@ enum HLS {
 
                 static let EXTINF = Tag.MediaPlaylist.Segment.inf <^>
                     "#EXTINF:" *> (( decimalFloatingPoint <|> decimalInteger ) <* ","
-                    <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
+                        <&> ({ String($0) } <^> (CharacterSet.newlines.inverted).parser().many1).optional)
 
                 static let EXTXBYTERANGE = Tag.MediaPlaylist.Segment.byteRange <^> ( "#EXT-X-BYTERANGE:" *> TypeParser.byteRange )
 
@@ -103,12 +102,8 @@ enum HLS {
 
                 static let EXTXDATERANGE = Tag.MediaPlaylist.Segment.dateRange <^> "#EXT-X-DATERANGE:" *> attributeList
             }
-
-
         }
-
     }
-
 }
 // MARK: Tag Taxonomy
 

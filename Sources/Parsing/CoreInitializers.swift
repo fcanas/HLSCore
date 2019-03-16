@@ -69,7 +69,13 @@ extension DecryptionKey {
 
     init?(attributes: AttributeList) {
 
-        var methodVar: EncryptionMethod?
+        enum EncryptionMethodString: String {
+            case None = "NONE"
+            case AES128 = "AES-128"
+            case SampleAES = "SAMPLE-AES"
+        }
+
+        var methodVar: EncryptionMethodString?
         var uriVar: URL?
         var initializationVectorVar: InitializationVector?
         var keyFormatVar: String = IdentityDecryptionKeyFormat
@@ -78,7 +84,8 @@ extension DecryptionKey {
         for attribute in attributes {
             switch attribute {
             case let (DecryptionKey.methodKey, .enumeratedString(m)):
-                guard let m = EncryptionMethod(rawValue: m.rawValue) else {
+                guard let m = EncryptionMethodString(rawValue: m.rawValue) else {
+                    // TODO: Logging - Unrecognized encryption method
                     return nil
                 }
                 methodVar = m
@@ -105,16 +112,23 @@ extension DecryptionKey {
             return nil
         }
 
-        if method != .None && uriVar == nil {
-            return nil
+        let methodOut: EncryptionMethod
+        switch method {
+        case .None:
+            methodOut = .None
+        case .AES128:
+            guard let uri = uriVar else {
+                return nil
+            }
+            methodOut = .AES128(uri)
+        case .SampleAES:
+            guard let uri = uriVar else {
+                return nil
+            }
+            methodOut = .SampleAES(uri)
         }
 
-        guard let u = uriVar else {
-            return nil
-        }
-
-        self.init(method: method,
-                  uri: u,
+        self.init(method: methodOut,
                   initializationVector: initializationVectorVar,
                   keyFormat: keyFormatVar,
                   keyFormatVersions: keyFormatVersionsVar)

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Types
 import FFCParserCombinator
 
 // All comments in this file represent section 4.2 of the HTTP Live Streaming
