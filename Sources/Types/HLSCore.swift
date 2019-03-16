@@ -92,6 +92,14 @@ public struct Bitrate: Comparable {
     }
 }
 
+extension Bitrate: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: UInt) {
+        self.value = value
+    }
+
+    public typealias IntegerLiteralType = UInt
+}
+
 /** 
  MIME type/subtypes representing different media formats.
  
@@ -99,21 +107,16 @@ public struct Bitrate: Comparable {
  `String`.
  https://tools.ietf.org/html/rfc6381
  */
-public struct Codec: RawRepresentable, Equatable, Hashable, Comparable {
-    //
+public struct Codec: RawRepresentable, Equatable {
     public let rawValue: String
 
     public init(rawValue: String) {
         self.rawValue = rawValue
     }
-
-    public static func < (lhs: Codec, rhs: Codec) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
 }
 
 /// EXT-X-STREAM-INF
-public struct StreamInfo {
+public struct StreamInfo: Equatable {
     /// Peak segment bitrate in bits per second
     public let bandwidth: Bitrate
     public let averageBandwidth: Bitrate?
