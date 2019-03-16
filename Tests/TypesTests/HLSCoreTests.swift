@@ -127,3 +127,38 @@ class RenditionGroupTests: XCTestCase {
         ]
     }
 }
+
+
+class StreamInfoTests: XCTestCase {
+
+    func testSorting() {
+        let a = StreamInfo(bandwidth: 1,
+                           averageBandwidth: nil,
+                           codecs: [Codec(rawValue: "h.264")],
+                           resolution: Resolution(width: 3840, height: 2160),
+                           frameRate: 60,
+                           uri: URL(string:"/")!)
+        let b = StreamInfo(bandwidth: 2,
+                           averageBandwidth: nil,
+                           codecs: [Codec(rawValue: "h.264")],
+                           resolution: Resolution(width: 1920, height: 1080),
+                           frameRate: 24,
+                           uri: URL(string:"/")!)
+        let c = StreamInfo(bandwidth: 30,
+                           averageBandwidth: nil,
+                           codecs: [Codec(rawValue: "h.264")],
+                           resolution: Resolution(width: 1280, height: 720),
+                           frameRate: 30,
+                           uri: URL(string:"/")!)
+
+        let bandwidth = [a,b,c].sorted(by: { $0.bandwidth < $1.bandwidth })
+        XCTAssertEqual(bandwidth, [a, b, c])
+
+        let framerate = [a,b,c].sorted(by: { $0.frameRate! < $1.frameRate! })
+        XCTAssertEqual(framerate, [b, c, a])
+
+        let height = [a,b,c].sorted(by: { $0.resolution!.height < $1.resolution!.height })
+        XCTAssertEqual(height, [c, b, a])
+    }
+
+}
