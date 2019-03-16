@@ -105,20 +105,29 @@ public struct MediaPlaylistSerializer: Serializer {
 private extension DecryptionKey {
 
     var playlistString: String {
-        var out = "#EXT-X-KEY:METHOD=\(method.rawValue)"
-        if method != .None {
-            out += ",URI=\"\(uri)\""
 
-            if let iv = initializationVector {
-                out += String(format: ",%8x%8x", iv.high, iv.low)
-            }
-            if keyFormat != "identity" {
-                out += "," + keyFormat
-            }
-            if let v = keyFormatVersions {
-                out += "," + v.map({ String($0) }).joined(separator: "/")
-            }
+        var out = "#EXT-X-KEY:METHOD="
+
+        switch method {
+        case .None:
+            out += "NONE"
+            return out
+        case let .AES128(uri):
+            out += "AES-128,URI=\"\(uri)\""
+        case let .SampleAES(uri):
+            out += "SAMPLE-AES,URI=\"\(uri)\""
         }
+
+        if let iv = initializationVector {
+            out += String(format: ",%8x%8x", iv.high, iv.low)
+        }
+        if keyFormat != "identity" {
+            out += "," + keyFormat
+        }
+        if let v = keyFormatVersions {
+            out += "," + v.map({ String($0) }).joined(separator: "/")
+        }
+
         return out
     }
 

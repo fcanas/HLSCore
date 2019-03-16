@@ -30,7 +30,7 @@ class SerializationTests: XCTestCase {
 
         let unencryptedSegments =  [MediaSegment(uri: s5URL, duration: 3.0),
                                     MediaSegment(uri: s6URL, duration: 3.2)]
-        let key = DecryptionKey(method: .AES128, uri: URL(string: "ex.key")!)
+        let key = DecryptionKey(method: .AES128(URL(string: "ex.key")!))
         let encryptedSegments = setDecryptionKey(key, forSegments: unencryptedSegments)
 
         let playlist: MediaPlaylist = MediaPlaylist(type: .VOD,
