@@ -218,6 +218,7 @@ private let mediaPlaylist =
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:549987@32462316
     main.mp4
+    #EXT-X-KEY:METHOD=NONE
     #EXTINF:6.0,
     #EXT-X-BYTERANGE:549423@33012303
     main.mp4
