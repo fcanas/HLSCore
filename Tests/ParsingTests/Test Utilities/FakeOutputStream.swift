@@ -5,7 +5,7 @@
 //  Created by Fabián Cañas on 2/21/19.
 //
 
-import FFCLog
+import Types
 
 class FakeOutputStream: LogOutputStream {
 

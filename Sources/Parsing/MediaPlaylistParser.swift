@@ -9,7 +9,6 @@
 import Foundation
 import Types
 import FFCParserCombinator
-import FFCLog
 
 let newlines = BasicParser.newline.many1
 
@@ -45,7 +44,7 @@ private struct PlaylistBuilder {
     }
 }
 
-public func parseMediaPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MediaPlaylist? {
+public func parseMediaPlaylist(string: String, atURL url: URL, logger: Logger = HLSLogging.Default()) -> MediaPlaylist? {
     let parser = HLS.Playlist.StartTag *> newlines *> ( HLS.Playlist.Media.TagParser <* newlines ).many
 
     let parseResult = parser.run(string)

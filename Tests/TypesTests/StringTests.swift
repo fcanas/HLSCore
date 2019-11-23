@@ -11,19 +11,6 @@ import XCTest
 
 class StringTests: XCTestCase {
 
-    func testFullRange() {
-        let emptyString: String = ""
-        let singleCharacter: String = "A"
-        let multipleLines: String = "Something on\nmultiple lines\nis good to test."
-        let basic: String = "Some basic string"
-
-        let allStrings = [emptyString, singleCharacter, multipleLines, basic]
-
-        for s in allStrings {
-            XCTAssertEqual(s, String(s[s.fullRange]))
-        }
-    }
-
     func testdeepestDirectoryPath() {
         let f = "/path/with/file"
         XCTAssertEqual(f.deepestDirectoryPath(), "/path/with/")
@@ -34,7 +21,6 @@ class StringTests: XCTestCase {
 
     static var allTests: [(String, (StringTests) -> () throws -> Void)] {
         return [
-            ("testFullRange", testFullRange),
             ("testdeepestDirectoryPath", testdeepestDirectoryPath)
         ]
     }

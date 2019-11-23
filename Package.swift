@@ -1,26 +1,21 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
     name: "HLSCore",
+    platforms: [
+    	.macOS(.v10_12),
+        .iOS(.v10),
+        .tvOS(.v10)
+    ],
     products: [
-        .library(
-            name: "HLSCore",
-            type: .dynamic,
-            targets: [
-                "Types",
-                "Serialization",
-                "Parsing"
-            ]
-        )
+        .library(name: "HLSCore", type:.static, targets: ["Types", "Serialization", "Parsing"])
     ],
     dependencies: [
         .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "1.0.0"),
-        .package(url: "https://github.com/fcanas/FFCLog.git", from: "0.1.0")
     ],
     targets: [
-        .target(name: "Types",
-               dependencies: ["FFCParserCombinator"]),
+        .target(name: "Types"),
         .testTarget(name: "TypesTests",
                     dependencies:["Types"]),
         .target(name: "Serialization",
@@ -28,10 +23,9 @@ let package = Package(
         .testTarget(name: "SerializationTests",
                     dependencies:["Serialization"]),
         .target(name: "Parsing",
-               dependencies: ["Types", "FFCParserCombinator", "FFCLog"]),
+               dependencies: ["Types", "FFCParserCombinator"]),
         .testTarget(name: "ParsingTests",
                     dependencies:["Parsing"])
     ],
-    swiftLanguageVersions: [4]
-
+    swiftLanguageVersions:[.v5]
 )

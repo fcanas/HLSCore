@@ -9,7 +9,6 @@
 import Foundation
 import Types
 import FFCParserCombinator
-import FFCLog
 
 private struct PlaylistBuilder {
     var version: UInt = 1
@@ -26,7 +25,7 @@ private struct PlaylistBuilder {
     }
 }
 
-public func parseMasterPlaylist(string: String, atURL url: URL, logger: Logger = FFCLog()) -> MasterPlaylist? {
+public func parseMasterPlaylist(string: String, atURL url: URL, logger: Logger = HLSLogging.Default()) -> MasterPlaylist? {
     let parser = HLS.Playlist.StartTag *> newlines *> ( HLS.Playlist.Master.TagParser <* newlines ).many
 
     let parseResult = parser.run(string)

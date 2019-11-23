@@ -9,7 +9,6 @@
 import XCTest
 import Types
 import Parsing
-import FFCLog
 
 class ParsingTests: XCTestCase {
     func testMediaPlaylist() {
@@ -70,7 +69,7 @@ class ParsingTests: XCTestCase {
 
         let error = FakeOutputStream()
         let info = FakeOutputStream()
-        let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
+        let logger = HLSLogging.Default(thresholdLevel: .error, errorOut: error, infoOut: info)
 
         _ = parseMasterPlaylist(string: inputPlaylist, atURL: url, logger: logger)
 
@@ -95,7 +94,7 @@ class ParsingTests: XCTestCase {
 
         let error = FakeOutputStream()
         let info = FakeOutputStream()
-        let logger = FFCLog(thresholdLevel: .error, errorOut: error, infoOut: info)
+        let logger = HLSLogging.Default(thresholdLevel: .error, errorOut: error, infoOut: info)
 
         _ = parseMediaPlaylist(string: inputPlaylist, atURL: url, logger: logger)
 

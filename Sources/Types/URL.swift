@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FFCParserCombinator
 
 extension URL {
 
@@ -85,4 +84,7 @@ extension String {
         return String(self[..<self.index(after: lastSlashIndex)])
     }
 
+    var fullRange: Range<Index> {
+        return Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+    }
 }
