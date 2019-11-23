@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FFCParserCombinator
 
 extension URL {
 
@@ -69,5 +68,23 @@ extension URL {
         var components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
         components.path = path.deepestDirectoryPath()
         return components.url!
+    }
+}
+
+extension String {
+
+    func deepestDirectoryPath() -> String {
+        if self.hasSuffix("/") {
+            return self
+        }
+        guard let lastSlashIndex = self.range(of: "/", options: .backwards)?.lowerBound else {
+            return "/"
+        }
+
+        return String(self[..<self.index(after: lastSlashIndex)])
+    }
+
+    var fullRange: Range<Index> {
+        return Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
     }
 }
