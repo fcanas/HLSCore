@@ -8,7 +8,7 @@
 
 import Foundation
 import Types
-import FFCParserCombinator
+import ParserCombinator
 
 /// Raw Type Parsers
 

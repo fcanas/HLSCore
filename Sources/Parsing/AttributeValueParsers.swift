@@ -8,7 +8,7 @@
 
 import Foundation
 import Types
-import FFCParserCombinator
+import ParserCombinator
 
 /// Attributes in Attribute lists can take on a limited number of types.
 enum AttributeValue: Equatable {

@@ -8,7 +8,7 @@
 
 import Foundation
 import Types
-import FFCParserCombinator
+import ParserCombinator
 
 private struct PlaylistBuilder {
     var version: UInt = 1

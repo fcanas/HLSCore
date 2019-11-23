@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FFCParserCombinator
+import ParserCombinator
 
 // All comments in this file represent section 4.2 of the HTTP Live Streaming
 // RFC in order, in its entirety.

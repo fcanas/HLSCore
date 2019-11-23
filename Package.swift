@@ -11,9 +11,6 @@ let package = Package(
     products: [
         .library(name: "HLSCore", type:.static, targets: ["Types", "Serialization", "Parsing"])
     ],
-    dependencies: [
-        .package(url: "https://github.com/fcanas/FFCParserCombinator.git", from: "1.0.0"),
-    ],
     targets: [
         .target(name: "Types"),
         .testTarget(name: "TypesTests",
@@ -23,9 +20,12 @@ let package = Package(
         .testTarget(name: "SerializationTests",
                     dependencies:["Serialization"]),
         .target(name: "Parsing",
-               dependencies: ["Types", "FFCParserCombinator"]),
+               dependencies: ["Types", "ParserCombinator"]),
         .testTarget(name: "ParsingTests",
-                    dependencies:["Parsing"])
+                    dependencies:["Parsing"]),
+        .target(name: "ParserCombinator"),
+        .testTarget(name: "ParserCombinatorTests",
+                    dependencies: ["ParserCombinator"])
     ],
     swiftLanguageVersions:[.v5]
 )
