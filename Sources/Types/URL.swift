@@ -71,3 +71,18 @@ extension URL {
         return components.url!
     }
 }
+
+extension String {
+
+    func deepestDirectoryPath() -> String {
+        if self.hasSuffix("/") {
+            return self
+        }
+        guard let lastSlashIndex = self.range(of: "/", options: .backwards)?.lowerBound else {
+            return "/"
+        }
+
+        return String(self[..<self.index(after: lastSlashIndex)])
+    }
+
+}
