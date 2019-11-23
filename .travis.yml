@@ -4,7 +4,6 @@ language: swift
 osx_image: xcode11.2
 install: 
   - swift package update
-  - brew update && brew upgrade swiftlint
 script:
   - swiftlint
   - swift build
